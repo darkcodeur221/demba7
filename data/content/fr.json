@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "projects": "Projets",
+    "data": "Data",
+    "ecommerce": "E-commerce",
+    "services": "Services",
+    "skills": "Compétences",
+    "about": "Parcours",
+    "contact": "Contact",
+    "cv": "CV",
+    "menu": "Menu"
+  },
+  "hero": {
+    "eyebrow": "IA appliquée, analytique et e-commerce",
+    "title": "Je transforme des besoins d'affaires en systèmes IA concrets, en production.",
+    "titleAccent": "systèmes IA",
+    "subtitle": "Et je fais parler les données : de la donnée brute à la décision. Automatisation, intégrations et analytique prédictive.",
+    "ctaProjects": "Voir mes projets",
+    "ctaContact": "Me contacter",
+    "ctaCv": "Télécharger le CV",
+    "flow": {
+      "raw": "Donnée brute",
+      "rawDetail": "GA4, WooCommerce, SQL",
+      "system": "Système IA",
+      "systemDetail": "Claude API, n8n, agents",
+      "decision": "Décision",
+      "decisionDetail": "Dashboards, automatisation"
+    },
+    "stats": {
+      "sites": "sites livrés",
+      "years": "ans d'expérience",
+      "ai": "projets IA en production",
+      "degree": "TI, UQAM 2025"
+    }
+  },
+  "about": {
+    "heading": "Un profil hybride, rare par construction",
+    "lead": "Affaires, technologie et data dans une même tête.",
+    "body": "Je conçois des systèmes IA en production depuis fin 2024 et je livre des sites et solutions web depuis 2019. Mon ancrage est double : le Québec et l'Afrique francophone. Ma spécialité aussi : je couvre l'IA générative et l'analytique prédictive, de la donnée brute à la décision. Peu de profils tiennent les deux bouts.",
+    "degreeLabel": "M.Sc. TI"
+  },
+  "sections": {
+    "ai": {
+      "label": "Projets IA & Automatisation",
+      "heading": "Des systèmes qui tournent, pas des prototypes",
+      "intro": "Chaque projet part d'un vrai problème d'affaires et finit en production."
+    },
+    "data": {
+      "label": "Data & Analytique",
+      "heading": "De la donnée brute à la décision",
+      "intro": "Je ne fais pas que de l'IA générative. Je fais aussi de l'analytique sérieuse.",
+      "toolsLabel": "Mes outils",
+      "tools": [
+        "Tableau Desktop (avancé)",
+        "Tableau Prep",
+        "RapidMiner",
+        "Looker Studio",
+        "GA4",
+        "SQL"
+      ],
+      "dashboardPlaceholder": "Visualisation Tableau à venir"
+    },
+    "ecommerce": {
+      "label": "E-commerce & Retail",
+      "heading": "L'avantage retail, en plus de la tech",
+      "intro": "Des marketplaces et boutiques en production, avec de vrais volumes."
+    },
+    "client": {
+      "label": "Sites clients & vitrines",
+      "heading": "Plus de 30 sites livrés",
+      "intro": "Une sélection de projets clients, du spa à l'agence."
+    },
+    "services": {
+      "label": "Services",
+      "heading": "Ce que je construis via Deejitcorp",
+      "intro": "De l'automatisation à l'analytique, en passant par l'e-commerce."
+    },
+    "skills": {
+      "label": "Compétences techniques",
+      "heading": "La boîte à outils complète"
+    },
+    "education": {
+      "label": "Parcours & Formation",
+      "heading": "Formation et certifications",
+      "certificationsLabel": "Certifications"
+    }
+  },
+  "contact": {
+    "label": "Contact",
+    "heading": "Parlons de votre projet",
+    "intro": "Basé à Longueuil, QC. Disponible pour mandats et opportunités.",
+    "form": {
+      "name": "Nom",
+      "namePlaceholder": "Votre nom",
+      "email": "Email",
+      "emailPlaceholder": "vous@exemple.com",
+      "message": "Message",
+      "messagePlaceholder": "Décrivez votre besoin en quelques lignes.",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours",
+      "success": "Message envoyé. Je vous réponds rapidement.",
+      "error": "Une erreur est survenue. Réessayez ou écrivez-moi directement.",
+      "invalid": "Merci de remplir tous les champs avec une adresse email valide."
+    },
+    "directLabel": "Ou directement",
+    "emailLabel": "Email",
+    "phoneLabel": "Téléphone",
+    "locationLabel": "Localisation"
+  },
+  "footer": {
+    "tagline": "Spécialiste IA & E-commerce. Automatisation, intégrations et analytique.",
+    "rights": "Tous droits réservés.",
+    "built": "Conçu et développé par Ngagne Demba Beye."
+  },
+  "common": {
+    "viewLive": "Voir le site",
+    "problem": "Problème",
+    "solution": "Solution",
+    "result": "Résultat",
+    "switchLang": "English",
+    "toggleTheme": "Changer de thème",
+    "backToTop": "Haut de page"
+  }
+}

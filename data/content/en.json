@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "data": "Data",
+    "ecommerce": "E-commerce",
+    "services": "Services",
+    "skills": "Skills",
+    "about": "Background",
+    "contact": "Contact",
+    "cv": "Resume",
+    "menu": "Menu"
+  },
+  "hero": {
+    "eyebrow": "Applied AI, analytics and e-commerce",
+    "title": "I turn business needs into real AI systems, in production.",
+    "titleAccent": "AI systems",
+    "subtitle": "And I make data speak: from raw data to decision. Automation, integrations and predictive analytics.",
+    "ctaProjects": "View my work",
+    "ctaContact": "Get in touch",
+    "ctaCv": "Download resume",
+    "flow": {
+      "raw": "Raw data",
+      "rawDetail": "GA4, WooCommerce, SQL",
+      "system": "AI system",
+      "systemDetail": "Claude API, n8n, agents",
+      "decision": "Decision",
+      "decisionDetail": "Dashboards, automation"
+    },
+    "stats": {
+      "sites": "sites delivered",
+      "years": "years of experience",
+      "ai": "AI projects in production",
+      "degree": "IT, UQAM 2025"
+    }
+  },
+  "about": {
+    "heading": "A hybrid profile, rare by design",
+    "lead": "Business, technology and data in one head.",
+    "body": "I have been building AI systems in production since late 2024, and delivering websites and web solutions since 2019. My footing is twofold: Quebec and French-speaking Africa. So is my specialty: I cover both generative AI and predictive analytics, from raw data to decision. Few profiles hold both ends.",
+    "degreeLabel": "M.Sc. IT"
+  },
+  "sections": {
+    "ai": {
+      "label": "AI & Automation projects",
+      "heading": "Systems that run, not prototypes",
+      "intro": "Every project starts from a real business problem and ends in production."
+    },
+    "data": {
+      "label": "Data & Analytics",
+      "heading": "From raw data to decision",
+      "intro": "I don't only do generative AI. I also do serious analytics.",
+      "toolsLabel": "My tools",
+      "tools": [
+        "Tableau Desktop (advanced)",
+        "Tableau Prep",
+        "RapidMiner",
+        "Looker Studio",
+        "GA4",
+        "SQL"
+      ],
+      "dashboardPlaceholder": "Tableau visualization coming soon"
+    },
+    "ecommerce": {
+      "label": "E-commerce & Retail",
+      "heading": "The retail edge, on top of the tech",
+      "intro": "Marketplaces and stores in production, with real volume."
+    },
+    "client": {
+      "label": "Client sites & showcases",
+      "heading": "More than 30 sites delivered",
+      "intro": "A selection of client projects, from spa to agency."
+    },
+    "services": {
+      "label": "Services",
+      "heading": "What I build through Deejitcorp",
+      "intro": "From automation to analytics, including e-commerce."
+    },
+    "skills": {
+      "label": "Technical skills",
+      "heading": "The full toolbox"
+    },
+    "education": {
+      "label": "Background & Education",
+      "heading": "Education and certifications",
+      "certificationsLabel": "Certifications"
+    }
+  },
+  "contact": {
+    "label": "Contact",
+    "heading": "Let's talk about your project",
+    "intro": "Based in Longueuil, QC. Available for contracts and opportunities.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "message": "Message",
+      "messagePlaceholder": "Describe your need in a few lines.",
+      "submit": "Send message",
+      "sending": "Sending",
+      "success": "Message sent. I'll get back to you shortly.",
+      "error": "Something went wrong. Try again or email me directly.",
+      "invalid": "Please fill in every field with a valid email address."
+    },
+    "directLabel": "Or directly",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "locationLabel": "Location"
+  },
+  "footer": {
+    "tagline": "AI & E-commerce specialist. Automation, integrations and analytics.",
+    "rights": "All rights reserved.",
+    "built": "Designed and built by Ngagne Demba Beye."
+  },
+  "common": {
+    "viewLive": "Visit site",
+    "problem": "Problem",
+    "solution": "Solution",
+    "result": "Result",
+    "switchLang": "Français",
+    "toggleTheme": "Toggle theme",
+    "backToTop": "Back to top"
+  }
+}

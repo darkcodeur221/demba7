@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
+/* Class-based dark mode driven by next-themes (adds `.dark` on <html>). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Brand tokens. One accent (deep blue) locked across the whole page.
+  Light is the default; dark is an elegant cool near-black.
+*/
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --surface: #f5f8fc;
+  --card: #ffffff;
+  --foreground: #0e1726;
+  --muted: #586374;
+  --border: rgba(15, 40, 70, 0.12);
+  --border-strong: rgba(15, 40, 70, 0.22);
+  --brand: #1f4e79;
+  --brand-strong: #173c5e;
+  --brand-2: #2e75b6;
+  --accent-soft: #e8f1fa;
+  --on-brand: #ffffff;
+  --ring: #2e75b6;
+}
+
+.dark {
+  --background: #0a0f17;
+  --surface: #0e1521;
+  --card: #121b29;
+  --foreground: #e7edf5;
+  --muted: #93a1b5;
+  --border: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --brand: #5a9bdc;
+  --brand-strong: #7bb1e6;
+  --brand-2: #3d84c9;
+  --accent-soft: rgba(46, 117, 182, 0.16);
+  --on-brand: #08111c;
+  --ring: #5a9bdc;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-2: var(--brand-2);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-brand: var(--on-brand);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --radius-card: 14px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: var(--color-on-brand);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Numbers and code render in the mono face for a data-forward feel. */
+.tnum {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum";
 }
