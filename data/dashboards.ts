@@ -23,6 +23,14 @@ export const dashboards: Dashboard[] = [
     },
   },
   {
+    src: "/images/rapidminer-3.png",
+    tool: "RapidMiner",
+    caption: {
+      fr: "Processus de modélisation de bout en bout",
+      en: "End-to-end modeling process",
+    },
+  },
+  {
     src: "/images/rapidminer-4.jpg",
     tool: "RapidMiner",
     caption: {
@@ -52,6 +60,14 @@ export const dashboards: Dashboard[] = [
     caption: {
       fr: "Matrice de corrélation des variables",
       en: "Variable correlation matrix",
+    },
+  },
+  {
+    src: "/images/rapidminer-2.png",
+    tool: "RapidMiner",
+    caption: {
+      fr: "Pipeline d'opérateurs, vue d'ensemble",
+      en: "Operator pipeline, overview",
     },
   },
 ];

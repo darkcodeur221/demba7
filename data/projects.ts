@@ -104,7 +104,7 @@ export const projects: Project[] = [
     stack: ["n8n", "WordPress", "WooCommerce API"],
     url: "https://seventwin.com",
     linkLabel: "seventwin.com",
-    image: "/images/seven-twins.jpg",
+    image: "/images/seven-twins.png",
   },
   {
     slug: "troc-afrique",

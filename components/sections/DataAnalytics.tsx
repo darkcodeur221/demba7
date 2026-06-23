@@ -105,9 +105,9 @@ export function DataAnalytics({ dict, locale }: { dict: Dictionary; locale: Loca
             {d.galleryLabel}
           </span>
         </Reveal>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((viz, i) => (
-            <Reveal key={viz.src} delay={(i % 4) * 0.05} className="h-full">
+            <Reveal key={viz.src} delay={(i % 3) * 0.05} className="h-full">
               <a
                 href={viz.src}
                 target="_blank"
@@ -119,7 +119,7 @@ export function DataAnalytics({ dict, locale }: { dict: Dictionary; locale: Loca
                     src={viz.src}
                     alt={viz.caption[locale]}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-contain"
                   />
                 </div>
