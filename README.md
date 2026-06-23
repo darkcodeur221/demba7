@@ -1,6 +1,6 @@
 # Portfolio · Ngagne Demba Beye
 
-Portfolio professionnel bilingue (français / anglais) pour `demba.deejitcorp.com`.
+Portfolio professionnel bilingue (français / anglais) pour `demba7.seventwins.com`.
 Spécialiste IA appliquée, automatisation, analytique et e-commerce.
 
 **Stack :** Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · Motion · next-themes · Resend.
@@ -103,7 +103,7 @@ un message invitant à écrire directement par email.
 1. Pousse le dépôt sur GitHub.
 2. Importe le projet sur Vercel.
 3. Ajoute les variables d'environnement (`RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO`).
-4. Associe le sous-domaine `demba.deejitcorp.com`.
+4. Associe le sous-domaine `demba7.seventwins.com`.
 
 ### VPS
 ```bash

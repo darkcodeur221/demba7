@@ -41,7 +41,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
           >
             N
           </div>
-          <div style={{ color: "#93a1b5", fontSize: 26 }}>deejitcorp.com</div>
+          <div style={{ color: "#93a1b5", fontSize: 26 }}>demba7.seventwins.com</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>

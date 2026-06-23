@@ -5,7 +5,7 @@ import type { Locale } from "./i18n";
  * Used by metadata, JSON-LD, the nav, the footer and the contact section.
  */
 export const site = {
-  url: "https://demba.deejitcorp.com",
+  url: "https://demba7.seventwins.com",
   name: "Ngagne Demba Beye",
   email: "demba@deejitcorp.com",
   phone: "+1 514-573-9843",
