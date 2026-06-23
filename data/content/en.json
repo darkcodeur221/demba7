@@ -34,9 +34,10 @@
     }
   },
   "about": {
-    "heading": "A hybrid profile, rare by design",
+    "label": "About",
+    "heading": "A hybrid profile across three disciplines",
     "lead": "Business, technology and data in one head.",
-    "body": "I have been building AI systems in production since late 2024, and delivering websites and web solutions since 2019. My footing is twofold: Quebec and French-speaking Africa. So is my specialty: I cover both generative AI and predictive analytics, from raw data to decision. Few profiles hold both ends.",
+    "body": "I have been building AI systems in production since late 2024, and delivering websites and web solutions since 2019. My footing is twofold: Quebec and French-speaking Africa. I work where business, technology and data meet, from generative AI to predictive analytics. It's this combination, more than any single skill, that lets me turn a need into a system that actually runs.",
     "degreeLabel": "M.Sc. IT"
   },
   "sections": {

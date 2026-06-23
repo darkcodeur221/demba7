@@ -36,6 +36,7 @@ export const projects: Project[] = [
     stack: ["n8n", "Claude API", "Stripe", "PostgreSQL", "Google Calendar", "Docker"],
     url: "https://n8n.seventwins.cloud",
     linkLabel: "n8n.seventwins.cloud",
+    image: "/images/tipi-en-fete.webp",
   },
   {
     slug: "jobcooking",
@@ -58,6 +59,7 @@ export const projects: Project[] = [
     stack: ["Claude API", "n8n", "WordPress", "PostgreSQL"],
     url: "https://jobcooking.com",
     linkLabel: "jobcooking.com",
+    image: "/images/jobcooking.jpg",
   },
   {
     slug: "papii",
@@ -78,6 +80,7 @@ export const projects: Project[] = [
       en: "A continuously fed pipeline of qualified leads.",
     },
     stack: ["Google Maps API", "Claude API", "Brevo"],
+    image: "/images/papii.png",
   },
   {
     slug: "seven-twins",
@@ -99,6 +102,7 @@ export const projects: Project[] = [
     stack: ["n8n", "WordPress", "WooCommerce API"],
     url: "https://seventwin.com",
     linkLabel: "seventwin.com",
+    image: "/images/seven-twins.jpg",
   },
   {
     slug: "troc-afrique",
@@ -112,6 +116,7 @@ export const projects: Project[] = [
     stack: ["Laravel", "Blade"],
     url: "https://troc-afrique.com",
     linkLabel: "troc-afrique.com",
+    image: "/images/troc-afrique.jpg",
   },
 
   // ----- Data & Analytique -----

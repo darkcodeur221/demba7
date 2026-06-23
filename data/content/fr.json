@@ -34,9 +34,10 @@
     }
   },
   "about": {
-    "heading": "Un profil hybride, rare par construction",
+    "label": "À propos",
+    "heading": "Un profil hybride, à la croisée de trois disciplines",
     "lead": "Affaires, technologie et data dans une même tête.",
-    "body": "Je conçois des systèmes IA en production depuis fin 2024 et je livre des sites et solutions web depuis 2019. Mon ancrage est double : le Québec et l'Afrique francophone. Ma spécialité aussi : je couvre l'IA générative et l'analytique prédictive, de la donnée brute à la décision. Peu de profils tiennent les deux bouts.",
+    "body": "Je conçois des systèmes IA en production depuis fin 2024 et je livre des sites et solutions web depuis 2019. Mon ancrage est double : le Québec et l'Afrique francophone. Je travaille là où se rencontrent l'affaire, la technologie et la donnée, de l'IA générative à l'analytique prédictive. C'est cette combinaison, plus que chaque compétence prise isolément, qui me permet de transformer un besoin en système qui tourne.",
     "degreeLabel": "M.Sc. TI"
   },
   "sections": {

@@ -20,7 +20,7 @@ export function About({ dict }: { dict: Dictionary }) {
           <Reveal className="flex flex-col gap-4">
             <span className="inline-flex items-center gap-2.5 text-sm font-medium text-brand">
               <span className="h-px w-6 bg-brand" aria-hidden />
-              {dict.sections.education.label}
+              {a.label}
             </span>
             <h2 className="text-3xl font-semibold tracking-tight md:text-[2.5rem] md:leading-[1.1]">
               {a.heading}
