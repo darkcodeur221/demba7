@@ -13,23 +13,21 @@ export type CardLabels = {
 };
 
 /**
- * Branded cover used until a real screenshot is dropped into /public/images.
- * It is an intentional design tile (monogram + domain), not a faked product UI.
- * When `project.image` points to an existing file, swap `placeholderOnly` off.
+ * Real screenshot when `project.image` is set, otherwise a branded design tile
+ * (monogram + domain). The tile is an intentional placeholder, not a faked UI.
  */
 function Cover({ project, className }: { project: Project; className?: string }) {
   const initial = project.tagline.fr.charAt(0).toUpperCase();
-  const placeholderOnly = true; // flip to false once real screenshots exist
 
-  if (!placeholderOnly && project.image) {
+  if (project.image) {
     return (
       <div className={cn("relative overflow-hidden bg-surface", className)}>
         <Image
           src={project.image}
           alt={project.title.fr}
           fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover object-top"
         />
       </div>
     );

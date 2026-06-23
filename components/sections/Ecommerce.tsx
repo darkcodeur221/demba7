@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { Section, SectionHeader } from "./Section";
 import { ProjectCard, type CardLabels } from "@/components/ProjectCard";
@@ -28,13 +29,29 @@ export function Ecommerce({ dict, locale }: { dict: Dictionary; locale: Locale }
 
       <Reveal className="mb-6">
         <article className="grid overflow-hidden rounded-[var(--radius-card)] border border-border bg-card md:grid-cols-2">
-          <div className="relative flex min-h-[12rem] items-end overflow-hidden bg-accent-soft" aria-hidden>
-            <span className="pointer-events-none absolute -right-6 -top-10 select-none text-[12rem] font-semibold leading-none text-brand/15">
-              {featured.tagline.fr.charAt(0).toUpperCase()}
-            </span>
-            <span className="relative m-5 rounded-md bg-background/70 px-3 py-1.5 text-sm font-medium text-brand backdrop-blur-sm">
-              {featured.linkLabel}
-            </span>
+          <div className="relative flex min-h-[12rem] items-end overflow-hidden bg-accent-soft">
+            {featured.image ? (
+              <Image
+                src={featured.image}
+                alt={featured.title[locale]}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover object-top"
+                priority
+              />
+            ) : (
+              <>
+                <span
+                  className="pointer-events-none absolute -right-6 -top-10 select-none text-[12rem] font-semibold leading-none text-brand/15"
+                  aria-hidden
+                >
+                  {featured.tagline.fr.charAt(0).toUpperCase()}
+                </span>
+                <span className="relative m-5 rounded-md bg-background/70 px-3 py-1.5 text-sm font-medium text-brand backdrop-blur-sm">
+                  {featured.linkLabel}
+                </span>
+              </>
+            )}
           </div>
           <div className="flex flex-col justify-center gap-4 p-7">
             <h3 className="text-2xl font-semibold tracking-tight">{featured.title[locale]}</h3>

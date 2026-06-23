@@ -36,7 +36,6 @@ export const projects: Project[] = [
     stack: ["n8n", "Claude API", "Stripe", "PostgreSQL", "Google Calendar", "Docker"],
     url: "https://n8n.seventwins.cloud",
     linkLabel: "n8n.seventwins.cloud",
-    image: "/images/tipi-en-fete.jpg",
   },
   {
     slug: "jobcooking",
@@ -59,7 +58,6 @@ export const projects: Project[] = [
     stack: ["Claude API", "n8n", "WordPress", "PostgreSQL"],
     url: "https://jobcooking.com",
     linkLabel: "jobcooking.com",
-    image: "/images/jobcooking.jpg",
   },
   {
     slug: "papii",
@@ -80,7 +78,6 @@ export const projects: Project[] = [
       en: "A continuously fed pipeline of qualified leads.",
     },
     stack: ["Google Maps API", "Claude API", "Brevo"],
-    image: "/images/papii.jpg",
   },
   {
     slug: "seven-twins",
@@ -102,7 +99,6 @@ export const projects: Project[] = [
     stack: ["n8n", "WordPress", "WooCommerce API"],
     url: "https://seventwin.com",
     linkLabel: "seventwin.com",
-    image: "/images/seven-twins.jpg",
   },
   {
     slug: "troc-afrique",
@@ -116,7 +112,6 @@ export const projects: Project[] = [
     stack: ["Laravel", "Blade"],
     url: "https://troc-afrique.com",
     linkLabel: "troc-afrique.com",
-    image: "/images/troc-afrique.jpg",
   },
 
   // ----- Data & Analytique -----
@@ -141,7 +136,6 @@ export const projects: Project[] = [
     stack: ["GA4", "WooCommerce", "Looker Studio", "SQL"],
     url: "https://mataviande.com",
     linkLabel: "mataviande.com",
-    image: "/images/mataviande.jpg",
   },
 
   // ----- E-commerce & Retail -----
@@ -210,18 +204,17 @@ export const projects: Project[] = [
     linkLabel: "dilbi.sn",
     image: "/images/dilbi.jpg",
   },
-  {
-    slug: "sen-electronique",
-    category: "ecommerce",
-    title: { fr: "Électronique en ligne", en: "Online electronics" },
-    tagline: { fr: "sen-electronique.com", en: "sen-electronique.com" },
-    stack: ["WooCommerce"],
-    url: "https://sen-electronique.com",
-    linkLabel: "sen-electronique.com",
-    image: "/images/sen-electronique.jpg",
-  },
-
   // ----- Sites clients & vitrines -----
+  {
+    slug: "menolumina",
+    category: "client",
+    title: { fr: "Site corporate · énergie", en: "Corporate · energy site" },
+    tagline: { fr: "menolumina.com", en: "menolumina.com" },
+    stack: ["WordPress"],
+    url: "https://menolumina.com",
+    linkLabel: "menolumina.com",
+    image: "/images/menolumina.jpg",
+  },
   {
     slug: "steponesenegal",
     category: "client",
@@ -261,16 +254,6 @@ export const projects: Project[] = [
     url: "https://teranga-immobilier.com",
     linkLabel: "teranga-immobilier.com",
     image: "/images/teranga-immobilier.jpg",
-  },
-  {
-    slug: "easygraph",
-    category: "client",
-    title: { fr: "Studio graphique", en: "Design studio" },
-    tagline: { fr: "easygraph.net", en: "easygraph.net" },
-    stack: ["WordPress"],
-    url: "https://easygraph.net",
-    linkLabel: "easygraph.net",
-    image: "/images/easygraph.jpg",
   },
   {
     slug: "gameshop-dakar",
