@@ -112,6 +112,25 @@
     "rights": "All rights reserved.",
     "built": "Designed and built by Ngagne Demba Beye."
   },
+  "cv": {
+    "metaTitle": "Resume · Ngagne Demba Beye",
+    "back": "Portfolio",
+    "print": "Print / PDF",
+    "role": "AI & E-commerce Specialist",
+    "summaryLabel": "Profile",
+    "summary": "Specialist in applied AI, automation and advanced analytics. I have been building AI systems in production since late 2024 and delivering websites and web solutions since 2019. A rare double expertise: generative AI and predictive analytics, from raw data to decision.",
+    "skillsLabel": "Core skills",
+    "workLabel": "Selected work",
+    "educationLabel": "Education",
+    "certificationsLabel": "Certifications",
+    "languagesLabel": "Languages",
+    "contactLabel": "Contact",
+    "available": "Available for contracts and opportunities",
+    "languages": [
+      { "name": "French", "level": "Native" },
+      { "name": "English", "level": "Professional" }
+    ]
+  },
   "common": {
     "viewLive": "Visit site",
     "problem": "Problem",

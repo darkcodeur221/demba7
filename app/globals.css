@@ -99,3 +99,54 @@ body {
   font-family: var(--font-mono);
   font-feature-settings: "tnum";
 }
+
+/*
+  Print / PDF export (used by the CV page). Force a light, paginated, static
+  document: hide chrome, neutralise reveal animations, white background even in
+  dark mode, and let the brand accent survive.
+*/
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  .dark {
+    --background: #ffffff;
+    --surface: #ffffff;
+    --card: #ffffff;
+    --foreground: #0e1726;
+    --muted: #4a5564;
+    --border: rgba(15, 40, 70, 0.18);
+    --border-strong: rgba(15, 40, 70, 0.28);
+    --brand: #1f4e79;
+    --brand-strong: #173c5e;
+    --brand-2: #2e75b6;
+    --accent-soft: #e8f1fa;
+    --on-brand: #ffffff;
+  }
+  .no-print {
+    display: none !important;
+  }
+  /* Reveal animations set inline opacity/transform; force the final state. */
+  *,
+  *::before,
+  *::after {
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  body {
+    background: #ffffff !important;
+  }
+  .cv-screen-bg {
+    background: #ffffff !important;
+    padding: 0 !important;
+  }
+  .cv-doc {
+    max-width: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+  section {
+    break-inside: avoid;
+  }
+}

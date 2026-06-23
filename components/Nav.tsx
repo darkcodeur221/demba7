@@ -91,14 +91,13 @@ export function Nav({
         </div>
 
         <div className="flex items-center gap-2">
-          <a
-            href={site.cv}
-            download
+          <Link
+            href={`${base}/cv`}
             className="hidden items-center gap-1.5 text-sm text-muted transition-colors hover:text-foreground sm:inline-flex"
           >
             <DownloadSimple size={16} weight="bold" />
             {nav.cv}
-          </a>
+          </Link>
           <LocaleSwitcher locale={locale} label={switchLabel} />
           <ThemeToggle label={themeLabel} />
           <Link
@@ -139,14 +138,14 @@ export function Nav({
             >
               {nav.contact}
             </Link>
-            <a
-              href={site.cv}
-              download
+            <Link
+              href={`${base}/cv`}
+              onClick={() => setOpen(false)}
               className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-lg px-3 py-2.5 text-sm text-muted hover:text-foreground"
             >
               <DownloadSimple size={16} weight="bold" />
               {nav.cv}
-            </a>
+            </Link>
           </div>
         </div>
       )}

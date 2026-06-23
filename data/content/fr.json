@@ -112,6 +112,25 @@
     "rights": "Tous droits réservés.",
     "built": "Conçu et développé par Ngagne Demba Beye."
   },
+  "cv": {
+    "metaTitle": "CV · Ngagne Demba Beye",
+    "back": "Portfolio",
+    "print": "Imprimer / PDF",
+    "role": "Spécialiste IA & E-commerce",
+    "summaryLabel": "Profil",
+    "summary": "Spécialiste en IA appliquée, automatisation et analytique avancée. Je conçois des systèmes IA en production depuis fin 2024 et je livre des sites et solutions web depuis 2019. Double expertise rare : IA générative et analytique prédictive, de la donnée brute à la décision.",
+    "skillsLabel": "Compétences clés",
+    "workLabel": "Réalisations sélectionnées",
+    "educationLabel": "Formation",
+    "certificationsLabel": "Certifications",
+    "languagesLabel": "Langues",
+    "contactLabel": "Contact",
+    "available": "Disponible pour mandats et opportunités",
+    "languages": [
+      { "name": "Français", "level": "Langue maternelle" },
+      { "name": "Anglais", "level": "Professionnel" }
+    ]
+  },
   "common": {
     "viewLive": "Voir le site",
     "problem": "Problème",

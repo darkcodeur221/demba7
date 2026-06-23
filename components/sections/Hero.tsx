@@ -5,7 +5,6 @@ import { Reveal } from "@/components/motion/Reveal";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { Dictionary, Locale } from "@/lib/i18n";
-import { site } from "@/lib/site";
 
 export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const h = dict.hero;
@@ -45,14 +44,13 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
               <Link href={`${base}#contact`} className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
                 {h.ctaContact}
               </Link>
-              <a
-                href={site.cv}
-                download
+              <Link
+                href={`${base}/cv`}
                 className="inline-flex items-center gap-1.5 px-2 text-sm font-medium text-muted transition-colors hover:text-brand"
               >
                 <DownloadSimple size={16} weight="bold" />
                 {h.ctaCv}
-              </a>
+              </Link>
             </div>
           </Reveal>
         </div>
