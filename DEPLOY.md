@@ -59,7 +59,8 @@ EOF
 ## 4. Installer, builder, démarrer
 
 ```bash
-npm ci
+npm install              # npm install (pas `npm ci`) : tolère les écarts de
+                         # version de npm entre machines pour les peer-deps
 npm run build
 
 # Démarrer avec PM2 (port 3007 par défaut, voir ecosystem.config.cjs)
@@ -74,7 +75,7 @@ Vérifie en local sur le VPS : `curl -I http://127.0.0.1:3007/fr` → `200 OK`.
 > `ecosystem.config.cjs` **et** le `proxy_pass` du fichier Nginx, puis
 > `pm2 reload demba7-portfolio`.
 
-Pour les mises à jour : `git pull && npm ci && npm run build && pm2 reload demba7-portfolio`.
+Pour les mises à jour : `git pull && npm install && npm run build && pm2 reload demba7-portfolio`.
 
 ---
 
