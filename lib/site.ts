@@ -16,7 +16,7 @@ export const site = {
   },
   cv: "/cv-ngagne-demba-beye.pdf",
   socials: {
-    linkedin: "https://www.linkedin.com/in/ngagne-demba-beye",
+    linkedin: "https://www.linkedin.com/in/ngagne-demba-beye-04a9221a6",
     github: "https://github.com/darkcodeur221",
   },
 } as const;
