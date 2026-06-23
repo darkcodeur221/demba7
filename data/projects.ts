@@ -80,6 +80,8 @@ export const projects: Project[] = [
       en: "A continuously fed pipeline of qualified leads.",
     },
     stack: ["Google Maps API", "Claude API", "Brevo"],
+    url: "https://seventwins.cloud",
+    linkLabel: "seventwins.cloud",
     image: "/images/papii.png",
   },
   {
@@ -109,9 +111,17 @@ export const projects: Project[] = [
     category: "ai",
     title: { fr: "Plateforme d'échange gratuit", en: "Free exchange platform" },
     tagline: { fr: "Troc-Afrique", en: "Troc-Afrique" },
+    problem: {
+      fr: "Donner, échanger ou trouver des objets du quotidien reste coûteux et compliqué pour beaucoup de familles.",
+      en: "Giving, swapping or finding everyday goods stays costly and complicated for many families.",
+    },
     solution: {
-      fr: "Une plateforme communautaire d'échange d'objets entre particuliers.",
-      en: "A community platform for exchanging goods between individuals.",
+      fr: "Une plateforme d'échange gratuit dédiée à la population africaine, pour donner et trouver des objets entre particuliers.",
+      en: "A free exchange platform for African communities, to give and find goods between individuals.",
+    },
+    result: {
+      fr: "Une alternative gratuite à l'achat, qui encourage l'entraide et la réutilisation.",
+      en: "A free alternative to buying that encourages mutual aid and reuse.",
     },
     stack: ["Laravel", "Blade"],
     url: "https://troc-afrique.com",

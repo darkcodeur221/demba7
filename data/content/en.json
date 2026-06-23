@@ -59,7 +59,7 @@
         "GA4",
         "SQL"
       ],
-      "dashboardPlaceholder": "Tableau visualization coming soon"
+      "galleryLabel": "Tableau & RapidMiner in action"
     },
     "ecommerce": {
       "label": "E-commerce & Retail",

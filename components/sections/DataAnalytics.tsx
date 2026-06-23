@@ -1,13 +1,17 @@
-import { ChartBar } from "@phosphor-icons/react/dist/ssr";
+import Image from "next/image";
+import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { Section, SectionHeader } from "./Section";
 import { Badge } from "@/components/ui/badge";
 import { Reveal } from "@/components/motion/Reveal";
 import { projectsByCategory } from "@/data/projects";
+import { dashboards } from "@/data/dashboards";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
 export function DataAnalytics({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const d = dict.sections.data;
   const audit = projectsByCategory("data")[0];
+  const featured = dashboards.find((x) => x.featured) ?? dashboards[0];
+  const gallery = dashboards.filter((x) => x !== featured);
 
   const facts = [
     { label: dict.common.problem, value: audit.problem?.[locale] },
@@ -20,6 +24,7 @@ export function DataAnalytics({ dict, locale }: { dict: Dictionary; locale: Loca
       <SectionHeader label={d.label} heading={d.heading} intro={d.intro} />
 
       <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+        {/* Audit narrative */}
         <Reveal className="flex flex-col gap-6">
           <div>
             <h3 className="text-xl font-semibold tracking-tight">{audit.title[locale]}</h3>
@@ -49,14 +54,35 @@ export function DataAnalytics({ dict, locale }: { dict: Dictionary; locale: Loca
           </dl>
         </Reveal>
 
-        <Reveal delay={0.1} className="flex flex-col gap-5">
-          {/* Clearly-labelled placeholder for a Tableau dashboard to be provided. */}
-          <div className="flex aspect-[16/10] w-full flex-col items-center justify-center gap-3 rounded-[var(--radius-card)] border border-dashed border-border-strong bg-card text-center">
-            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-soft text-brand">
-              <ChartBar size={24} weight="bold" />
-            </span>
-            <span className="px-6 text-sm text-muted">{d.dashboardPlaceholder}</span>
-          </div>
+        {/* Featured dashboard + tools */}
+        <Reveal delay={0.1} className="flex flex-col gap-6">
+          <a
+            href={featured.src}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block overflow-hidden rounded-[var(--radius-card)] border border-border bg-card"
+          >
+            <div className="relative aspect-[16/10] bg-surface">
+              <Image
+                src={featured.src}
+                alt={featured.caption[locale]}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-contain"
+              />
+            </div>
+            <div className="flex items-center justify-between gap-3 border-t border-border px-4 py-3">
+              <div className="flex items-center gap-2.5">
+                <Badge accent>{featured.tool}</Badge>
+                <span className="text-sm text-foreground">{featured.caption[locale]}</span>
+              </div>
+              <ArrowUpRight
+                size={16}
+                weight="bold"
+                className="shrink-0 text-muted transition-colors group-hover:text-brand"
+              />
+            </div>
+          </a>
 
           <div>
             <p className="mb-3 text-sm font-medium text-foreground">{d.toolsLabel}</p>
@@ -69,6 +95,42 @@ export function DataAnalytics({ dict, locale }: { dict: Dictionary; locale: Loca
             </div>
           </div>
         </Reveal>
+      </div>
+
+      {/* Proof gallery */}
+      <div className="mt-14">
+        <Reveal className="mb-5">
+          <span className="inline-flex items-center gap-2.5 text-sm font-medium text-brand">
+            <span className="h-px w-6 bg-brand" aria-hidden />
+            {d.galleryLabel}
+          </span>
+        </Reveal>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {gallery.map((viz, i) => (
+            <Reveal key={viz.src} delay={(i % 4) * 0.05} className="h-full">
+              <a
+                href={viz.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-card transition-colors hover:border-border-strong"
+              >
+                <div className="relative aspect-[16/10] bg-surface">
+                  <Image
+                    src={viz.src}
+                    alt={viz.caption[locale]}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col gap-0.5 border-t border-border px-3 py-2.5">
+                  <p className="text-xs font-medium text-brand">{viz.tool}</p>
+                  <p className="text-xs leading-snug text-muted">{viz.caption[locale]}</p>
+                </div>
+              </a>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </Section>
   );
