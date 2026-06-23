@@ -1,4 +1,4 @@
-# Déploiement sur VPS Hostinger — demba7.seventwins.com
+# Déploiement sur VPS Hostinger — demba7.seventwin.com
 
 Le portfolio est une app **Next.js avec serveur** (formulaire de contact, image OG
 dynamique, redirection `/` → `/fr`). On la lance avec **PM2** derrière **Nginx**,
@@ -11,7 +11,7 @@ Vérifie : `node -v` (doit afficher v20 ou plus).
 
 ## 1. DNS chez Hostinger
 
-Dans Hostinger → domaine **seventwins.com** → **Zone DNS**, ajoute un enregistrement :
+Dans Hostinger → domaine **seventwin.com** → **Zone DNS**, ajoute un enregistrement :
 
 | Type | Nom (Host) | Valeur (Pointe vers) | TTL |
 |------|------------|----------------------|-----|
@@ -50,7 +50,7 @@ EOF
 
 - Crée la clé sur https://resend.com/api-keys.
 - `CONTACT_FROM` doit être sur un domaine **vérifié dans Resend** (ex.
-  `deejitcorp.com`, ou `seventwins.com` si tu le vérifies).
+  `deejitcorp.com`, ou `seventwin.com` si tu le vérifies).
 - Sans clé, le site marche mais le formulaire renvoie une erreur invitant à
   écrire directement par email.
 
@@ -82,9 +82,9 @@ Pour les mises à jour : `git pull && npm install && npm run build && pm2 reload
 ## 5. Nginx + HTTPS
 
 ```bash
-sudo cp deploy/nginx-demba7.seventwins.com.conf \
-        /etc/nginx/sites-available/demba7.seventwins.com
-sudo ln -s /etc/nginx/sites-available/demba7.seventwins.com \
+sudo cp deploy/nginx-demba7.seventwin.com.conf \
+        /etc/nginx/sites-available/demba7.seventwin.com
+sudo ln -s /etc/nginx/sites-available/demba7.seventwin.com \
            /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 ```
@@ -92,7 +92,7 @@ sudo nginx -t && sudo systemctl reload nginx
 Puis le certificat SSL gratuit (Let's Encrypt) :
 
 ```bash
-sudo certbot --nginx -d demba7.seventwins.com
+sudo certbot --nginx -d demba7.seventwin.com
 ```
 
 Certbot ajoute automatiquement le bloc HTTPS (443) et la redirection HTTP → HTTPS.
@@ -101,9 +101,9 @@ Certbot ajoute automatiquement le bloc HTTPS (443) et la redirection HTTP → HT
 
 ## 6. Vérifier
 
-- https://demba7.seventwins.com → redirige vers `/fr`
-- https://demba7.seventwins.com/en → version anglaise
-- https://demba7.seventwins.com/fr/cv → le CV
+- https://demba7.seventwin.com → redirige vers `/fr`
+- https://demba7.seventwin.com/en → version anglaise
+- https://demba7.seventwin.com/fr/cv → le CV
 - Teste le formulaire de contact (un email doit arriver à `CONTACT_TO`).
 
 ## Dépannage rapide
