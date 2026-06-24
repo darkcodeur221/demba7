@@ -1,11 +1,13 @@
 import { Section, SectionHeader } from "./Section";
 import { ProjectCard, type CardLabels } from "@/components/ProjectCard";
+import { BpmnCompare } from "@/components/BpmnCompare";
 import { Reveal } from "@/components/motion/Reveal";
 import { projectsByCategory } from "@/data/projects";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
 export function AIProjects({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const projects = projectsByCategory("ai");
+  const p = dict.sections.ai.process;
   const labels: CardLabels = {
     problem: dict.common.problem,
     solution: dict.common.solution,
@@ -27,6 +29,20 @@ export function AIProjects({ dict, locale }: { dict: Dictionary; locale: Locale 
           </Reveal>
         ))}
       </div>
+
+      {/* Design deep-dive: AS-IS / TO-BE BPMN comparison for Tipi en Fête */}
+      <Reveal className="mt-6">
+        <BpmnCompare
+          label={p.label}
+          heading={p.heading}
+          body={p.body}
+          caption={p.caption}
+          zoomHint={p.zoomHint}
+          openLabel={p.openFull}
+          asIs={{ tag: p.asIsTag, desc: p.asIsDesc }}
+          toBe={{ tag: p.toBeTag, desc: p.toBeDesc }}
+        />
+      </Reveal>
     </Section>
   );
 }

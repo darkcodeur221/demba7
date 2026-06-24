@@ -44,7 +44,19 @@
     "ai": {
       "label": "Projets IA & Automatisation",
       "heading": "Des systèmes qui tournent, pas des prototypes",
-      "intro": "Chaque projet part d'un vrai problème d'affaires et finit en production."
+      "intro": "Chaque projet part d'un vrai problème d'affaires et finit en production.",
+      "process": {
+        "label": "Démarche de conception",
+        "heading": "Ma démarche : concevoir avant de construire",
+        "body": "Avant d'écrire la moindre ligne de code, j'ai modélisé le processus existant en BPMN 2.0 pour comprendre chaque étape et identifier les irritants. J'ai ensuite conçu le processus cible automatisé. Cette rigueur de conception est ce qui distingue un système fiable d'un bricolage.",
+        "asIsTag": "AS-IS",
+        "asIsDesc": "Processus manuel",
+        "toBeTag": "TO-BE",
+        "toBeDesc": "Processus automatisé",
+        "caption": "Processus de réservation · Tipi en Fête. Modélisation BPMN 2.0 (Visual Paradigm).",
+        "zoomHint": "Cliquer pour agrandir",
+        "openFull": "Ouvrir en plein écran"
+      }
     },
     "data": {
       "label": "Data & Analytique",

@@ -44,7 +44,19 @@
     "ai": {
       "label": "AI & Automation projects",
       "heading": "Systems that run, not prototypes",
-      "intro": "Every project starts from a real business problem and ends in production."
+      "intro": "Every project starts from a real business problem and ends in production.",
+      "process": {
+        "label": "Design approach",
+        "heading": "My approach: design before building",
+        "body": "Before writing a single line of code, I modelled the existing process in BPMN 2.0 to understand every step and pinpoint the friction. I then designed the target automated process. This design discipline is what separates a reliable system from a patch-up.",
+        "asIsTag": "AS-IS",
+        "asIsDesc": "Manual process",
+        "toBeTag": "TO-BE",
+        "toBeDesc": "Automated process",
+        "caption": "Booking process · Tipi en Fête. BPMN 2.0 modelling (Visual Paradigm).",
+        "zoomHint": "Click to enlarge",
+        "openFull": "Open full size"
+      }
     },
     "data": {
       "label": "Data & Analytics",
