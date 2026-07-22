@@ -107,6 +107,49 @@ export const projects: Project[] = [
     image: "/images/seven-twins.png",
   },
   {
+    slug: "naya-chatbot",
+    category: "ai",
+    title: { fr: "Chatbot IA pour PME", en: "AI chatbot for SMBs" },
+    tagline: { fr: "Naya · Deejitcorp", en: "Naya · Deejitcorp" },
+    problem: {
+      fr: "Les PME perdent des leads hors des heures d'ouverture et répondent aux mêmes questions en boucle.",
+      en: "SMBs lose leads outside business hours and answer the same questions over and over.",
+    },
+    solution: {
+      fr: "Un chatbot IA entraîné sur le contenu du site, capable de recevoir des instructions spécifiques et de capturer les infos de contact des prospects.",
+      en: "An AI chatbot trained on the site's content, capable of following specific instructions and capturing prospect contact info.",
+    },
+    result: {
+      fr: "Déployé chez plusieurs PME (dont easygraph.net). Leads qualifiés 24/7, reporting automatique des contacts.",
+      en: "Deployed at multiple SMBs (including easygraph.net). Qualified leads 24/7, automatic contact reporting.",
+    },
+    stack: ["Claude API", "n8n", "WordPress", "REST API"],
+    url: "https://easygraph.net",
+    linkLabel: "easygraph.net",
+  },
+  {
+    slug: "feugjay-ecosystem",
+    category: "ai",
+    featured: true,
+    title: { fr: "Écosystème de 4 agents IA", en: "4-agent AI ecosystem" },
+    tagline: { fr: "Feugjay", en: "Feugjay" },
+    problem: {
+      fr: "Gérer le marketing d'une boutique e-commerce à Dakar sans équipe dédiée : contenu, SEO, analytics, stratégie.",
+      en: "Running a Dakar-based e-commerce store's marketing without a dedicated team: content, SEO, analytics, strategy.",
+    },
+    solution: {
+      fr: "4 agents IA autonomes : Pikachu (community manager Facebook), Porygon (analytics Telegram), Lugia (intelligence stratégique GA4/Search Console/WooCommerce), Celebi (optimisation SEO automatique).",
+      en: "4 autonomous AI agents: Pikachu (Facebook community manager), Porygon (Telegram analytics), Lugia (strategic intelligence GA4/Search Console/WooCommerce), Celebi (automatic SEO optimization).",
+    },
+    result: {
+      fr: "Marketing entièrement automatisé : publications quotidiennes, rapports hebdomadaires, fiches produit optimisées, intelligence stratégique continue.",
+      en: "Fully automated marketing: daily posts, weekly reports, optimized product listings, continuous strategic intelligence.",
+    },
+    stack: ["Claude API", "n8n", "GA4", "Search Console", "WooCommerce API", "Facebook API", "Telegram"],
+    url: "https://feugjay.com",
+    linkLabel: "feugjay.com",
+  },
+  {
     slug: "troc-afrique",
     category: "ai",
     title: { fr: "Plateforme d'échange gratuit", en: "Free exchange platform" },

@@ -56,6 +56,11 @@
         "caption": "Booking process · Tipi en Fête. BPMN 2.0 modelling (Visual Paradigm).",
         "zoomHint": "Click to enlarge",
         "openFull": "Open full size"
+      },
+      "ecosystem": {
+        "label": "Multi-agent architecture",
+        "heading": "An ecosystem of 4 autonomous AI agents",
+        "body": "Feugjay is an e-commerce store in Dakar whose marketing is fully automated. Pikachu posts daily on Facebook by selecting a real product and creating a professional marketing poster. Porygon analyzes weekly engagement and reports via Telegram. Lugia cross-references GA4, Search Console, Google Trends and WooCommerce to produce strategic intelligence. Celebi automatically optimizes product SEO listings directly in WooCommerce."
       }
     },
     "data": {
