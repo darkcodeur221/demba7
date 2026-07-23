@@ -18,6 +18,7 @@
     "ctaProjects": "Voir mes projets",
     "ctaContact": "Me contacter",
     "ctaCv": "Télécharger le CV",
+    "visualAlt": "Illustration du flux : données brutes alimentant un système IA, qui produit des tableaux de bord et des décisions.",
     "flow": {
       "raw": "Donnée brute",
       "rawDetail": "GA4, WooCommerce, SQL",

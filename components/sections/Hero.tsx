@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, DownloadSimple } from "@phosphor-icons/react/dist/ssr";
-import { FlowPipeline } from "@/components/motion/FlowPipeline";
+import { HeroVisual } from "@/components/motion/HeroVisual";
 import { HeroBackground } from "@/components/motion/HeroBackground";
 import { Reveal } from "@/components/motion/Reveal";
 import { buttonVariants } from "@/components/ui/button";
@@ -17,7 +17,7 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
       <HeroBackground />
 
       <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-6">
           <Reveal>
             <span className="inline-flex items-center gap-2.5 text-sm font-medium text-brand">
               <span className="h-px w-8 bg-brand" aria-hidden />
@@ -72,14 +72,12 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           </Reveal>
         </div>
 
-        <div className="flex justify-center lg:col-span-5 lg:justify-end">
-          <FlowPipeline
+        <div className="flex justify-center lg:col-span-6 lg:justify-end">
+          <HeroVisual
+            alt={h.visualAlt}
             raw={h.flow.raw}
-            rawDetail={h.flow.rawDetail}
             system={h.flow.system}
-            systemDetail={h.flow.systemDetail}
             decision={h.flow.decision}
-            decisionDetail={h.flow.decisionDetail}
           />
         </div>
       </div>

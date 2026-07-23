@@ -18,6 +18,7 @@
     "ctaProjects": "View my work",
     "ctaContact": "Get in touch",
     "ctaCv": "Download resume",
+    "visualAlt": "Flow illustration: raw data feeding an AI system that produces dashboards and decisions.",
     "flow": {
       "raw": "Raw data",
       "rawDetail": "GA4, WooCommerce, SQL",
