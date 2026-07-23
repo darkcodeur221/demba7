@@ -74,10 +74,9 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
 
         <div className="flex justify-center lg:col-span-6 lg:justify-end">
           <HeroVisual
-            alt={h.visualAlt}
-            raw={h.flow.raw}
-            system={h.flow.system}
-            decision={h.flow.decision}
+            hub={h.orchestration.hub}
+            hubDetail={h.orchestration.hubDetail}
+            nodes={h.orchestration.nodes}
           />
         </div>
       </div>
