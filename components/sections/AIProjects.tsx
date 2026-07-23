@@ -7,7 +7,8 @@ import { projectsByCategory } from "@/data/projects";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
 export function AIProjects({ dict, locale }: { dict: Dictionary; locale: Locale }) {
-  const projects = projectsByCategory("ai");
+  // Feugjay gets its own rich ecosystem showcase, so keep it out of the grid.
+  const projects = projectsByCategory("ai").filter((p) => p.slug !== "feugjay-ecosystem");
   const p = dict.sections.ai.process;
   const e = dict.sections.ai.ecosystem;
   const labels: CardLabels = {
@@ -38,6 +39,12 @@ export function AIProjects({ dict, locale }: { dict: Dictionary; locale: Locale 
           label={e.label}
           heading={e.heading}
           body={e.body}
+          proofLabel={e.proofLabel}
+          zoomHint={e.zoomHint}
+          openLabel={e.openFull}
+          architectureCaption={e.architectureCaption}
+          lugiaCaption={e.lugiaCaption}
+          celebiCaption={e.celebiCaption}
         />
       </Reveal>
 

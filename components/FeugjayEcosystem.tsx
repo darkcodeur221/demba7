@@ -1,169 +1,232 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import {
+  Megaphone,
+  ChartLineUp,
+  Compass,
+  MagnifyingGlass,
+  MagnifyingGlassPlus,
+  X,
+  ArrowSquareOut,
+} from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
-interface Agent {
+type Agent = {
   name: string;
   role: string;
-  sprite: string;
-  ring: string;
-  glow: string;
-  services: { name: string; icon: string }[];
-}
+  icon: typeof Megaphone;
+  integrations: string[];
+};
 
 const agents: Agent[] = [
-  {
-    name: "Pikachu",
-    role: "Community Manager",
-    sprite: "/images/pokemon-pikachu.png",
-    ring: "ring-amber-400/60",
-    glow: "drop-shadow-[0_0_12px_rgba(245,158,11,0.5)]",
-    services: [{ name: "Facebook", icon: "f" }],
-  },
-  {
-    name: "Porygon",
-    role: "Analytics",
-    sprite: "/images/pokemon-porygon.png",
-    ring: "ring-blue-400/60",
-    glow: "drop-shadow-[0_0_12px_rgba(59,130,246,0.5)]",
-    services: [{ name: "Telegram", icon: "t" }],
-  },
+  { name: "Pikachu", role: "Community Manager", icon: Megaphone, integrations: ["Facebook"] },
+  { name: "Porygon", role: "Analytics", icon: ChartLineUp, integrations: ["Telegram"] },
   {
     name: "Lugia",
     role: "Strategic Data",
-    sprite: "/images/pokemon-lugia.png",
-    ring: "ring-purple-400/60",
-    glow: "drop-shadow-[0_0_12px_rgba(168,85,247,0.5)]",
-    services: [
-      { name: "GA4", icon: "g" },
-      { name: "Search Console", icon: "s" },
-      { name: "Telegram", icon: "t" },
-    ],
+    icon: Compass,
+    integrations: ["GA4", "Search Console", "Google Trends", "WooCommerce"],
   },
-  {
-    name: "Celebi",
-    role: "SEO",
-    sprite: "/images/pokemon-celebi.png",
-    ring: "ring-emerald-400/60",
-    glow: "drop-shadow-[0_0_12px_rgba(16,185,129,0.5)]",
-    services: [{ name: "WooCommerce", icon: "w" }],
-  },
+  { name: "Celebi", role: "SEO", icon: MagnifyingGlass, integrations: ["WooCommerce"] },
 ];
 
-const serviceColors: Record<string, string> = {
-  f: "bg-blue-600",
-  t: "bg-sky-500",
-  g: "bg-orange-500",
-  s: "bg-green-600",
-  w: "bg-purple-600",
-};
+type Shot = { src: string; caption: string };
 
 export function FeugjayEcosystem({
   label,
   heading,
   body,
+  proofLabel,
+  zoomHint,
+  openLabel,
+  lugiaCaption,
+  celebiCaption,
+  architectureCaption,
 }: {
   label: string;
   heading: string;
   body: string;
+  proofLabel: string;
+  zoomHint: string;
+  openLabel: string;
+  lugiaCaption: string;
+  celebiCaption: string;
+  architectureCaption: string;
 }) {
+  const [open, setOpen] = useState<Shot | null>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(null);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  const proofs: Shot[] = [
+    { src: "/images/lugia-bot.jpg", caption: lugiaCaption },
+    { src: "/images/celebi-bot.jpg", caption: celebiCaption },
+  ];
+  const architecture: Shot = {
+    src: "/images/feugjay-organigramme.jpg",
+    caption: architectureCaption,
+  };
+
   return (
-    <div className="overflow-hidden rounded-[var(--radius-card)] border border-border bg-[#0a0e1a] p-6 sm:p-8 lg:p-10">
-      <span className="inline-flex items-center gap-2.5 text-sm font-medium text-blue-400">
-        <span className="h-px w-8 bg-gradient-to-r from-blue-400 to-purple-400" aria-hidden />
+    <div className="rounded-[var(--radius-card)] border border-border bg-surface/50 p-6 sm:p-8">
+      <span className="inline-flex items-center gap-2.5 text-sm font-medium text-brand">
+        <span className="h-px w-8 bg-gradient-to-r from-brand to-brand-2" aria-hidden />
         {label}
       </span>
-      <h3 className="mt-4 text-xl font-bold tracking-tight text-white md:text-2xl">{heading}</h3>
-      <p className="mt-3 max-w-2xl text-base leading-relaxed text-gray-400">{body}</p>
+      <h3 className="mt-4 text-xl font-bold tracking-tight md:text-2xl">{heading}</h3>
+      <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted">{body}</p>
 
-      {/* Agent network */}
-      <div className="relative mt-10">
-        {/* Connection lines (SVG behind cards) */}
-        <svg
-          className="pointer-events-none absolute inset-0 hidden h-full w-full lg:block"
-          aria-hidden
-        >
-          <line
-            x1="25%" y1="50%" x2="50%" y2="30%"
-            className="stroke-blue-500/20" strokeWidth="1" strokeDasharray="6 4"
-          >
-            <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="3s" repeatCount="indefinite" />
-          </line>
-          <line
-            x1="75%" y1="50%" x2="50%" y2="30%"
-            className="stroke-purple-500/20" strokeWidth="1" strokeDasharray="6 4"
-          >
-            <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="3s" repeatCount="indefinite" />
-          </line>
-          <line
-            x1="25%" y1="50%" x2="75%" y2="50%"
-            className="stroke-white/5" strokeWidth="1" strokeDasharray="6 4"
-          >
-            <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="4s" repeatCount="indefinite" />
-          </line>
-        </svg>
-
-        {/* Central hub */}
-        <div className="relative mx-auto mb-8 flex w-fit flex-col items-center gap-2">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 shadow-[0_0_30px_-5px_rgba(249,115,22,0.4)]">
-            <span className="text-lg font-black text-white">n8n</span>
-          </div>
-          <span className="text-xs font-medium text-gray-500">Orchestrateur</span>
+      <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-10">
+        {/* Agent roster */}
+        <div className="flex flex-col gap-3">
+          {agents.map((agent) => {
+            const Icon = agent.icon;
+            return (
+              <div
+                key={agent.name}
+                className="flex items-start gap-4 rounded-[var(--radius-card)] border border-border bg-card p-4 transition-colors hover:border-border-strong"
+              >
+                <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-brand">
+                  <Icon size={20} weight="bold" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-baseline gap-2">
+                    <p className="font-semibold text-foreground">{agent.name}</p>
+                    <p className="text-xs font-medium text-brand">{agent.role}</p>
+                  </div>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {agent.integrations.map((it) => (
+                      <span
+                        key={it}
+                        className="inline-flex items-center rounded-md border border-border bg-surface/60 px-2 py-0.5 text-[11px] font-medium text-muted"
+                      >
+                        {it}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Agent grid */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {agents.map((agent, i) => (
-            <div
-              key={agent.name}
-              className="group relative flex flex-col items-center gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.06]"
-              style={{ animationDelay: `${i * 100}ms` }}
+        {/* Architecture diagram */}
+        <button
+          type="button"
+          onClick={() => setOpen(architecture)}
+          aria-label={`${architectureCaption} — ${zoomHint}`}
+          className="group relative block overflow-hidden rounded-[var(--radius-card)] border border-border bg-[#0a0e1a]"
+        >
+          <div className="relative aspect-[4/3] w-full">
+            <Image
+              src={architecture.src}
+              alt={architectureCaption}
+              fill
+              loading="lazy"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-contain p-3"
+            />
+          </div>
+          <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/20">
+            <span className="inline-flex items-center gap-1.5 rounded-lg bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground opacity-0 shadow-sm transition-opacity group-hover:opacity-100">
+              <MagnifyingGlassPlus size={15} weight="bold" />
+              {zoomHint}
+            </span>
+          </span>
+        </button>
+      </div>
+
+      {/* Proof in production */}
+      <div className="mt-8">
+        <span className="inline-flex items-center gap-2 text-sm font-medium text-brand">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+          {proofLabel}
+        </span>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          {proofs.map((shot) => (
+            <button
+              key={shot.src}
+              type="button"
+              onClick={() => setOpen(shot)}
+              aria-label={`${shot.caption} — ${zoomHint}`}
+              className="group flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-card text-left transition-colors hover:border-border-strong"
             >
-              {/* Sprite */}
-              <div className={cn("relative h-20 w-20 transition-all duration-500 group-hover:scale-110", agent.glow)}>
-                <div className={cn("absolute inset-0 rounded-full ring-2", agent.ring)} />
+              <div className="img-zoom relative aspect-[16/11] w-full overflow-hidden bg-surface">
                 <Image
-                  src={agent.sprite}
-                  alt={agent.name}
-                  width={80}
-                  height={80}
-                  className="relative z-10 object-contain drop-shadow-lg"
+                  src={shot.src}
+                  alt={shot.caption}
+                  fill
+                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  className="object-cover object-top"
                 />
-              </div>
-
-              {/* Name + role */}
-              <div className="text-center">
-                <p className="text-sm font-bold text-white">{agent.name}</p>
-                <p className="text-xs text-gray-500">{agent.role}</p>
-              </div>
-
-              {/* Service badges */}
-              <div className="flex flex-wrap justify-center gap-1.5">
-                {agent.services.map((svc) => (
-                  <span
-                    key={svc.name}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-2.5 py-1 text-[11px] font-medium text-gray-400"
-                  >
-                    <span className={cn("h-1.5 w-1.5 rounded-full", serviceColors[svc.icon])} />
-                    {svc.name}
+                <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/15">
+                  <span className="inline-flex items-center gap-1.5 rounded-lg bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground opacity-0 shadow-sm transition-opacity group-hover:opacity-100">
+                    <MagnifyingGlassPlus size={15} weight="bold" />
+                    {zoomHint}
                   </span>
-                ))}
+                </span>
               </div>
-
-              {/* Pulse indicator */}
-              <span className="absolute right-3 top-3 flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-40" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-              </span>
-            </div>
+              <p className="border-t border-border px-4 py-2.5 text-xs text-muted">{shot.caption}</p>
+            </button>
           ))}
         </div>
       </div>
 
-      <p className="mt-8 text-center text-xs text-gray-600">
-        Feugjay — Intelligence en Ecosysteme. 4 agents autonomes, orchestres par n8n.
-      </p>
+      {/* Lightbox */}
+      {open && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={open.caption}
+          onClick={() => setOpen(null)}
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-3 bg-foreground/80 p-4 backdrop-blur-sm sm:p-8"
+        >
+          <div className="flex w-full max-w-[1100px] items-center justify-between gap-3">
+            <span className="text-sm font-medium text-background">{open.caption}</span>
+            <button
+              type="button"
+              onClick={() => setOpen(null)}
+              aria-label="Fermer"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-background/90 text-foreground transition-colors hover:bg-background"
+            >
+              <X size={18} weight="bold" />
+            </button>
+          </div>
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative flex max-h-[78vh] w-full max-w-[1100px] items-center justify-center overflow-auto rounded-lg bg-background p-2"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={open.src} alt={open.caption} className="h-auto w-full object-contain" />
+          </div>
+          <a
+            href={open.src}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-background/90 transition-colors hover:text-background"
+          >
+            <ArrowSquareOut size={15} weight="bold" />
+            {openLabel}
+          </a>
+        </div>
+      )}
     </div>
   );
 }

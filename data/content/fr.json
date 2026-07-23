@@ -60,7 +60,13 @@
       "ecosystem": {
         "label": "Architecture multi-agents",
         "heading": "Un écosystème de 4 agents IA autonomes",
-        "body": "Feugjay est une boutique e-commerce à Dakar dont le marketing est entièrement automatisé. Pikachu publie chaque jour sur Facebook en sélectionnant un produit réel et en créant une affiche marketing professionnelle. Porygon analyse l'engagement hebdomadaire et rapporte via Telegram. Lugia croise GA4, Search Console, Google Trends et WooCommerce pour produire de l'intelligence stratégique. Celebi optimise automatiquement les fiches produit SEO directement dans WooCommerce."
+        "body": "Feugjay est une boutique e-commerce à Dakar dont le marketing est entièrement automatisé. Pikachu publie chaque jour sur Facebook en sélectionnant un produit réel et en créant une affiche marketing professionnelle. Porygon analyse l'engagement hebdomadaire et rapporte via Telegram. Lugia croise GA4, Search Console, Google Trends et WooCommerce pour produire de l'intelligence stratégique. Celebi optimise automatiquement les fiches produit SEO directement dans WooCommerce.",
+        "proofLabel": "En production",
+        "zoomHint": "Cliquer pour agrandir",
+        "openFull": "Ouvrir en plein écran",
+        "architectureCaption": "Architecture de l'écosystème — flux entre les 4 agents et les plateformes.",
+        "lugiaCaption": "Lugia — rapport analytique stratégique (Google Trends, GA4) via Telegram.",
+        "celebiCaption": "Celebi — rapport SEO hebdomadaire avec changelog, via Telegram."
       }
     },
     "data": {

@@ -149,7 +149,6 @@ export const projects: Project[] = [
     stack: ["Claude API", "n8n", "GA4", "Search Console", "WooCommerce API", "Facebook API", "Telegram"],
     url: "https://feugjay.com",
     linkLabel: "feugjay.com",
-    image: "/images/feugjay-ecosystem.jpg",
   },
   {
     slug: "troc-afrique",
