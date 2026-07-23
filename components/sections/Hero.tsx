@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, DownloadSimple } from "@phosphor-icons/react/dist/ssr";
 import { FlowPipeline } from "@/components/motion/FlowPipeline";
+import { HeroBackground } from "@/components/motion/HeroBackground";
 import { Reveal } from "@/components/motion/Reveal";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -9,24 +10,25 @@ import type { Dictionary, Locale } from "@/lib/i18n";
 export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const h = dict.hero;
   const base = `/${locale}`;
-  // Split the headline so the brand phrase can be highlighted inline.
   const [before, after] = h.title.split(h.titleAccent);
 
   return (
     <section className="relative flex min-h-[100dvh] items-center overflow-hidden pt-24 pb-16">
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-8">
+      <HeroBackground />
+
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-7">
           <Reveal>
             <span className="inline-flex items-center gap-2.5 text-sm font-medium text-brand">
-              <span className="h-px w-6 bg-brand" aria-hidden />
+              <span className="h-px w-8 bg-brand" aria-hidden />
               {h.eyebrow}
             </span>
           </Reveal>
 
           <Reveal delay={0.06}>
-            <h1 className="mt-5 text-[2rem] font-semibold leading-[1.12] tracking-tight text-foreground sm:text-[2.4rem] lg:text-[2.9rem]">
+            <h1 className="mt-5 text-[2rem] font-bold leading-[1.08] tracking-tight text-foreground sm:text-[2.5rem] lg:text-[3.2rem]">
               {before}
-              <span className="text-brand">{h.titleAccent}</span>
+              <span className="text-gradient">{h.titleAccent}</span>
               {after}
             </h1>
           </Reveal>
@@ -37,11 +39,26 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
 
           <Reveal delay={0.18}>
             <div className="mt-9 flex flex-wrap items-center gap-3">
-              <Link href={`${base}#projects`} className={cn(buttonVariants({ variant: "primary", size: "lg" }))}>
-                {h.ctaProjects}
-                <ArrowRight size={18} weight="bold" />
+              <Link
+                href={`${base}#projects`}
+                className={cn(
+                  buttonVariants({ variant: "primary", size: "lg" }),
+                  "group relative overflow-hidden"
+                )}
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  {h.ctaProjects}
+                  <ArrowRight
+                    size={18}
+                    weight="bold"
+                    className="transition-transform group-hover:translate-x-0.5"
+                  />
+                </span>
               </Link>
-              <Link href={`${base}#contact`} className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
+              <Link
+                href={`${base}#contact`}
+                className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
+              >
                 {h.ctaContact}
               </Link>
               <Link

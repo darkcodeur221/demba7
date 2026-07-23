@@ -126,6 +126,7 @@ export const projects: Project[] = [
     stack: ["Claude API", "n8n", "WordPress", "REST API"],
     url: "https://easygraph.net",
     linkLabel: "easygraph.net",
+    image: "/images/naya.jpg",
   },
   {
     slug: "feugjay-ecosystem",

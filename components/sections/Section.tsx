@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/motion/Reveal";
 
-/** Consistent outer wrapper: anchor id, vertical rhythm, optional tinted bg. */
 export function Section({
   id,
   children,
@@ -17,7 +16,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "scroll-mt-20 py-20 md:py-28",
+        "relative scroll-mt-20 py-20 md:py-28",
         surface && "bg-surface",
         className
       )}
@@ -27,10 +26,6 @@ export function Section({
   );
 }
 
-/**
- * Section header. The kicker is a sentence-case brand label with a short rule,
- * deliberately not the uppercase wide-tracking eyebrow that templates overuse.
- */
 export function SectionHeader({
   label,
   heading,
@@ -45,15 +40,15 @@ export function SectionHeader({
   return (
     <Reveal
       className={cn(
-        "mb-12 flex max-w-2xl flex-col gap-4",
+        "mb-14 flex max-w-2xl flex-col gap-4",
         align === "center" && "mx-auto items-center text-center"
       )}
     >
       <span className="inline-flex items-center gap-2.5 text-sm font-medium text-brand">
-        <span className="h-px w-6 bg-brand" aria-hidden />
+        <span className="h-px w-8 bg-gradient-to-r from-brand to-brand-2" aria-hidden />
         {label}
       </span>
-      <h2 className="text-3xl font-semibold tracking-tight text-foreground md:text-[2.5rem] md:leading-[1.1]">
+      <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-[2.5rem] md:leading-[1.08]">
         {heading}
       </h2>
       {intro && (

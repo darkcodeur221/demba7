@@ -12,16 +12,12 @@ export type CardLabels = {
   viewLive: string;
 };
 
-/**
- * Real screenshot when `project.image` is set, otherwise a branded design tile
- * (monogram + domain). The tile is an intentional placeholder, not a faked UI.
- */
 function Cover({ project, className }: { project: Project; className?: string }) {
   const initial = project.tagline.fr.charAt(0).toUpperCase();
 
   if (project.image) {
     return (
-      <div className={cn("relative overflow-hidden bg-surface", className)}>
+      <div className={cn("img-zoom relative overflow-hidden bg-surface", className)}>
         <Image
           src={project.image}
           alt={project.title.fr}
@@ -36,15 +32,15 @@ function Cover({ project, className }: { project: Project; className?: string })
   return (
     <div
       className={cn(
-        "relative flex items-end overflow-hidden bg-accent-soft",
+        "relative flex items-end overflow-hidden bg-gradient-to-br from-accent-soft to-surface",
         className
       )}
       aria-hidden
     >
-      <span className="pointer-events-none absolute -right-4 -top-8 select-none text-[8rem] font-semibold leading-none text-brand/15">
+      <span className="pointer-events-none absolute -right-4 -top-8 select-none text-[8rem] font-bold leading-none text-brand/10">
         {initial}
       </span>
-      <span className="relative m-4 rounded-md bg-background/70 px-2.5 py-1 text-xs font-medium text-brand backdrop-blur-sm">
+      <span className="relative m-4 rounded-lg bg-background/80 px-3 py-1.5 text-xs font-medium text-brand backdrop-blur-sm">
         {project.tagline.fr}
       </span>
     </div>
@@ -70,10 +66,14 @@ export function ProjectCard({
       href={project.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-1 text-sm font-medium text-brand transition-colors hover:text-brand-strong"
+      className="group/link inline-flex items-center gap-1 text-sm font-medium text-brand transition-colors hover:text-brand-strong"
     >
       {project.linkLabel ?? labels.viewLive}
-      <ArrowUpRight size={15} weight="bold" />
+      <ArrowUpRight
+        size={15}
+        weight="bold"
+        className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+      />
     </a>
   ) : null;
 
@@ -83,7 +83,7 @@ export function ProjectCard({
         href={project.url ?? "#"}
         target={project.url ? "_blank" : undefined}
         rel={project.url ? "noopener noreferrer" : undefined}
-        className="group flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-card transition-colors hover:border-border-strong"
+        className="card-glow group flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-card"
       >
         <Cover project={project} className="aspect-[16/10]" />
         <div className="flex items-center justify-between gap-2 px-4 py-3.5">
@@ -94,7 +94,7 @@ export function ProjectCard({
           <ArrowUpRight
             size={16}
             weight="bold"
-            className="shrink-0 text-muted transition-colors group-hover:text-brand"
+            className="shrink-0 text-muted transition-all group-hover:text-brand group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           />
         </div>
       </a>
@@ -109,7 +109,7 @@ export function ProjectCard({
     ].filter((f) => f.value);
 
     return (
-      <article className="flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-card transition-colors hover:border-border-strong">
+      <article className="card-glow flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-card">
         <Cover project={project} className="aspect-[16/9]" />
         <div className="flex flex-1 flex-col gap-5 p-6">
           <div>
@@ -120,7 +120,7 @@ export function ProjectCard({
           <dl className="flex flex-1 flex-col gap-3.5">
             {facts.map((f) => (
               <div key={f.label} className="grid grid-cols-[5.5rem_1fr] gap-3">
-                <dt className="pt-px text-xs font-medium uppercase tracking-wide text-muted">
+                <dt className="pt-px text-xs font-medium uppercase tracking-wide text-brand/70">
                   {f.label}
                 </dt>
                 <dd className="text-sm leading-relaxed text-foreground">{f.value}</dd>
@@ -140,9 +140,8 @@ export function ProjectCard({
     );
   }
 
-  // compact
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-card transition-colors hover:border-border-strong">
+    <article className="card-glow flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-card">
       <Cover project={project} className="aspect-[16/10]" />
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div>

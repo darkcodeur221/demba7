@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 
-/** Small tech / category tag. Quiet by default, brand tint on `accent`. */
 export function Badge({
   children,
   accent = false,
@@ -13,10 +12,10 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-md px-2.5 py-1 text-xs font-medium",
+        "inline-flex items-center rounded-lg px-2.5 py-1 text-xs font-medium transition-colors",
         accent
           ? "bg-accent-soft text-brand"
-          : "border border-border bg-surface text-muted",
+          : "border border-border bg-surface/50 text-muted hover:border-border-strong hover:text-foreground",
         className
       )}
     >
