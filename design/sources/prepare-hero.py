@@ -1,50 +1,57 @@
-"""Hero image prep, take 2.
+"""Turn the rendered hero illustration into a clean transparent cutout.
 
-Fully keying out the silver background also eats the white fibre-optic streams
-(they are the same brightness), which leaves black voids on a dark page. So
-instead: keep the rendered background, but
-  1. inpaint the three baked-in label blocks from their surroundings, and
-  2. dissolve the rectangular edges with a soft elliptical alpha falloff,
-so the illustration reads as floating rather than as a boxed screenshot.
+Keying on brightness alone also eats the white fibre-optic streams, because they
+are as bright as the silver backdrop. The backdrop is however perfectly smooth
+while the streams are finely textured, so the key combines low saturation with
+low local variance, and only removes regions connected to the image border. The
+three baked-in label blocks are knocked out too, so the labels can be rendered
+as real localised HTML text in the hero component.
+
+  python design/sources/prepare-hero.py design/sources/hero-original.png cut.png
 """
 
 import sys
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFilter
+from scipy import ndimage
 
 SRC, DST = sys.argv[1], sys.argv[2]
 
+S_MAX = 0.17      # background is desaturated
+STD_MAX = 0.035   # ...and smooth; the streams are not
+WINDOW = 9
+
+# Verified by inspection: each rect holds only black glyphs + a line-art icon.
 LABEL_RECTS = [
-    (560, 20, 900, 215),
-    (130, 495, 375, 595),
-    (1080, 495, 1470, 595),
+    (560, 20, 900, 215),     # "Systeme IA" + AI icon
+    (130, 495, 375, 595),    # "data" + database icon
+    (1080, 495, 1470, 595),  # "Decision" + target icon
 ]
 
 img = Image.open(SRC).convert("RGB")
-a = np.asarray(img).astype(np.float32)
-H, W, _ = a.shape
+a = np.asarray(img).astype(np.float32) / 255.0
 
-# --- 1. Inpaint each label block by interpolating between its top and bottom
-#        edge rows (the background is a smooth vertical-ish gradient). ---
-for x0, y0, x1, y1 in LABEL_RECTS:
-    yt, yb = max(y0 - 2, 0), min(y1 + 2, H - 1)
-    top = a[yt, x0:x1, :]
-    bot = a[yb, x0:x1, :]
-    h = y1 - y0
-    t = np.linspace(0.0, 1.0, h, dtype=np.float32)[:, None, None]
-    a[y0:y1, x0:x1, :] = top[None, :, :] * (1 - t) + bot[None, :, :] * t
+mx, mn = a.max(axis=2), a.min(axis=2)
+sat = np.where(mx > 1e-6, (mx - mn) / np.maximum(mx, 1e-6), 0.0)
 
-# --- 2. Elliptical alpha falloff so the frame edges dissolve. ---
-yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
-nx = (xx - W / 2) / (W / 2)
-ny = (yy - H / 2) / (H / 2)
-r = np.sqrt(nx**2 * 0.92 + ny**2)          # slightly wider than tall
-inner, outer = 0.78, 1.18
-t = np.clip((r - inner) / (outer - inner), 0.0, 1.0)
-fade = 1.0 - (t * t * (3 - 2 * t))          # smoothstep
-alpha = (fade * 255).astype(np.uint8)
+gray = a.mean(axis=2)
+mean = ndimage.uniform_filter(gray, WINDOW)
+mean_sq = ndimage.uniform_filter(gray * gray, WINDOW)
+std = np.sqrt(np.maximum(mean_sq - mean * mean, 0.0))
 
-out = Image.fromarray(a.clip(0, 255).astype(np.uint8), "RGB").convert("RGBA")
-out.putalpha(Image.fromarray(alpha, "L"))
+candidate = (sat < S_MAX) & (std < STD_MAX)
+labels, _ = ndimage.label(candidate)
+border = np.concatenate([labels[0, :], labels[-1, :], labels[:, 0], labels[:, -1]])
+background = np.isin(labels, [int(v) for v in np.unique(border) if v != 0])
+
+alpha = Image.fromarray(np.where(background, 0, 255).astype(np.uint8), "L")
+alpha = alpha.filter(ImageFilter.MinFilter(3))  # pull in the light fringe
+draw = ImageDraw.Draw(alpha)
+for rect in LABEL_RECTS:
+    draw.rectangle(rect, fill=0)
+alpha = alpha.filter(ImageFilter.GaussianBlur(0.8))
+
+out = img.convert("RGBA")
+out.putalpha(alpha)
 out.save(DST)
-print(f"saved {DST}")
+print(f"saved {DST}  kept={float((np.asarray(alpha) > 10).mean()):.1%}")
