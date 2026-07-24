@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { isLocale, locales, type Locale } from "@/lib/i18n";
+import { ChatWidget } from "@/components/ChatWidget";
+import { getDictionary, isLocale, locales, type Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -117,6 +118,7 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
+  const dict = await getDictionary(locale);
 
   return (
     <html
@@ -128,6 +130,7 @@ export default async function LocaleLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <PersonJsonLd locale={locale} />
           {children}
+          <ChatWidget dict={dict.chat} />
         </ThemeProvider>
       </body>
     </html>

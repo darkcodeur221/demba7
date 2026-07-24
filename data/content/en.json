@@ -160,6 +160,24 @@
       { "name": "English", "level": "Professional" }
     ]
   },
+  "chat": {
+    "name": "Naya",
+    "role": "Demba's assistant",
+    "status": "Online",
+    "open": "Chat with Naya",
+    "close": "Close the chat",
+    "greeting": "Hi 👋 I'm Naya, Demba's assistant. Ask me anything about his background, projects or skills.",
+    "placeholder": "Type your message…",
+    "send": "Send",
+    "error": "Sorry, the connection failed. Please try again in a moment.",
+    "suggestions": [
+      "Sum up his profile in two sentences",
+      "What AI systems does he run in production?",
+      "Is he available and allowed to work in Canada?",
+      "Why hire him over someone else?"
+    ],
+    "poweredBy": "AI · DeepSeek"
+  },
   "common": {
     "viewLive": "Visit site",
     "problem": "Problem",

@@ -160,6 +160,24 @@
       { "name": "Anglais", "level": "Professionnel" }
     ]
   },
+  "chat": {
+    "name": "Naya",
+    "role": "Assistante de Demba",
+    "status": "En ligne",
+    "open": "Discuter avec Naya",
+    "close": "Fermer la discussion",
+    "greeting": "Bonjour 👋 Je suis Naya, l'assistante de Demba. Posez-moi vos questions sur son parcours, ses projets ou ses compétences.",
+    "placeholder": "Écrivez votre message…",
+    "send": "Envoyer",
+    "error": "Désolée, la connexion a échoué. Réessayez dans un instant.",
+    "suggestions": [
+      "Quel est son profil en deux phrases ?",
+      "Quels systèmes IA a-t-il en production ?",
+      "Est-il disponible et autorisé à travailler au Canada ?",
+      "Pourquoi le recruter plutôt qu'un autre ?"
+    ],
+    "poweredBy": "IA · DeepSeek"
+  },
   "common": {
     "viewLive": "Voir le site",
     "problem": "Problème",

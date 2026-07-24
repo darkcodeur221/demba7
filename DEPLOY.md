@@ -45,10 +45,14 @@ cat > .env.local <<'EOF'
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxx
 CONTACT_FROM="Portfolio <contact@deejitcorp.com>"
 CONTACT_TO=demba@deejitcorp.com
+DEEPSEEK_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
 EOF
 ```
 
 - Crée la clé sur https://resend.com/api-keys.
+- `DEEPSEEK_API_KEY` alimente le chatbot Naya (https://platform.deepseek.com/api_keys).
+  Sans elle, le widget répond par un message d'erreur. Modèle par défaut :
+  `deepseek-v4-flash`, surchargeable avec `DEEPSEEK_MODEL`.
 - `CONTACT_FROM` doit être sur un domaine **vérifié dans Resend** (ex.
   `deejitcorp.com`, ou `seventwin.com` si tu le vérifies).
 - Sans clé, le site marche mais le formulaire renvoie une erreur invitant à
@@ -113,5 +117,6 @@ Certbot ajoute automatiquement le bloc HTTPS (443) et la redirection HTTP → HT
 | 502 Bad Gateway | l'app PM2 ne tourne pas → `pm2 logs demba7-portfolio` |
 | Port déjà utilisé | change `PORT` (ecosystem) + `proxy_pass` (nginx) |
 | Formulaire en erreur | `.env.local` manquant/clé Resend invalide ou domaine non vérifié |
+| Chatbot Naya en erreur | `DEEPSEEK_API_KEY` absente/invalide, ou crédit DeepSeek épuisé → `pm2 logs` |
 | 404 après build | as-tu bien fait `npm run build` avant `pm2 start` ? |
 | Le site ne répond pas du tout | DNS pas encore propagé, ou port 80/443 fermé au pare-feu |
