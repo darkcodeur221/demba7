@@ -1,22 +1,19 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Instrument_Sans, Instrument_Serif } from "next/font/google";
+import { Archivo, JetBrains_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ChatWidget } from "@/components/ChatWidget";
+import { SmoothScroll } from "@/components/fx/SmoothScroll";
+import { Cursor } from "@/components/fx/Cursor";
+import { ScrollProgress } from "@/components/fx/ScrollProgress";
 import { getDictionary, isLocale, locales, type Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
 
-// Instrument Sans and Serif were drawn as a pair: the sans carries the text, the
-// serif italic carries emphasis. Geist Mono handles indexes and technical notes.
-const sans = Instrument_Sans({ variable: "--font-instrument-sans", subsets: ["latin"] });
-const serif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-});
-const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+// Archivo with its width axis: the same family runs body text at normal width
+// and poster headlines stretched to 125%. JetBrains Mono carries the indexes.
+const sans = Archivo({ variable: "--font-archivo", subsets: ["latin"], axes: ["wdth"] });
+const mono = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"] });
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -132,18 +129,21 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`${sans.variable} ${serif.variable} ${mono.variable} h-full antialiased`}
+      className={`${sans.variable} ${mono.variable} dark h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        {/* Dark-only: the 3D scene and the lime accent are built for it. */}
+        <ThemeProvider attribute="class" forcedTheme="dark" disableTransitionOnChange>
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[90] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-on-ink"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[90] focus:rounded-full focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:text-on-brand"
           >
             {dict.common.skip}
           </a>
           <PersonJsonLd locale={locale} />
-          {children}
+          <SmoothScroll>{children}</SmoothScroll>
+          <ScrollProgress />
+          <Cursor />
           <ChatWidget dict={dict.chat} />
         </ThemeProvider>
       </body>

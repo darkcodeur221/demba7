@@ -1,6 +1,6 @@
 /**
- * Renders `*phrase*` inside a dictionary string as the serif-italic accent, so
- * copy editors can choose the emphasised words without touching components.
+ * Renders `*phrase*` inside a dictionary string as the lime accent, so copy
+ * editors choose the emphasised words without touching components.
  */
 export function Emphasis({ text }: { text: string }) {
   const parts = text.split(/(\*[^*]+\*)/g);
@@ -8,7 +8,7 @@ export function Emphasis({ text }: { text: string }) {
     <>
       {parts.map((part, i) =>
         part.length > 2 && part.startsWith("*") && part.endsWith("*") ? (
-          <em key={i} className="em-serif">
+          <em key={i} className="em-accent">
             {part.slice(1, -1)}
           </em>
         ) : (

@@ -112,6 +112,7 @@ export function BpmnCompare({
       {open && (
         <div
           role="dialog"
+          data-lenis-prevent
           aria-modal="true"
           aria-label={`${open.tag} ${open.desc}`}
           onClick={() => setOpen(null)}

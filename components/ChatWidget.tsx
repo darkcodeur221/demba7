@@ -157,7 +157,8 @@ export function ChatWidget({ dict }: { dict: ChatDict }) {
             </button>
           </header>
 
-          <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+          {/* data-lenis-prevent: let this list scroll natively under smooth scroll */}
+          <div ref={scrollRef} data-lenis-prevent className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
             <p className="max-w-[85%] rounded-2xl rounded-tl-md bg-surface px-3.5 py-2.5 text-sm leading-relaxed text-foreground">
               {dict.greeting}
             </p>

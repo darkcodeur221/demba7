@@ -138,7 +138,7 @@ export function HeroVisual({
               {!reduce && (
                 <motion.span
                   aria-hidden
-                  className="absolute -inset-px flex items-center justify-center rounded-xl border border-brand bg-card text-brand shadow-[0_0_22px_1px_rgba(38,71,217,0.3)]"
+                  className="absolute -inset-px flex items-center justify-center rounded-xl border border-brand bg-card text-brand shadow-[0_0_24px_1px_rgba(198,242,74,0.35)]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: [0, 1, 0] }}
                   transition={{
@@ -176,7 +176,7 @@ export function HeroVisual({
               />
             ))}
           <motion.span
-            className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-[1.35rem] bg-ink text-on-ink shadow-[0_18px_40px_-16px_rgba(22,23,26,0.6)]"
+            className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-[1.35rem] bg-brand text-on-brand shadow-[0_0_50px_-6px_rgba(198,242,74,0.45)]"
             animate={reduce ? undefined : { scale: [1, 1.05, 1] }}
             transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
           >

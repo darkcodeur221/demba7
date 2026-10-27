@@ -45,7 +45,10 @@ components/
   ui/                  # button, badge (customisés à la marque)
   ProjectCard.tsx      # carte projet réutilisable (3 variantes)
   Nav · Footer · ThemeToggle · LocaleSwitcher · ContactForm
-  motion/              # Reveal (apparition au scroll), HeroVisual (orchestration), StackMarquee, AnimatedCounter
+  motion/              # Reveal, HeroVisual (orchestration), AnimatedCounter
+  fx/                  # effets : SmoothScroll (Lenis), Cursor, Magnetic, RevealText, ScrollWords,
+                       #   VelocityMarquee, HorizontalProjects, HoverPreviewList, Spotlight
+  three/               # HeroScene (WebGL, R3F + drei) et HeroCanvas (chargement différé)
 data/
   projects.ts · skills.ts · certifications.ts · services.ts
   content/{fr,en}.json # tous les textes d'interface

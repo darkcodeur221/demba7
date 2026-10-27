@@ -186,6 +186,7 @@ export function FeugjayEcosystem({
       {open && (
         <div
           role="dialog"
+          data-lenis-prevent
           aria-modal="true"
           aria-label={open.caption}
           onClick={() => setOpen(null)}

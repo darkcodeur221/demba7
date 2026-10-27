@@ -14,6 +14,8 @@
     "eyebrow": "Applied AI, analytics and e-commerce",
     "status": "Available now",
     "place": "Longueuil, QC · Français / English",
+    "display": ["I build", "AI systems", "that run."],
+    "marquee": ["Applied AI", "Automation", "Autonomous agents", "Data & decisions", "E-commerce"],
     "title": "I turn business needs into real AI systems, in production.",
     "titleAccent": "AI systems",
     "subtitle": "And I make data speak: from raw data to decision. Automation, integrations and predictive analytics.",
@@ -52,6 +54,7 @@
       "label": "AI & Automation projects",
       "heading": "Systems that run, *not prototypes*",
       "intro": "Every project starts from a real business problem and ends in production.",
+      "scrollHint": "Keep scrolling",
       "process": {
         "label": "Design approach",
         "heading": "My approach: *design* before building",
@@ -134,6 +137,7 @@
       "invalid": "Please fill in every field with a valid email address."
     },
     "directLabel": "Or directly",
+    "write": "Write",
     "emailLabel": "Email",
     "phoneLabel": "Phone",
     "locationLabel": "Location"
@@ -150,7 +154,7 @@
     "print": "Print / PDF",
     "role": "AI & E-commerce Specialist",
     "summaryLabel": "Profile",
-    "summary": "Specialist in applied AI, automation and advanced analytics. I have been building AI systems in production since late 2024 and delivering websites and web solutions since 2019. A rare double expertise: generative AI and predictive analytics, from raw data to decision.",
+    "summary": "Specialist in applied AI, automation and advanced analytics. I have been building AI systems in production since late 2024 and delivering websites and web solutions since 2019. A double expertise: generative AI and predictive analytics, from raw data to decision.",
     "skillsLabel": "Core skills",
     "workLabel": "Selected work",
     "educationLabel": "Education",
@@ -183,6 +187,8 @@
   },
   "common": {
     "viewLive": "Visit site",
+    "view": "View",
+    "open": "Open",
     "problem": "Problem",
     "solution": "Solution",
     "result": "Result",

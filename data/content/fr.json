@@ -14,6 +14,8 @@
     "eyebrow": "IA appliquée, analytique et e-commerce",
     "status": "Disponible immédiatement",
     "place": "Longueuil, QC · Français / English",
+    "display": ["Je construis", "des systèmes IA", "qui tournent."],
+    "marquee": ["IA appliquée", "Automatisation", "Agents autonomes", "Data & décision", "E-commerce"],
     "title": "Je transforme des besoins d'affaires en systèmes IA concrets, en production.",
     "titleAccent": "systèmes IA",
     "subtitle": "Et je fais parler les données : de la donnée brute à la décision. Automatisation, intégrations et analytique prédictive.",
@@ -52,6 +54,7 @@
       "label": "Projets IA & Automatisation",
       "heading": "Des systèmes qui tournent, *pas des prototypes*",
       "intro": "Chaque projet part d'un vrai problème d'affaires et finit en production.",
+      "scrollHint": "Continuez à défiler",
       "process": {
         "label": "Démarche de conception",
         "heading": "Ma démarche : *concevoir* avant de construire",
@@ -134,6 +137,7 @@
       "invalid": "Merci de remplir tous les champs avec une adresse email valide."
     },
     "directLabel": "Ou directement",
+    "write": "Écrire",
     "emailLabel": "Email",
     "phoneLabel": "Téléphone",
     "locationLabel": "Localisation"
@@ -150,7 +154,7 @@
     "print": "Imprimer / PDF",
     "role": "Spécialiste IA & E-commerce",
     "summaryLabel": "Profil",
-    "summary": "Spécialiste en IA appliquée, automatisation et analytique avancée. Je conçois des systèmes IA en production depuis fin 2024 et je livre des sites et solutions web depuis 2019. Double expertise rare : IA générative et analytique prédictive, de la donnée brute à la décision.",
+    "summary": "Spécialiste en IA appliquée, automatisation et analytique avancée. Je conçois des systèmes IA en production depuis fin 2024 et je livre des sites et solutions web depuis 2019. Double expertise : IA générative et analytique prédictive, de la donnée brute à la décision.",
     "skillsLabel": "Compétences clés",
     "workLabel": "Réalisations sélectionnées",
     "educationLabel": "Formation",
@@ -183,6 +187,8 @@
   },
   "common": {
     "viewLive": "Voir le site",
+    "view": "Voir",
+    "open": "Ouvrir",
     "problem": "Problème",
     "solution": "Solution",
     "result": "Résultat",

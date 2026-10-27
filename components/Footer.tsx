@@ -5,8 +5,8 @@ import type { Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
 
 /**
- * The sign-off: the address set large in the serif italic, so the last thing
- * a visitor sees is how to reach Demba.
+ * The sign-off: the address as a big link, then the name in hollow poster
+ * type running the full width and bleeding off the bottom edge.
  */
 export function Footer({
   locale,
@@ -31,17 +31,17 @@ export function Footer({
   ];
 
   return (
-    <footer className="border-t border-border">
-      <div className="mx-auto max-w-6xl px-5 pb-12 pt-20 sm:px-8 md:pt-28">
+    <footer className="relative overflow-hidden border-t border-border">
+      <div className="container-x pb-10 pt-24 md:pt-32">
         <Kicker label={cta} />
         <a
           href={`mailto:${site.email}`}
-          className="group mt-6 inline-flex max-w-full items-baseline gap-3 break-words font-serif text-[clamp(2.1rem,8.6vw,6.75rem)] italic leading-[0.95] tracking-[-0.02em] text-foreground"
+          className="group mt-6 flex w-fit max-w-full items-center gap-4 break-all text-[clamp(1.7rem,5vw,4.6rem)] font-bold leading-none tracking-[-0.04em] text-foreground sm:[font-stretch:115%]"
         >
           <span className="link-draw">{site.email}</span>
           <ArrowUpRight
-            size="0.42em"
-            className="shrink-0 text-brand transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+            size="0.8em"
+            className="shrink-0 text-brand transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1"
           />
         </a>
 
@@ -76,9 +76,17 @@ export function Footer({
         </div>
       </div>
 
+      {/* Signature, decorative: the name is already in the page and the nav. */}
+      <p
+        aria-hidden
+        className="display text-outline pointer-events-none select-none whitespace-nowrap text-center text-[11.5vw] uppercase leading-[0.78] [--outline:rgba(236,238,241,0.16)]"
+      >
+        Demba Beye
+      </p>
+
       <div className="border-t border-border">
         {/* Extra bottom room on phones so the chat launcher never sits on the text. */}
-        <div className="tnum mx-auto flex max-w-6xl flex-col gap-1 px-5 pb-24 pt-5 text-[11px] text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:pb-5">
+        <div className="tnum container-x flex flex-col gap-1 pb-24 pt-5 text-[11px] text-muted sm:flex-row sm:items-center sm:justify-between sm:pb-5">
           <span>
             © {year} {site.name}. {rights}
           </span>

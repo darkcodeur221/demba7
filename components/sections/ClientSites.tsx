@@ -1,17 +1,18 @@
 import { Section, SectionHeader } from "./Section";
-import { ProjectCard, type CardLabels } from "@/components/ProjectCard";
-import { Reveal } from "@/components/motion/Reveal";
+import { HoverPreviewList, type PreviewItem } from "@/components/fx/HoverPreviewList";
 import { projectsByCategory } from "@/data/projects";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
+/** Client sites as a big-type index; hovering a row floats its screenshot. */
 export function ClientSites({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const projects = projectsByCategory("client");
-  const labels: CardLabels = {
-    problem: dict.common.problem,
-    solution: dict.common.solution,
-    result: dict.common.result,
-    viewLive: dict.common.viewLive,
-  };
+  const items: PreviewItem[] = projects.map((p) => ({
+    slug: p.slug,
+    name: p.tagline[locale],
+    kind: p.title[locale],
+    url: p.url,
+    image: p.image,
+  }));
 
   return (
     <Section id="clients" surface>
@@ -22,13 +23,7 @@ export function ClientSites({ dict, locale }: { dict: Dictionary; locale: Locale
         intro={dict.sections.client.intro}
         aside={String(projects.length).padStart(2, "0")}
       />
-      <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
-        {projects.map((project, i) => (
-          <Reveal key={project.slug} delay={(i % 4) * 0.05} className="h-full">
-            <ProjectCard project={project} locale={locale} labels={labels} variant="logo" />
-          </Reveal>
-        ))}
-      </div>
+      <HoverPreviewList items={items} cursorLabel={dict.common.open} />
     </Section>
   );
 }

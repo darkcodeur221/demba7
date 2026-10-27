@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { List, X } from "@phosphor-icons/react";
-import { ThemeToggle } from "./ThemeToggle";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
@@ -26,12 +25,12 @@ export function Nav({
   locale,
   nav,
   switchLabel,
-  themeLabel,
 }: {
   locale: Locale;
   nav: NavDict;
   switchLabel: string;
-  themeLabel: string;
+  /** Kept for call-site compatibility; the site is dark-only now. */
+  themeLabel?: string;
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -57,10 +56,8 @@ export function Nav({
   }, []);
 
   useEffect(() => {
-    // Scroll-spy: a section counts as current while it crosses the middle band
-    // of the viewport, which avoids flicker between two short sections. Every
-    // section is watched, linked or not, so the highlight clears while reading
-    // one that has no nav entry (hero, clients, education, contact).
+    // Scroll-spy over every section, linked or not, so the highlight clears
+    // while reading one that has no nav entry (hero, clients, contact...).
     const targets = document.querySelectorAll<HTMLElement>("main section[id]");
     const io = new IntersectionObserver(
       (entries) => {
@@ -75,8 +72,7 @@ export function Nav({
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-300",
-        // An open menu needs an opaque bar, or the headline bleeds through the links.
+        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-500",
         open
           ? "border-b border-border bg-background"
           : scrolled
@@ -84,18 +80,18 @@ export function Nav({
             : "border-b border-transparent"
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
+      <nav className="container-x flex h-16 items-center justify-between gap-4">
         <Link href={base} className="group flex items-center gap-3" aria-label={site.name}>
-          <span className="flex h-8 w-8 items-center justify-center rounded-[9px] bg-ink font-serif text-xl italic leading-none text-on-ink transition-colors duration-300 group-hover:bg-brand group-hover:text-on-brand">
+          <span className="display flex h-9 w-9 items-center justify-center rounded-[10px] bg-brand text-lg text-on-brand transition-transform duration-500 group-hover:rotate-[-8deg]">
             D
           </span>
           <span className="hidden flex-col leading-tight sm:flex">
-            <span className="text-sm font-medium tracking-tight">Ngagne Demba Beye</span>
+            <span className="text-sm font-semibold tracking-tight">Ngagne Demba Beye</span>
             <span className="tnum text-[10px] text-muted">IA · Data · E-commerce</span>
           </span>
         </Link>
 
-        <div className="hidden items-center gap-6 lg:flex">
+        <div className="hidden items-center gap-7 lg:flex">
           {links.map((l) => (
             <Link
               key={l.id}
@@ -126,10 +122,9 @@ export function Nav({
             {nav.cv}
           </Link>
           <LocaleSwitcher locale={locale} label={switchLabel} />
-          <ThemeToggle label={themeLabel} />
           <Link
             href={`${base}#contact`}
-            className={cn(buttonVariants({ variant: "primary", size: "sm" }), "hidden sm:inline-flex")}
+            className={cn(buttonVariants({ variant: "accent", size: "sm" }), "hidden sm:inline-flex")}
           >
             {nav.contact}
           </Link>
@@ -146,24 +141,24 @@ export function Nav({
       </nav>
 
       {open && (
-        <div className="border-t border-border bg-background shadow-[0_24px_40px_-24px_rgba(22,23,26,0.25)] lg:hidden">
-          <div className="mx-auto flex max-w-6xl flex-col px-5 py-4 sm:px-8">
+        <div className="border-t border-border bg-background lg:hidden">
+          <div className="container-x flex flex-col py-4">
             {links.map((l, i) => (
               <Link
                 key={l.id}
                 href={`${base}#${l.id}`}
                 onClick={() => setOpen(false)}
-                className="flex items-baseline gap-4 border-b border-border py-3.5 text-lg tracking-tight text-foreground last:border-b-0"
+                className="flex items-baseline gap-4 border-b border-border py-4 text-2xl font-bold tracking-[-0.03em] text-foreground last:border-b-0"
               >
-                <span className="tnum text-xs text-brand">{String(i + 1).padStart(2, "0")}</span>
+                <span className="tnum text-xs font-normal text-brand">{String(i + 1).padStart(2, "0")}</span>
                 {l.label}
               </Link>
             ))}
-            <div className="mt-4 flex items-center gap-3">
+            <div className="mt-5 flex items-center gap-3">
               <Link
                 href={`${base}#contact`}
                 onClick={() => setOpen(false)}
-                className={cn(buttonVariants({ variant: "primary", size: "md" }), "flex-1")}
+                className={cn(buttonVariants({ variant: "accent", size: "md" }), "flex-1")}
               >
                 {nav.contact}
               </Link>

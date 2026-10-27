@@ -1,99 +1,98 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
-import { HeroVisual } from "@/components/motion/HeroVisual";
-import { StackMarquee } from "@/components/motion/StackMarquee";
+import { HeroCanvas } from "@/components/three/HeroCanvas";
+import { RevealLines } from "@/components/fx/RevealText";
+import { Magnetic } from "@/components/fx/Magnetic";
+import { VelocityMarquee } from "@/components/fx/VelocityMarquee";
 import { Reveal } from "@/components/motion/Reveal";
-import { Kicker } from "@/components/Kicker";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { site } from "@/lib/site";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
 export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const h = dict.hero;
   const base = `/${locale}`;
-  // Split the headline so the brand phrase can be set in the serif italic.
-  const [before, after] = h.title.split(h.titleAccent);
 
   return (
-    <section id="hero" className="relative flex min-h-[100dvh] flex-col overflow-hidden pt-24">
-      {/* A faint cobalt wash behind the diagram; the grain does the rest. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-[12%] top-[8%] h-[75vh] w-[75vh] rounded-full bg-[radial-gradient(closest-side,var(--accent-soft),transparent)]"
-      />
+    <>
+      <section id="hero" className="relative min-h-[100dvh] overflow-hidden">
+        <HeroCanvas />
+        {/* Fades the scene into the page so the marquee below reads cleanly. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-background to-transparent"
+        />
 
-      <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-5 sm:px-8">
-        <Reveal>
-          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b border-border pb-4">
-            <span className="tnum inline-flex items-center gap-2.5 text-xs text-foreground">
-              <span className="live-dot h-2 w-2 rounded-full bg-live" aria-hidden />
-              {h.status}
-            </span>
-            <span className="tnum text-xs text-muted">{h.place}</span>
-          </div>
-        </Reveal>
+        <div className="container-x relative z-10 flex min-h-[100dvh] flex-col pb-12 pt-28">
+          <Reveal>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <span className="glass tnum inline-flex items-center gap-2.5 rounded-full border border-border px-3.5 py-1.5 text-xs text-foreground">
+                <span className="live-dot h-2 w-2 rounded-full bg-live" aria-hidden />
+                {h.status}
+              </span>
+              <span className="tnum text-xs text-muted">{h.place}</span>
+            </div>
+          </Reveal>
 
-        <div className="grid items-center gap-14 py-12 lg:grid-cols-12 lg:gap-8 lg:py-16">
-          <div className="lg:col-span-7">
-            <Reveal delay={0.05}>
-              <Kicker label={h.eyebrow} />
-            </Reveal>
-
+          <div className="mt-auto pt-16">
             <Reveal delay={0.1}>
-              <h1 className="mt-6 text-[2.55rem] font-medium leading-[0.98] tracking-[-0.045em] text-foreground sm:text-6xl lg:text-[4rem] xl:text-[4.4rem]">
-                {before}
-                <em className="em-serif">{h.titleAccent}</em>
-                {after}
-              </h1>
+              <p className="tnum text-xs text-muted">
+                <span className="text-brand">{site.name}</span> — {h.eyebrow}
+              </p>
             </Reveal>
 
-            <Reveal delay={0.16}>
-              <p className="mt-7 max-w-[46ch] text-lg leading-relaxed text-muted">{h.subtitle}</p>
-            </Reveal>
+            <h1 className="display mt-6 text-[clamp(2.25rem,7.2vw,8.4rem)] uppercase">
+              <RevealLines lines={h.display} accent={1} delay={0.25} />
+            </h1>
 
-            <Reveal delay={0.22}>
-              <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
-                <Link
-                  href={`${base}#projects`}
-                  className={cn(buttonVariants({ variant: "primary", size: "lg" }), "group")}
-                >
-                  {h.ctaProjects}
-                  <ArrowRight
-                    size={17}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-                </Link>
-                <Link
-                  href={`${base}#contact`}
-                  className="link-draw text-[15px] font-medium text-foreground"
-                >
-                  {h.ctaContact}
-                </Link>
-                <Link
-                  href={`${base}/cv`}
-                  className="tnum group inline-flex items-center gap-1 text-xs text-muted transition-colors hover:text-brand"
-                >
-                  {h.ctaCv}
-                  <ArrowUpRight
-                    size={13}
-                    className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  />
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-
-          <div className="flex justify-center lg:col-span-5 lg:justify-end">
-            <HeroVisual
-              hub={h.orchestration.hub}
-              hubDetail={h.orchestration.hubDetail}
-              nodes={h.orchestration.nodes}
-            />
+            <div className="mt-10 grid gap-8 md:grid-cols-12 md:items-end">
+              <Reveal delay={0.55} className="md:col-span-5">
+                <p className="max-w-[42ch] text-lg leading-relaxed text-muted">{h.title}</p>
+              </Reveal>
+              <Reveal delay={0.65} className="md:col-span-7">
+                <div className="flex flex-wrap items-center gap-3 md:justify-end">
+                  <Magnetic>
+                    <Link
+                      href={`${base}#projects`}
+                      className={cn(buttonVariants({ variant: "accent", size: "lg" }), "group h-14 px-7")}
+                    >
+                      {h.ctaProjects}
+                      <ArrowRight
+                        size={18}
+                        className="transition-transform duration-300 group-hover:translate-x-1"
+                      />
+                    </Link>
+                  </Magnetic>
+                  <Magnetic>
+                    <Link
+                      href={`${base}#contact`}
+                      className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-14 px-7")}
+                    >
+                      {h.ctaContact}
+                    </Link>
+                  </Magnetic>
+                  <Link
+                    href={`${base}/cv`}
+                    className="tnum group ml-2 inline-flex items-center gap-1 text-xs text-muted transition-colors hover:text-brand"
+                  >
+                    {h.ctaCv}
+                    <ArrowUpRight
+                      size={13}
+                      className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <StackMarquee />
-    </section>
+      <VelocityMarquee
+        items={h.marquee}
+        className="border-y border-border py-6 text-[clamp(2.6rem,7.5vw,7rem)] md:py-8"
+      />
+    </>
   );
 }

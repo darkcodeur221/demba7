@@ -6,6 +6,7 @@ import {
   ShoppingBag,
   MagnifyingGlass,
   Stack,
+  ArrowUpRight,
 } from "@phosphor-icons/react/dist/ssr";
 import { Section, SectionHeader } from "./Section";
 import { Reveal } from "@/components/motion/Reveal";
@@ -23,7 +24,11 @@ const icons: Record<string, typeof Stack> = {
   Stack,
 };
 
-/** Services as a numbered index, the way a studio lists its practice. */
+/**
+ * Services as full-width rows. On hover a lime panel wipes up from the bottom
+ * edge and the row's type flips to ink, so the list reads like a menu of
+ * practices rather than a grid of feature cards.
+ */
 export function Services({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const n = sectionIndex("services");
 
@@ -35,29 +40,36 @@ export function Services({ dict, locale }: { dict: Dictionary; locale: Locale })
         heading={dict.sections.services.heading}
         intro={dict.sections.services.intro}
       />
-      <div className="grid border-t border-border-strong md:grid-cols-2 md:gap-x-16">
+      <div className="border-t border-border-strong">
         {services.map((service, i) => {
           const Icon = icons[service.icon] ?? Lightbulb;
           return (
-            <Reveal
-              key={service.id}
-              delay={(i % 2) * 0.06}
-              className="group flex gap-5 border-b border-border py-7"
-            >
-              <span className="tnum pt-1.5 text-xs text-brand">
-                {n}.{i + 1}
-              </span>
-              <div className="flex-1">
-                <h3 className="text-xl font-medium tracking-[-0.015em]">{service.title[locale]}</h3>
-                <p className="mt-2 max-w-[44ch] text-[15px] leading-relaxed text-muted">
-                  {service.description[locale]}
-                </p>
+            <Reveal key={service.id} delay={(i % 4) * 0.04}>
+              <div className="group relative overflow-hidden border-b border-border">
+                <span
+                  aria-hidden
+                  className="absolute inset-0 origin-bottom scale-y-0 bg-brand transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100"
+                />
+                <div className="relative grid grid-cols-12 items-center gap-x-4 gap-y-2 px-1 py-7 transition-colors duration-500 group-hover:text-on-brand md:px-4 md:py-9">
+                  <span className="tnum col-span-2 text-xs text-muted transition-colors duration-500 group-hover:text-on-brand/70 md:col-span-1">
+                    {n}.{i + 1}
+                  </span>
+                  <h3 className="col-span-10 text-[clamp(1.45rem,2.9vw,2.6rem)] font-bold leading-none tracking-[-0.035em] md:col-span-5 sm:[font-stretch:112%]">
+                    {service.title[locale]}
+                  </h3>
+                  <p className="col-span-10 col-start-3 text-[15px] leading-relaxed text-muted transition-colors duration-500 group-hover:text-on-brand/80 md:col-span-5 md:col-start-auto">
+                    {service.description[locale]}
+                  </p>
+                  <span className="col-span-1 hidden justify-self-end md:flex">
+                    <Icon
+                      size={26}
+                      weight="light"
+                      className="transition-transform duration-500 group-hover:hidden"
+                    />
+                    <ArrowUpRight size={26} className="hidden group-hover:block" />
+                  </span>
+                </div>
               </div>
-              <Icon
-                size={22}
-                weight="light"
-                className="mt-1 shrink-0 text-muted transition-colors duration-300 group-hover:text-brand"
-              />
             </Reveal>
           );
         })}
