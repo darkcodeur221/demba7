@@ -4,7 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { locales, type Locale } from "@/lib/locales";
 
-/** Swaps the locale segment of the current path while keeping the rest. */
+/**
+ * Swaps the locale segment of the current path while keeping the rest.
+ * Shows the target language as a short code; the full name stays in the label.
+ */
 export function LocaleSwitcher({ locale, label }: { locale: Locale; label: string }) {
   const pathname = usePathname();
   const other: Locale = locale === "fr" ? "en" : "fr";
@@ -21,9 +24,11 @@ export function LocaleSwitcher({ locale, label }: { locale: Locale; label: strin
     <Link
       href={href}
       hrefLang={other}
-      className="inline-flex h-9 items-center rounded-lg border border-border px-3 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-foreground"
+      aria-label={label}
+      title={label}
+      className="tnum inline-flex h-9 items-center rounded-full border border-border px-3 text-xs uppercase text-muted transition-colors hover:border-foreground hover:text-foreground"
     >
-      {label}
+      {other}
     </Link>
   );
 }

@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { MagnifyingGlassPlus, X, ArrowSquareOut } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
+import { Kicker } from "@/components/Kicker";
+import { Emphasis } from "@/components/Emphasis";
 
 type Panel = { tag: string; desc: string; src: string; accent: boolean };
 
@@ -13,6 +15,7 @@ type Panel = { tag: string; desc: string; src: string; accent: boolean };
  * links to the raw file for pixel-level reading. Thumbnails lazy-load.
  */
 export function BpmnCompare({
+  index,
   label,
   heading,
   body,
@@ -22,6 +25,7 @@ export function BpmnCompare({
   asIs,
   toBe,
 }: {
+  index?: string;
   label: string;
   heading: string;
   body: string;
@@ -52,25 +56,22 @@ export function BpmnCompare({
   ];
 
   return (
-    <div className="rounded-[var(--radius-card)] border border-border bg-surface p-6 sm:p-8">
-      <span className="inline-flex items-center gap-2.5 text-sm font-medium text-brand">
-        <span className="h-px w-6 bg-brand" aria-hidden />
-        {label}
-      </span>
-      <h3 className="mt-4 text-xl font-semibold tracking-tight md:text-2xl">{heading}</h3>
-      <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted">{body}</p>
+    <div className="rounded-[var(--radius-card)] border border-border bg-card p-6 sm:p-10">
+      <Kicker index={index} label={label} />
+      <h3 className="mt-5 text-[1.75rem] font-medium leading-[1.08] tracking-[-0.03em] md:text-[2.25rem]">
+        <Emphasis text={heading} />
+      </h3>
+      <p className="mt-4 max-w-[62ch] text-base leading-relaxed text-muted">{body}</p>
 
       {/* AS-IS / TO-BE: side by side on desktop, stacked on mobile */}
-      <div className="mt-8 grid gap-5 md:grid-cols-2">
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
         {panels.map((panel) => (
           <figure key={panel.src} className="flex flex-col gap-3">
             <figcaption className="flex items-center gap-2.5">
               <span
                 className={cn(
-                  "rounded-md px-2 py-0.5 text-xs font-semibold tracking-wide",
-                  panel.accent
-                    ? "bg-brand text-on-brand"
-                    : "border border-border-strong bg-card text-muted"
+                  "tnum rounded-[var(--radius-tag)] px-2 py-0.5 text-[11px]",
+                  panel.accent ? "bg-brand text-on-brand" : "border border-border-strong text-muted"
                 )}
               >
                 {panel.tag}
@@ -82,7 +83,7 @@ export function BpmnCompare({
               type="button"
               onClick={() => setOpen(panel)}
               aria-label={`${panel.tag} ${panel.desc} — ${zoomHint}`}
-              className="group relative block overflow-hidden rounded-[var(--radius-card)] border border-border bg-card"
+              className="group relative block overflow-hidden rounded-[var(--radius-media)] border border-border bg-white"
             >
               <div className="relative aspect-[2/1] w-full">
                 <Image
@@ -105,7 +106,7 @@ export function BpmnCompare({
         ))}
       </div>
 
-      <p className="mt-5 text-xs text-muted">{caption}</p>
+      <p className="tnum mt-5 text-[11px] text-muted">{caption}</p>
 
       {/* Lightbox */}
       {open && (

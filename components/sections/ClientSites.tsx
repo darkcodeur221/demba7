@@ -16,11 +16,13 @@ export function ClientSites({ dict, locale }: { dict: Dictionary; locale: Locale
   return (
     <Section id="clients" surface>
       <SectionHeader
+        id="clients"
         label={dict.sections.client.label}
         heading={dict.sections.client.heading}
         intro={dict.sections.client.intro}
+        aside={String(projects.length).padStart(2, "0")}
       />
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
         {projects.map((project, i) => (
           <Reveal key={project.slug} delay={(i % 4) * 0.05} className="h-full">
             <ProjectCard project={project} locale={locale} labels={labels} variant="logo" />

@@ -118,21 +118,14 @@ export function HeroVisual({
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.25 + i * 0.09, ease: [0.16, 1, 0.3, 1] }}
           >
+            {/*
+              The "lit" state is a second layer faded in and out. Only scale and
+              opacity animate: Motion resolves CSS variables once at mount, so
+              animating themed colours would freeze them on a theme switch.
+            */}
             <motion.span
-              className="flex h-[3.4rem] w-[3.4rem] items-center justify-center rounded-2xl border border-border bg-card text-brand shadow-sm"
-              animate={
-                reduce
-                  ? undefined
-                  : {
-                      scale: [1, 1.14, 1],
-                      borderColor: ["var(--border)", "var(--brand-2)", "var(--border)"],
-                      boxShadow: [
-                        "0 0 0 0 rgba(46,117,182,0)",
-                        "0 0 18px 2px rgba(46,117,182,0.35)",
-                        "0 0 0 0 rgba(46,117,182,0)",
-                      ],
-                    }
-              }
+              className="relative flex h-[3.4rem] w-[3.4rem] items-center justify-center rounded-xl border border-border bg-card text-foreground"
+              animate={reduce ? undefined : { scale: [1, 1.12, 1] }}
               transition={{
                 duration: 0.75,
                 repeat: Infinity,
@@ -142,10 +135,25 @@ export function HeroVisual({
               }}
             >
               <Icon size={27} weight="duotone" />
+              {!reduce && (
+                <motion.span
+                  aria-hidden
+                  className="absolute -inset-px flex items-center justify-center rounded-xl border border-brand bg-card text-brand shadow-[0_0_22px_1px_rgba(38,71,217,0.3)]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 1, 0] }}
+                  transition={{
+                    duration: 0.75,
+                    repeat: Infinity,
+                    repeatDelay: TRAVEL - 0.75,
+                    delay: land,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Icon size={27} weight="duotone" />
+                </motion.span>
+              )}
             </motion.span>
-            <span className="mt-2 whitespace-nowrap text-[11px] font-medium text-muted">
-              {nodes[i]}
-            </span>
+            <span className="tnum mt-2 whitespace-nowrap text-[11px] text-muted">{nodes[i]}</span>
           </motion.div>
         );
       })}
@@ -168,7 +176,7 @@ export function HeroVisual({
               />
             ))}
           <motion.span
-            className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-[1.35rem] bg-brand text-on-brand shadow-[0_16px_40px_-12px_rgba(31,78,121,0.75)]"
+            className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-[1.35rem] bg-ink text-on-ink shadow-[0_18px_40px_-16px_rgba(22,23,26,0.6)]"
             animate={reduce ? undefined : { scale: [1, 1.05, 1] }}
             transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
           >
@@ -176,8 +184,8 @@ export function HeroVisual({
           </motion.span>
         </div>
         {/* Boxed so the spokes running underneath stay out of the words. */}
-        <span className="mt-3 rounded-lg bg-background px-2 py-1 text-center">
-          <span className="block text-sm font-semibold text-foreground">{hub}</span>
+        <span className="mt-3 rounded-md bg-background px-2 py-1 text-center">
+          <span className="block text-sm font-medium text-foreground">{hub}</span>
           <span className="tnum block text-[11px] text-muted">{hubDetail}</span>
         </span>
       </motion.div>

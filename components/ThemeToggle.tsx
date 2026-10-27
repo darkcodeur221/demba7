@@ -19,16 +19,12 @@ export function ThemeToggle({ label, className }: { label: string; className?: s
       title={label}
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={cn(
-        "inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:bg-surface hover:text-foreground",
+        "inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted transition-colors hover:border-foreground hover:text-foreground",
         className
       )}
     >
       {/* Render a stable icon until mounted to avoid hydration mismatch. */}
-      {mounted && isDark ? (
-        <Sun size={18} weight="bold" />
-      ) : (
-        <Moon size={18} weight="bold" />
-      )}
+      {mounted && isDark ? <Sun size={16} /> : <Moon size={16} />}
     </button>
   );
 }

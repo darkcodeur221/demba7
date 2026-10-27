@@ -11,7 +11,9 @@ import {
   X,
   ArrowSquareOut,
 } from "@phosphor-icons/react";
-import { cn } from "@/lib/utils";
+import { Kicker } from "@/components/Kicker";
+import { Emphasis } from "@/components/Emphasis";
+import { Badge } from "@/components/ui/badge";
 
 type Agent = {
   name: string;
@@ -35,6 +37,7 @@ const agents: Agent[] = [
 type Shot = { src: string; caption: string };
 
 export function FeugjayEcosystem({
+  index,
   label,
   heading,
   body,
@@ -45,6 +48,7 @@ export function FeugjayEcosystem({
   celebiCaption,
   architectureCaption,
 }: {
+  index?: string;
   label: string;
   heading: string;
   body: string;
@@ -80,54 +84,45 @@ export function FeugjayEcosystem({
   };
 
   return (
-    <div className="rounded-[var(--radius-card)] border border-border bg-surface/50 p-6 sm:p-8">
-      <span className="inline-flex items-center gap-2.5 text-sm font-medium text-brand">
-        <span className="h-px w-8 bg-gradient-to-r from-brand to-brand-2" aria-hidden />
-        {label}
-      </span>
-      <h3 className="mt-4 text-xl font-bold tracking-tight md:text-2xl">{heading}</h3>
-      <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted">{body}</p>
+    <div className="rounded-[var(--radius-card)] border border-border bg-card p-6 sm:p-10">
+      <Kicker index={index} label={label} />
+      <h3 className="mt-5 text-[1.75rem] font-medium leading-[1.08] tracking-[-0.03em] md:text-[2.25rem]">
+        <Emphasis text={heading} />
+      </h3>
+      <p className="mt-4 max-w-[62ch] text-base leading-relaxed text-muted">{body}</p>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-10">
-        {/* Agent roster */}
-        <div className="flex flex-col gap-3">
+      <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-12">
+        {/* Agent roster, set as a spec list */}
+        <ul className="border-t border-border">
           {agents.map((agent) => {
             const Icon = agent.icon;
             return (
-              <div
-                key={agent.name}
-                className="flex items-start gap-4 rounded-[var(--radius-card)] border border-border bg-card p-4 transition-colors hover:border-border-strong"
-              >
-                <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-brand">
-                  <Icon size={20} weight="bold" />
+              <li key={agent.name} className="flex items-start gap-4 border-b border-border py-4">
+                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-brand">
+                  <Icon size={18} weight="duotone" />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <div className="flex items-baseline gap-2">
-                    <p className="font-semibold text-foreground">{agent.name}</p>
-                    <p className="text-xs font-medium text-brand">{agent.role}</p>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <p className="font-medium text-foreground">{agent.name}</p>
+                    <p className="tnum text-[11px] text-muted">{agent.role}</p>
                   </div>
                   <div className="mt-2 flex flex-wrap gap-1.5">
                     {agent.integrations.map((it) => (
-                      <span
-                        key={it}
-                        className="inline-flex items-center rounded-md border border-border bg-surface/60 px-2 py-0.5 text-[11px] font-medium text-muted"
-                      >
-                        {it}
-                      </span>
+                      <Badge key={it}>{it}</Badge>
                     ))}
                   </div>
                 </div>
-              </div>
+              </li>
             );
           })}
-        </div>
+        </ul>
 
-        {/* Architecture diagram */}
+        {/* Architecture diagram (a dark render, so it keeps a dark frame) */}
         <button
           type="button"
           onClick={() => setOpen(architecture)}
           aria-label={`${architectureCaption} — ${zoomHint}`}
-          className="group relative block overflow-hidden rounded-[var(--radius-card)] border border-border bg-[#0a0e1a]"
+          className="group relative block overflow-hidden rounded-[var(--radius-media)] border border-border bg-[#0b0d12]"
         >
           <div className="relative aspect-[4/3] w-full">
             <Image
@@ -149,12 +144,9 @@ export function FeugjayEcosystem({
       </div>
 
       {/* Proof in production */}
-      <div className="mt-8">
-        <span className="inline-flex items-center gap-2 text-sm font-medium text-brand">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-          </span>
+      <div className="mt-10">
+        <span className="tnum inline-flex items-center gap-2.5 text-xs text-foreground">
+          <span className="live-dot h-2 w-2 rounded-full bg-live" aria-hidden />
           {proofLabel}
         </span>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -164,7 +156,7 @@ export function FeugjayEcosystem({
               type="button"
               onClick={() => setOpen(shot)}
               aria-label={`${shot.caption} — ${zoomHint}`}
-              className="group flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-card text-left transition-colors hover:border-border-strong"
+              className="group flex flex-col overflow-hidden rounded-[var(--radius-media)] border border-border bg-background text-left transition-colors hover:border-border-strong"
             >
               <div className="img-zoom relative aspect-[16/11] w-full overflow-hidden bg-surface">
                 <Image
@@ -182,7 +174,9 @@ export function FeugjayEcosystem({
                   </span>
                 </span>
               </div>
-              <p className="border-t border-border px-4 py-2.5 text-xs text-muted">{shot.caption}</p>
+              <p className="tnum border-t border-border px-4 py-3 text-[11px] leading-relaxed text-muted">
+                {shot.caption}
+              </p>
             </button>
           ))}
         </div>

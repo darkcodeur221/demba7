@@ -22,7 +22,8 @@ type FormDict = {
 type Status = "idle" | "sending" | "success" | "error" | "invalid";
 
 const inputClass =
-  "w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted transition-colors focus:border-brand focus-visible:outline-none";
+  "w-full rounded-[10px] border border-border bg-background px-4 py-3 text-[15px] text-foreground placeholder:text-muted/70 transition-colors duration-300 hover:border-border-strong focus:border-foreground focus-visible:outline-none";
+const labelClass = "tnum text-[11px] text-muted";
 
 export function ContactForm({ dict, locale }: { dict: FormDict; locale: string }) {
   const [status, setStatus] = useState<Status>("idle");
@@ -62,7 +63,7 @@ export function ContactForm({ dict, locale }: { dict: FormDict; locale: string }
     <form onSubmit={onSubmit} className="flex flex-col gap-5" noValidate>
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <label htmlFor="name" className="text-sm font-medium text-foreground">
+          <label htmlFor="name" className={labelClass}>
             {dict.name}
           </label>
           <input
@@ -77,7 +78,7 @@ export function ContactForm({ dict, locale }: { dict: FormDict; locale: string }
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-sm font-medium text-foreground">
+          <label htmlFor="email" className={labelClass}>
             {dict.email}
           </label>
           <input
@@ -94,7 +95,7 @@ export function ContactForm({ dict, locale }: { dict: FormDict; locale: string }
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="message" className="text-sm font-medium text-foreground">
+        <label htmlFor="message" className={labelClass}>
           {dict.message}
         </label>
         <textarea

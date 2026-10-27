@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Instrument_Sans, Instrument_Serif } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -7,8 +7,16 @@ import { ChatWidget } from "@/components/ChatWidget";
 import { getDictionary, isLocale, locales, type Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+// Instrument Sans and Serif were drawn as a pair: the sans carries the text, the
+// serif italic carries emphasis. Geist Mono handles indexes and technical notes.
+const sans = Instrument_Sans({ variable: "--font-instrument-sans", subsets: ["latin"] });
+const serif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+});
+const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -124,10 +132,16 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${sans.variable} ${serif.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[90] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-on-ink"
+          >
+            {dict.common.skip}
+          </a>
           <PersonJsonLd locale={locale} />
           {children}
           <ChatWidget dict={dict.chat} />

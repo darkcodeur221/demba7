@@ -5,12 +5,14 @@ import { ProjectCard, type CardLabels } from "@/components/ProjectCard";
 import { Badge } from "@/components/ui/badge";
 import { Reveal } from "@/components/motion/Reveal";
 import { projectsByCategory } from "@/data/projects";
+import { sectionIndex } from "@/lib/sections";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
 export function Ecommerce({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const all = projectsByCategory("ecommerce");
   const featured = all.find((p) => p.featured) ?? all[0];
   const rest = all.filter((p) => p.slug !== featured.slug);
+  const n = sectionIndex("ecommerce");
 
   const labels: CardLabels = {
     problem: dict.common.problem,
@@ -22,41 +24,38 @@ export function Ecommerce({ dict, locale }: { dict: Dictionary; locale: Locale }
   return (
     <Section id="ecommerce">
       <SectionHeader
+        id="ecommerce"
         label={dict.sections.ecommerce.label}
         heading={dict.sections.ecommerce.heading}
         intro={dict.sections.ecommerce.intro}
       />
 
-      <Reveal className="mb-6">
-        <article className="grid overflow-hidden rounded-[var(--radius-card)] border border-border bg-card md:grid-cols-2">
-          <div className="relative flex min-h-[12rem] items-end overflow-hidden bg-accent-soft">
-            {featured.image ? (
+      {/* Lead project: wide image, asymmetric 7/5 split */}
+      <Reveal className="mb-20">
+        <article className="group grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
+          <div className="img-zoom relative aspect-[16/10] overflow-hidden rounded-[var(--radius-media)] border border-border bg-surface lg:col-span-7">
+            {featured.image && (
               <Image
                 src={featured.image}
                 alt={featured.title[locale]}
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 60vw"
                 className="object-cover object-top"
-                priority
               />
-            ) : (
-              <>
-                <span
-                  className="pointer-events-none absolute -right-6 -top-10 select-none text-[12rem] font-semibold leading-none text-brand/15"
-                  aria-hidden
-                >
-                  {featured.tagline.fr.charAt(0).toUpperCase()}
-                </span>
-                <span className="relative m-5 rounded-md bg-background/70 px-3 py-1.5 text-sm font-medium text-brand backdrop-blur-sm">
-                  {featured.linkLabel}
-                </span>
-              </>
             )}
           </div>
-          <div className="flex flex-col justify-center gap-4 p-7">
-            <h3 className="text-2xl font-semibold tracking-tight">{featured.title[locale]}</h3>
-            <p className="text-base leading-relaxed text-foreground">{featured.result?.[locale]}</p>
-            <div className="flex flex-wrap gap-1.5">
+          <div className="lg:col-span-5">
+            <span className="tnum text-xs text-muted">{n}.1</span>
+            <h3 className="mt-3 text-[2rem] font-medium leading-tight tracking-[-0.03em]">
+              {featured.title[locale]}
+            </h3>
+            <p className="tnum mt-1.5 text-xs text-brand">{featured.tagline[locale]}</p>
+            {featured.result?.[locale] && (
+              <p className="mt-6 border-t border-border pt-6 text-xl leading-snug tracking-[-0.01em] text-foreground">
+                {featured.result[locale]}
+              </p>
+            )}
+            <div className="mt-6 flex flex-wrap gap-1.5">
               {featured.stack.map((tech) => (
                 <Badge key={tech}>{tech}</Badge>
               ))}
@@ -66,20 +65,29 @@ export function Ecommerce({ dict, locale }: { dict: Dictionary; locale: Locale }
                 href={featured.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-fit items-center gap-1 text-sm font-medium text-brand transition-colors hover:text-brand-strong"
+                className="group/link tnum mt-6 inline-flex items-center gap-1 text-xs text-foreground"
               >
-                {featured.linkLabel ?? labels.viewLive}
-                <ArrowUpRight size={15} weight="bold" />
+                <span className="link-draw">{featured.linkLabel ?? labels.viewLive}</span>
+                <ArrowUpRight
+                  size={13}
+                  className="text-brand transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                />
               </a>
             )}
           </div>
         </article>
       </Reveal>
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
         {rest.map((project, i) => (
           <Reveal key={project.slug} delay={(i % 3) * 0.06} className="h-full">
-            <ProjectCard project={project} locale={locale} labels={labels} variant="compact" />
+            <ProjectCard
+              project={project}
+              locale={locale}
+              labels={labels}
+              variant="compact"
+              index={`${n}.${i + 2}`}
+            />
           </Reveal>
         ))}
       </div>

@@ -1,12 +1,7 @@
-import {
-  EnvelopeSimple,
-  Phone,
-  MapPin,
-  LinkedinLogo,
-  GithubLogo,
-} from "@phosphor-icons/react/dist/ssr";
-import { Section } from "./Section";
+import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { Section, SectionHeader } from "./Section";
 import { Reveal } from "@/components/motion/Reveal";
+import { Kicker } from "@/components/Kicker";
 import { ContactForm } from "@/components/ContactForm";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
@@ -15,77 +10,62 @@ export function Contact({ dict, locale }: { dict: Dictionary; locale: Locale }) 
   const c = dict.contact;
 
   const directs = [
-    { icon: EnvelopeSimple, label: c.emailLabel, value: site.email, href: `mailto:${site.email}` },
-    { icon: Phone, label: c.phoneLabel, value: site.phone, href: site.phoneHref },
-    { icon: MapPin, label: c.locationLabel, value: site.location[locale], href: undefined },
+    { label: c.emailLabel, value: site.email, href: `mailto:${site.email}` },
+    { label: c.phoneLabel, value: site.phone, href: site.phoneHref },
+    { label: c.locationLabel, value: site.location[locale], href: undefined },
+  ];
+  const socials = [
+    { label: "LinkedIn", href: site.socials.linkedin },
+    { label: "GitHub", href: site.socials.github },
   ];
 
   return (
     <Section id="contact" surface>
-      <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5">
-          <Reveal className="flex flex-col gap-4">
-            <span className="inline-flex items-center gap-2.5 text-sm font-medium text-brand">
-              <span className="h-px w-6 bg-brand" aria-hidden />
-              {c.label}
-            </span>
-            <h2 className="text-3xl font-semibold tracking-tight md:text-[2.5rem] md:leading-[1.1]">
-              {c.heading}
-            </h2>
-            <p className="text-base leading-relaxed text-muted">{c.intro}</p>
+      <SectionHeader id="contact" label={c.label} heading={c.heading} intro={c.intro} />
 
-            <div className="mt-4 flex flex-col gap-1">
-              <p className="mb-1 text-sm font-medium text-foreground">{c.directLabel}</p>
-              {directs.map((d) => {
-                const Inner = (
-                  <span className="flex items-center gap-3 py-2.5">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-brand">
-                      <d.icon size={18} weight="bold" />
-                    </span>
-                    <span className="text-sm">
-                      <span className="block text-xs text-muted">{d.label}</span>
-                      <span className="text-foreground">{d.value}</span>
-                    </span>
-                  </span>
-                );
-                return d.href ? (
-                  <a key={d.label} href={d.href} className="transition-opacity hover:opacity-80">
-                    {Inner}
-                  </a>
-                ) : (
-                  <div key={d.label}>{Inner}</div>
-                );
-              })}
-            </div>
-
-            <div className="mt-2 flex items-center gap-2">
+      <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
+        <Reveal className="lg:col-span-5">
+          <Kicker label={c.directLabel} className="mb-4" />
+          <dl className="border-t border-border-strong">
+            {directs.map((d) => (
+              <div key={d.label} className="grid grid-cols-[6.5rem_1fr] gap-4 border-b border-border py-5">
+                <dt className="tnum pt-1 text-[11px] text-muted">{d.label}</dt>
+                <dd className="text-lg tracking-tight text-foreground">
+                  {d.href ? (
+                    <a href={d.href} className="link-draw">
+                      {d.value}
+                    </a>
+                  ) : (
+                    d.value
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <div className="mt-6 flex gap-6">
+            {socials.map((s) => (
               <a
-                href={site.socials.linkedin}
+                key={s.label}
+                href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:bg-background hover:text-brand"
+                className="group tnum inline-flex items-center gap-1 text-xs text-foreground"
               >
-                <LinkedinLogo size={18} weight="bold" />
+                <span className="link-draw">{s.label}</span>
+                <ArrowUpRight
+                  size={13}
+                  className="text-brand transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                />
               </a>
-              <a
-                href={site.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:bg-background hover:text-brand"
-              >
-                <GithubLogo size={18} weight="bold" />
-              </a>
-            </div>
-          </Reveal>
-        </div>
+            ))}
+          </div>
+        </Reveal>
 
-        <div className="lg:col-span-7">
-          <Reveal delay={0.1} className="rounded-[var(--radius-card)] border border-border bg-card p-6 sm:p-8">
+        <Reveal delay={0.1} className="lg:col-span-7">
+          <div className="rounded-[var(--radius-card)] border border-border bg-card p-6 sm:p-9">
             <ContactForm dict={c.form} locale={locale} />
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
       </div>
     </Section>
   );

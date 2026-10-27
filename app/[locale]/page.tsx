@@ -30,7 +30,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         themeLabel={dict.common.toggleTheme}
       />
 
-      <main>
+      <main id="main">
         <Hero dict={dict} locale={locale} />
         <About dict={dict} />
         <AIProjects dict={dict} locale={locale} />
@@ -45,6 +45,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
       <Footer
         locale={locale}
+        cta={dict.footer.cta}
         tagline={dict.footer.tagline}
         rights={dict.footer.rights}
         built={dict.footer.built}

@@ -2,13 +2,16 @@ import Image from "next/image";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { Section, SectionHeader } from "./Section";
 import { Badge } from "@/components/ui/badge";
+import { Kicker } from "@/components/Kicker";
 import { Reveal } from "@/components/motion/Reveal";
 import { projectsByCategory } from "@/data/projects";
 import { dashboards } from "@/data/dashboards";
+import { sectionIndex } from "@/lib/sections";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
 export function DataAnalytics({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const d = dict.sections.data;
+  const n = sectionIndex("data");
   const audit = projectsByCategory("data")[0];
   const featured = dashboards.find((x) => x.featured) ?? dashboards[0];
   const gallery = dashboards.filter((x) => x !== featured);
@@ -21,53 +24,60 @@ export function DataAnalytics({ dict, locale }: { dict: Dictionary; locale: Loca
 
   return (
     <Section id="data" surface>
-      <SectionHeader label={d.label} heading={d.heading} intro={d.intro} />
+      <SectionHeader id="data" label={d.label} heading={d.heading} intro={d.intro} />
 
-      <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+      <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-12">
         {/* Audit narrative */}
-        <Reveal className="flex flex-col gap-6">
-          <div>
-            <h3 className="text-xl font-semibold tracking-tight">{audit.title[locale]}</h3>
-            <a
-              href={audit.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-brand hover:text-brand-strong"
-            >
-              {audit.linkLabel}
-            </a>
-          </div>
-          <dl className="flex flex-col">
-            {facts.map((f, i) => (
-              <div
-                key={f.label}
-                className={`flex flex-col gap-1.5 border-l-2 border-brand/40 py-4 pl-5 ${
-                  i === 0 ? "" : "border-t border-t-border"
-                }`}
-              >
-                <dt className="text-xs font-medium uppercase tracking-wide text-brand">
-                  {f.label}
-                </dt>
-                <dd className="text-base leading-relaxed text-foreground">{f.value}</dd>
+        <Reveal className="flex flex-col lg:col-span-5">
+          <span className="tnum text-xs text-muted">{n}.1</span>
+          <h3 className="mt-3 text-[2rem] font-medium leading-tight tracking-[-0.03em]">
+            {audit.title[locale]}
+          </h3>
+          <a
+            href={audit.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group/link tnum mt-2 inline-flex w-fit items-center gap-1 text-xs text-brand"
+          >
+            <span className="link-draw">{audit.linkLabel}</span>
+            <ArrowUpRight size={13} />
+          </a>
+
+          <dl className="mt-8 border-t border-border-strong">
+            {facts.map((f) => (
+              <div key={f.label} className="grid grid-cols-[5.5rem_1fr] gap-4 border-b border-border py-5">
+                <dt className="tnum pt-0.5 text-[11px] text-muted">{f.label}</dt>
+                <dd className="text-[15px] leading-relaxed text-foreground">{f.value}</dd>
               </div>
             ))}
           </dl>
+
+          <div className="mt-8">
+            <Kicker label={d.toolsLabel} className="mb-3" />
+            <div className="flex flex-wrap gap-1.5">
+              {d.tools.map((tool) => (
+                <Badge key={tool} accent>
+                  {tool}
+                </Badge>
+              ))}
+            </div>
+          </div>
         </Reveal>
 
-        {/* Featured dashboard + tools */}
-        <Reveal delay={0.1} className="flex flex-col gap-6">
+        {/* Featured dashboard */}
+        <Reveal delay={0.1} className="lg:col-span-7">
           <a
             href={featured.src}
             target="_blank"
             rel="noopener noreferrer"
-            className="group block overflow-hidden rounded-[var(--radius-card)] border border-border bg-card"
+            className="group block overflow-hidden rounded-[var(--radius-media)] border border-border bg-card"
           >
-            <div className="relative aspect-[16/10] bg-surface">
+            <div className="img-zoom relative aspect-[16/10] bg-white">
               <Image
                 src={featured.src}
                 alt={featured.caption[locale]}
                 fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 60vw"
                 className="object-contain"
               />
             </div>
@@ -77,44 +87,24 @@ export function DataAnalytics({ dict, locale }: { dict: Dictionary; locale: Loca
                 <span className="text-sm text-foreground">{featured.caption[locale]}</span>
               </div>
               <ArrowUpRight
-                size={16}
-                weight="bold"
-                className="shrink-0 text-muted transition-colors group-hover:text-brand"
+                size={15}
+                className="shrink-0 text-muted transition-[transform,color] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand"
               />
             </div>
           </a>
-
-          <div>
-            <p className="mb-3 text-sm font-medium text-foreground">{d.toolsLabel}</p>
-            <div className="flex flex-wrap gap-2">
-              {d.tools.map((tool) => (
-                <Badge key={tool} accent>
-                  {tool}
-                </Badge>
-              ))}
-            </div>
-          </div>
         </Reveal>
       </div>
 
       {/* Proof gallery */}
-      <div className="mt-14">
-        <Reveal className="mb-5">
-          <span className="inline-flex items-center gap-2.5 text-sm font-medium text-brand">
-            <span className="h-px w-6 bg-brand" aria-hidden />
-            {d.galleryLabel}
-          </span>
+      <div className="mt-20">
+        <Reveal className="mb-6">
+          <Kicker index={`${n}.2`} label={d.galleryLabel} />
         </Reveal>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((viz, i) => (
             <Reveal key={viz.src} delay={(i % 3) * 0.05} className="h-full">
-              <a
-                href={viz.src}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-card transition-colors hover:border-border-strong"
-              >
-                <div className="relative aspect-[16/10] bg-surface">
+              <a href={viz.src} target="_blank" rel="noopener noreferrer" className="group flex h-full flex-col">
+                <div className="img-zoom relative aspect-[16/10] overflow-hidden rounded-[var(--radius-media)] border border-border bg-white">
                   <Image
                     src={viz.src}
                     alt={viz.caption[locale]}
@@ -123,9 +113,15 @@ export function DataAnalytics({ dict, locale }: { dict: Dictionary; locale: Loca
                     className="object-contain"
                   />
                 </div>
-                <div className="flex flex-1 flex-col gap-0.5 border-t border-border px-3 py-2.5">
-                  <p className="text-xs font-medium text-brand">{viz.tool}</p>
-                  <p className="text-xs leading-snug text-muted">{viz.caption[locale]}</p>
+                <div className="flex items-start justify-between gap-3 pt-3">
+                  <div>
+                    <p className="tnum text-[11px] text-brand">{viz.tool}</p>
+                    <p className="mt-0.5 text-sm leading-snug text-foreground">{viz.caption[locale]}</p>
+                  </div>
+                  <ArrowUpRight
+                    size={14}
+                    className="mt-1 shrink-0 text-muted transition-[transform,color] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand"
+                  />
                 </div>
               </a>
             </Reveal>

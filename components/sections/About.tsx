@@ -1,6 +1,7 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { AnimatedCounter } from "@/components/motion/AnimatedCounter";
-import { Section } from "./Section";
+import { Section, SectionHeader } from "./Section";
+import { cn } from "@/lib/utils";
 import type { Dictionary } from "@/lib/i18n";
 
 export function About({ dict }: { dict: Dictionary }) {
@@ -14,40 +15,37 @@ export function About({ dict }: { dict: Dictionary }) {
     { value: a.degreeLabel, label: s.degree },
   ];
 
+  const figure = "font-serif text-5xl leading-none tracking-[-0.02em] text-foreground sm:text-[3.4rem]";
+
   return (
     <Section id="about" surface>
-      <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-7">
-          <Reveal className="flex flex-col gap-4">
-            <span className="inline-flex items-center gap-2.5 text-sm font-medium text-brand">
-              <span className="h-px w-8 bg-gradient-to-r from-brand to-brand-2" aria-hidden />
-              {a.label}
-            </span>
-            <h2 className="text-3xl font-bold tracking-tight md:text-[2.5rem] md:leading-[1.08]">
-              {a.heading}
-            </h2>
-            <p className="text-lg font-medium text-foreground">{a.lead}</p>
-            <p className="max-w-2xl text-base leading-relaxed text-muted">{a.body}</p>
-          </Reveal>
-        </div>
+      <SectionHeader id="about" label={a.label} heading={a.heading} intro={a.lead} />
 
-        <div className="lg:col-span-5">
-          <Reveal delay={0.1} className="grid grid-cols-2 gap-3">
-            {stats.map((stat) => (
+      <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
+        <Reveal className="lg:col-span-7">
+          <p className="max-w-[58ch] text-xl leading-[1.6] tracking-[-0.005em] text-foreground">
+            {a.body}
+          </p>
+        </Reveal>
+
+        {/* Key figures, ruled like a spec table rather than boxed as cards */}
+        <Reveal delay={0.1} className="lg:col-span-5">
+          <div className="grid grid-cols-2 border-t border-border-strong">
+            {stats.map((stat, i) => (
               <div
                 key={stat.label}
-                className="card-glow rounded-[var(--radius-card)] border border-border bg-card p-5"
+                className={cn("border-b border-border py-7", i % 2 === 0 ? "border-r pr-6" : "pl-6")}
               >
                 {stat.numeric != null ? (
-                  <AnimatedCounter target={stat.numeric} suffix="+" className="tnum text-3xl font-bold text-gradient" />
+                  <AnimatedCounter target={stat.numeric} suffix="+" className={figure} />
                 ) : (
-                  <p className="tnum text-3xl font-bold text-gradient">{stat.value}</p>
+                  <p className={figure}>{stat.value}</p>
                 )}
-                <p className="mt-1.5 text-sm leading-snug text-muted">{stat.label}</p>
+                <p className="tnum mt-3 text-xs leading-snug text-muted">{stat.label}</p>
               </div>
             ))}
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
       </div>
     </Section>
   );

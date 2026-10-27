@@ -12,6 +12,8 @@
   },
   "hero": {
     "eyebrow": "IA appliquée, analytique et e-commerce",
+    "status": "Disponible immédiatement",
+    "place": "Longueuil, QC · Français / English",
     "title": "Je transforme des besoins d'affaires en systèmes IA concrets, en production.",
     "titleAccent": "systèmes IA",
     "subtitle": "Et je fais parler les données : de la donnée brute à la décision. Automatisation, intégrations et analytique prédictive.",
@@ -40,7 +42,7 @@
   },
   "about": {
     "label": "À propos",
-    "heading": "Un profil hybride, à la croisée de trois disciplines",
+    "heading": "Un profil hybride, à la croisée de *trois disciplines*",
     "lead": "Affaires, technologie et data dans une même tête.",
     "body": "Je conçois des systèmes IA en production depuis fin 2024 et je livre des sites et solutions web depuis 2019. Mon ancrage est double : le Québec et l'Afrique francophone. Je travaille là où se rencontrent l'affaire, la technologie et la donnée, de l'IA générative à l'analytique prédictive. C'est cette combinaison, plus que chaque compétence prise isolément, qui me permet de transformer un besoin en système qui tourne.",
     "degreeLabel": "M.Sc. TI"
@@ -48,11 +50,11 @@
   "sections": {
     "ai": {
       "label": "Projets IA & Automatisation",
-      "heading": "Des systèmes qui tournent, pas des prototypes",
+      "heading": "Des systèmes qui tournent, *pas des prototypes*",
       "intro": "Chaque projet part d'un vrai problème d'affaires et finit en production.",
       "process": {
         "label": "Démarche de conception",
-        "heading": "Ma démarche : concevoir avant de construire",
+        "heading": "Ma démarche : *concevoir* avant de construire",
         "body": "Avant d'écrire la moindre ligne de code, j'ai modélisé le processus existant en BPMN 2.0 pour comprendre chaque étape et identifier les irritants. J'ai ensuite conçu le processus cible automatisé. Cette rigueur de conception est ce qui distingue un système fiable d'un bricolage.",
         "asIsTag": "AS-IS",
         "asIsDesc": "Processus manuel",
@@ -64,7 +66,7 @@
       },
       "ecosystem": {
         "label": "Architecture multi-agents",
-        "heading": "Un écosystème de 4 agents IA autonomes",
+        "heading": "Un écosystème de *4 agents IA* autonomes",
         "body": "Feugjay est une boutique e-commerce à Dakar dont le marketing est entièrement automatisé. Pikachu publie chaque jour sur Facebook en sélectionnant un produit réel et en créant une affiche marketing professionnelle. Porygon analyse l'engagement hebdomadaire et rapporte via Telegram. Lugia croise GA4, Search Console, Google Trends et WooCommerce pour produire de l'intelligence stratégique. Celebi optimise automatiquement les fiches produit SEO directement dans WooCommerce.",
         "proofLabel": "En production",
         "zoomHint": "Cliquer pour agrandir",
@@ -76,7 +78,7 @@
     },
     "data": {
       "label": "Data & Analytique",
-      "heading": "De la donnée brute à la décision",
+      "heading": "De la donnée brute *à la décision*",
       "intro": "Je ne fais pas que de l'IA générative. Je fais aussi de l'analytique sérieuse.",
       "toolsLabel": "Mes outils",
       "tools": [
@@ -91,32 +93,32 @@
     },
     "ecommerce": {
       "label": "E-commerce & Retail",
-      "heading": "L'avantage retail, en plus de la tech",
+      "heading": "L'avantage *retail*, en plus de la tech",
       "intro": "Des marketplaces et boutiques en production, avec de vrais volumes."
     },
     "client": {
       "label": "Sites clients & vitrines",
-      "heading": "Plus de 30 sites livrés",
+      "heading": "Plus de *30 sites* livrés",
       "intro": "Une sélection de projets clients, du spa à l'agence."
     },
     "services": {
       "label": "Services",
-      "heading": "Ce que je construis via Deejitcorp",
+      "heading": "Ce que je construis *via Deejitcorp*",
       "intro": "De l'automatisation à l'analytique, en passant par l'e-commerce."
     },
     "skills": {
       "label": "Compétences techniques",
-      "heading": "La boîte à outils complète"
+      "heading": "La boîte à outils *complète*"
     },
     "education": {
       "label": "Parcours & Formation",
-      "heading": "Formation et certifications",
+      "heading": "Formation *et certifications*",
       "certificationsLabel": "Certifications"
     }
   },
   "contact": {
     "label": "Contact",
-    "heading": "Parlons de votre projet",
+    "heading": "Parlons de *votre projet*",
     "intro": "Basé à Longueuil, QC. Disponible pour mandats et opportunités.",
     "form": {
       "name": "Nom",
@@ -138,6 +140,7 @@
   },
   "footer": {
     "tagline": "Spécialiste IA & E-commerce. Automatisation, intégrations et analytique.",
+    "cta": "Un poste, un projet ? Écrivez-moi.",
     "rights": "Tous droits réservés.",
     "built": "Conçu et développé par Ngagne Demba Beye."
   },
@@ -185,6 +188,7 @@
     "result": "Résultat",
     "switchLang": "English",
     "toggleTheme": "Changer de thème",
-    "backToTop": "Haut de page"
+    "backToTop": "Haut de page",
+    "skip": "Aller au contenu"
   }
 }

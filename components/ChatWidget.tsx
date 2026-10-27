@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChatCircleDots, PaperPlaneRight, Sparkle, X } from "@phosphor-icons/react";
+import { ChatCircleDots, PaperPlaneRight, X } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
 export type ChatDict = {
@@ -117,8 +117,8 @@ export function ChatWidget({ dict }: { dict: ChatDict }) {
         aria-expanded={open}
         className={cn(
           "no-print fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full",
-          "bg-brand text-on-brand shadow-[0_12px_36px_-10px_rgba(31,78,121,0.75)]",
-          "transition-transform hover:scale-105 active:scale-95",
+          "bg-ink text-on-ink shadow-[0_14px_36px_-12px_rgba(22,23,26,0.6)]",
+          "transition-[transform,background-color,color] duration-300 hover:scale-105 hover:bg-brand hover:text-on-brand active:scale-95",
           open && "scale-0 opacity-0"
         )}
       >
@@ -137,13 +137,13 @@ export function ChatWidget({ dict }: { dict: ChatDict }) {
           )}
         >
           <header className="flex items-center gap-3 border-b border-border bg-surface px-4 py-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand text-on-brand">
-              <Sparkle size={18} weight="fill" />
+            <span className="flex h-9 w-9 items-center justify-center rounded-[9px] bg-ink font-serif text-xl italic leading-none text-on-ink">
+              N
             </span>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-semibold text-foreground">{dict.name}</p>
               <p className="flex items-center gap-1.5 text-xs text-muted">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden />
+                <span className="live-dot h-1.5 w-1.5 rounded-full bg-live" aria-hidden />
                 {dict.status}
               </p>
             </div>
@@ -168,7 +168,7 @@ export function ChatWidget({ dict }: { dict: ChatDict }) {
                 className={cn(
                   "max-w-[85%] whitespace-pre-wrap px-3.5 py-2.5 text-sm leading-relaxed",
                   m.role === "user"
-                    ? "ml-auto rounded-2xl rounded-br-md bg-brand text-on-brand"
+                    ? "ml-auto rounded-2xl rounded-br-md bg-ink text-on-ink"
                     : "rounded-2xl rounded-tl-md bg-surface text-foreground"
                 )}
               >
@@ -230,7 +230,7 @@ export function ChatWidget({ dict }: { dict: ChatDict }) {
               type="submit"
               disabled={busy || !input.trim()}
               aria-label={dict.send}
-              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand text-on-brand transition-opacity disabled:opacity-40"
+              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ink text-on-ink transition-[opacity,background-color] duration-300 hover:bg-brand hover:text-on-brand disabled:opacity-40"
             >
               <PaperPlaneRight size={17} weight="fill" />
             </button>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { DownloadSimple, List, X } from "@phosphor-icons/react";
+import { List, X } from "@phosphor-icons/react";
 import { ThemeToggle } from "./ThemeToggle";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { buttonVariants } from "./ui/button";
@@ -35,55 +35,85 @@ export function Nav({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
+
+  const base = `/${locale}`;
+  const links = [
+    { id: "projects", label: nav.projects },
+    { id: "data", label: nav.data },
+    { id: "ecommerce", label: nav.ecommerce },
+    { id: "services", label: nav.services },
+    { id: "skills", label: nav.skills },
+    { id: "about", label: nav.about },
+  ];
 
   useEffect(() => {
+    // A 1px sentinel at the top: the bar gains its background once it leaves.
     const sentinel = document.getElementById("top-sentinel");
     if (!sentinel) return;
-    const io = new IntersectionObserver(
-      ([entry]) => setScrolled(!entry.isIntersecting),
-      { rootMargin: "0px" }
-    );
+    const io = new IntersectionObserver(([entry]) => setScrolled(!entry.isIntersecting));
     io.observe(sentinel);
     return () => io.disconnect();
   }, []);
 
-  const base = `/${locale}`;
-  const links = [
-    { href: `${base}#projects`, label: nav.projects },
-    { href: `${base}#data`, label: nav.data },
-    { href: `${base}#ecommerce`, label: nav.ecommerce },
-    { href: `${base}#services`, label: nav.services },
-    { href: `${base}#skills`, label: nav.skills },
-    { href: `${base}#about`, label: nav.about },
-  ];
+  useEffect(() => {
+    // Scroll-spy: a section counts as current while it crosses the middle band
+    // of the viewport, which avoids flicker between two short sections. Every
+    // section is watched, linked or not, so the highlight clears while reading
+    // one that has no nav entry (hero, clients, education, contact).
+    const targets = document.querySelectorAll<HTMLElement>("main section[id]");
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) if (entry.isIntersecting) setActive(entry.target.id);
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    targets.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
 
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "border-b border-border glass shadow-[0_4px_30px_-10px_rgba(0,0,0,0.08)]"
-          : "border-b border-transparent"
+        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-300",
+        // An open menu needs an opaque bar, or the headline bleeds through the links.
+        open
+          ? "border-b border-border bg-background"
+          : scrolled
+            ? "glass border-b border-border"
+            : "border-b border-transparent"
       )}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
-        <Link href={base} className="group flex items-center gap-2.5" aria-label={site.name}>
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand text-sm font-bold text-on-brand shadow-[0_2px_12px_-3px_rgba(31,78,121,0.5)] transition-shadow group-hover:shadow-[0_2px_16px_-2px_rgba(31,78,121,0.6)]">
-            N
+        <Link href={base} className="group flex items-center gap-3" aria-label={site.name}>
+          <span className="flex h-8 w-8 items-center justify-center rounded-[9px] bg-ink font-serif text-xl italic leading-none text-on-ink transition-colors duration-300 group-hover:bg-brand group-hover:text-on-brand">
+            D
           </span>
-          <span className="hidden text-sm font-semibold tracking-tight sm:block">
-            Ngagne Demba Beye
+          <span className="hidden flex-col leading-tight sm:flex">
+            <span className="text-sm font-medium tracking-tight">Ngagne Demba Beye</span>
+            <span className="tnum text-[10px] text-muted">IA · Data · E-commerce</span>
           </span>
         </Link>
 
-        <div className="hidden items-center gap-1 lg:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {links.map((l) => (
             <Link
-              key={l.href}
-              href={l.href}
-              className="relative rounded-lg px-3 py-1.5 text-sm text-muted transition-colors hover:bg-accent-soft/50 hover:text-foreground"
+              key={l.id}
+              href={`${base}#${l.id}`}
+              aria-current={active === l.id ? "location" : undefined}
+              className={cn(
+                "relative text-sm transition-colors duration-300",
+                active === l.id ? "text-foreground" : "text-muted hover:text-foreground"
+              )}
             >
               {l.label}
+              <span
+                aria-hidden
+                className={cn(
+                  "absolute -bottom-1.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-brand transition-opacity duration-300",
+                  active === l.id ? "opacity-100" : "opacity-0"
+                )}
+              />
             </Link>
           ))}
         </div>
@@ -91,9 +121,8 @@ export function Nav({
         <div className="flex items-center gap-2">
           <Link
             href={`${base}/cv`}
-            className="hidden items-center gap-1.5 text-sm text-muted transition-colors hover:text-foreground sm:inline-flex"
+            className="tnum hidden px-2 text-xs text-muted transition-colors hover:text-foreground sm:inline"
           >
-            <DownloadSimple size={16} weight="bold" />
             {nav.cv}
           </Link>
           <LocaleSwitcher locale={locale} label={switchLabel} />
@@ -109,41 +138,43 @@ export function Nav({
             aria-label={nav.menu}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border text-foreground transition-colors hover:bg-surface lg:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-foreground lg:hidden"
           >
-            {open ? <X size={18} weight="bold" /> : <List size={18} weight="bold" />}
+            {open ? <X size={17} /> : <List size={17} />}
           </button>
         </div>
       </nav>
 
       {open && (
-        <div className="glass border-t border-border lg:hidden">
-          <div className="mx-auto flex max-w-6xl flex-col gap-1 px-5 py-4 sm:px-8">
-            {links.map((l) => (
+        <div className="border-t border-border bg-background shadow-[0_24px_40px_-24px_rgba(22,23,26,0.25)] lg:hidden">
+          <div className="mx-auto flex max-w-6xl flex-col px-5 py-4 sm:px-8">
+            {links.map((l, i) => (
               <Link
-                key={l.href}
-                href={l.href}
+                key={l.id}
+                href={`${base}#${l.id}`}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-base text-foreground transition-colors hover:bg-accent-soft/50"
+                className="flex items-baseline gap-4 border-b border-border py-3.5 text-lg tracking-tight text-foreground last:border-b-0"
               >
+                <span className="tnum text-xs text-brand">{String(i + 1).padStart(2, "0")}</span>
                 {l.label}
               </Link>
             ))}
-            <Link
-              href={`${base}#contact`}
-              onClick={() => setOpen(false)}
-              className={cn(buttonVariants({ variant: "primary", size: "md" }), "mt-2")}
-            >
-              {nav.contact}
-            </Link>
-            <Link
-              href={`${base}/cv`}
-              onClick={() => setOpen(false)}
-              className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-lg px-3 py-2.5 text-sm text-muted hover:text-foreground"
-            >
-              <DownloadSimple size={16} weight="bold" />
-              {nav.cv}
-            </Link>
+            <div className="mt-4 flex items-center gap-3">
+              <Link
+                href={`${base}#contact`}
+                onClick={() => setOpen(false)}
+                className={cn(buttonVariants({ variant: "primary", size: "md" }), "flex-1")}
+              >
+                {nav.contact}
+              </Link>
+              <Link
+                href={`${base}/cv`}
+                onClick={() => setOpen(false)}
+                className={cn(buttonVariants({ variant: "outline", size: "md" }))}
+              >
+                {nav.cv}
+              </Link>
+            </div>
           </div>
         </div>
       )}

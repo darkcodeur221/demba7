@@ -12,6 +12,8 @@
   },
   "hero": {
     "eyebrow": "Applied AI, analytics and e-commerce",
+    "status": "Available now",
+    "place": "Longueuil, QC · Français / English",
     "title": "I turn business needs into real AI systems, in production.",
     "titleAccent": "AI systems",
     "subtitle": "And I make data speak: from raw data to decision. Automation, integrations and predictive analytics.",
@@ -40,7 +42,7 @@
   },
   "about": {
     "label": "About",
-    "heading": "A hybrid profile across three disciplines",
+    "heading": "A hybrid profile across *three disciplines*",
     "lead": "Business, technology and data in one head.",
     "body": "I have been building AI systems in production since late 2024, and delivering websites and web solutions since 2019. My footing is twofold: Quebec and French-speaking Africa. I work where business, technology and data meet, from generative AI to predictive analytics. It's this combination, more than any single skill, that lets me turn a need into a system that actually runs.",
     "degreeLabel": "M.Sc. IT"
@@ -48,11 +50,11 @@
   "sections": {
     "ai": {
       "label": "AI & Automation projects",
-      "heading": "Systems that run, not prototypes",
+      "heading": "Systems that run, *not prototypes*",
       "intro": "Every project starts from a real business problem and ends in production.",
       "process": {
         "label": "Design approach",
-        "heading": "My approach: design before building",
+        "heading": "My approach: *design* before building",
         "body": "Before writing a single line of code, I modelled the existing process in BPMN 2.0 to understand every step and pinpoint the friction. I then designed the target automated process. This design discipline is what separates a reliable system from a patch-up.",
         "asIsTag": "AS-IS",
         "asIsDesc": "Manual process",
@@ -64,7 +66,7 @@
       },
       "ecosystem": {
         "label": "Multi-agent architecture",
-        "heading": "An ecosystem of 4 autonomous AI agents",
+        "heading": "An ecosystem of *4 autonomous* AI agents",
         "body": "Feugjay is an e-commerce store in Dakar whose marketing is fully automated. Pikachu posts daily on Facebook by selecting a real product and creating a professional marketing poster. Porygon analyzes weekly engagement and reports via Telegram. Lugia cross-references GA4, Search Console, Google Trends and WooCommerce to produce strategic intelligence. Celebi automatically optimizes product SEO listings directly in WooCommerce.",
         "proofLabel": "Live in production",
         "zoomHint": "Click to enlarge",
@@ -76,7 +78,7 @@
     },
     "data": {
       "label": "Data & Analytics",
-      "heading": "From raw data to decision",
+      "heading": "From raw data *to decision*",
       "intro": "I don't only do generative AI. I also do serious analytics.",
       "toolsLabel": "My tools",
       "tools": [
@@ -91,32 +93,32 @@
     },
     "ecommerce": {
       "label": "E-commerce & Retail",
-      "heading": "The retail edge, on top of the tech",
+      "heading": "The *retail* edge, on top of the tech",
       "intro": "Marketplaces and stores in production, with real volume."
     },
     "client": {
       "label": "Client sites & showcases",
-      "heading": "More than 30 sites delivered",
+      "heading": "More than *30 sites* delivered",
       "intro": "A selection of client projects, from spa to agency."
     },
     "services": {
       "label": "Services",
-      "heading": "What I build through Deejitcorp",
+      "heading": "What I build *through Deejitcorp*",
       "intro": "From automation to analytics, including e-commerce."
     },
     "skills": {
       "label": "Technical skills",
-      "heading": "The full toolbox"
+      "heading": "The *full* toolbox"
     },
     "education": {
       "label": "Background & Education",
-      "heading": "Education and certifications",
+      "heading": "Education *and certifications*",
       "certificationsLabel": "Certifications"
     }
   },
   "contact": {
     "label": "Contact",
-    "heading": "Let's talk about your project",
+    "heading": "Let's talk about *your project*",
     "intro": "Based in Longueuil, QC. Available for contracts and opportunities.",
     "form": {
       "name": "Name",
@@ -138,6 +140,7 @@
   },
   "footer": {
     "tagline": "AI & E-commerce specialist. Automation, integrations and analytics.",
+    "cta": "A role or a project? Write to me.",
     "rights": "All rights reserved.",
     "built": "Designed and built by Ngagne Demba Beye."
   },
@@ -185,6 +188,7 @@
     "result": "Result",
     "switchLang": "Français",
     "toggleTheme": "Toggle theme",
-    "backToTop": "Back to top"
+    "backToTop": "Back to top",
+    "skip": "Skip to content"
   }
 }
