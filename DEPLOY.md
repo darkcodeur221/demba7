@@ -32,7 +32,8 @@ git clone https://github.com/darkcodeur221/demba7.git demba7-portfolio
 cd demba7-portfolio
 ```
 
-Mises à jour futures : `git pull` puis refais l'étape 4 (build + reload).
+Mises à jour futures : voir la commande complète en fin d'étape 4 (elle remet
+d'abord le lockfile à l'état du dépôt avant le `git pull`).
 
 ---
 
@@ -79,7 +80,16 @@ Vérifie en local sur le VPS : `curl -I http://127.0.0.1:3007/fr` → `200 OK`.
 > `ecosystem.config.cjs` **et** le `proxy_pass` du fichier Nginx, puis
 > `pm2 reload demba7-portfolio`.
 
-Pour les mises à jour : `git pull && npm install && npm run build && pm2 reload demba7-portfolio`.
+Pour les mises à jour :
+
+```bash
+cd /var/www/demba7-portfolio && git checkout -- package-lock.json && git pull && npm install && npm run build && pm2 reload demba7-portfolio
+```
+
+`git checkout -- package-lock.json` jette d'abord les retouches que `npm install`
+fait au lockfile sur le serveur (version de npm différente du poste de dev) ;
+sans ça, `git pull` refuse avec « Your local changes ... would be overwritten ».
+La version du dépôt fait foi.
 
 ---
 
