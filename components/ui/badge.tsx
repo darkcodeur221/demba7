@@ -14,7 +14,7 @@ export function Badge({
     <span
       className={cn(
         "inline-flex items-center rounded-[var(--radius-tag)] px-2 py-0.5 font-mono text-[11px] leading-5 tracking-tight",
-        accent ? "bg-accent-soft text-brand" : "border border-border text-muted",
+        accent ? "bg-accent-soft text-accent" : "border border-border text-muted",
         className
       )}
     >

@@ -57,7 +57,7 @@ function Panel({ p, cursorLabel }: { p: ProjectPanel; cursorLabel: string }) {
 
       <div className="flex flex-col lg:col-span-5">
         <div className="flex items-baseline justify-between gap-4">
-          <p className="tnum text-xs text-brand">{p.tagline}</p>
+          <p className="tnum text-xs text-accent">{p.tagline}</p>
           <span className="tnum text-xs text-muted">{p.index}</span>
         </div>
         <h3 className="mt-3 text-[clamp(1.7rem,2.6vw,2.6rem)] font-bold leading-[1.02] tracking-[-0.035em] [font-stretch:112%]">
@@ -89,7 +89,7 @@ function Panel({ p, cursorLabel }: { p: ProjectPanel; cursorLabel: string }) {
               <span className="link-draw">{p.linkLabel}</span>
               <ArrowUpRight
                 size={13}
-                className="text-brand transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                className="text-accent transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
               />
             </a>
           )}

@@ -37,7 +37,7 @@ export function DataAnalytics({ dict, locale }: { dict: Dictionary; locale: Loca
             href={audit.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group/link tnum mt-2 inline-flex w-fit items-center gap-1 text-xs text-brand"
+            className="group/link tnum mt-2 inline-flex w-fit items-center gap-1 text-xs text-accent"
           >
             <span className="link-draw">{audit.linkLabel}</span>
             <ArrowUpRight size={13} />
@@ -88,7 +88,7 @@ export function DataAnalytics({ dict, locale }: { dict: Dictionary; locale: Loca
               </div>
               <ArrowUpRight
                 size={15}
-                className="shrink-0 text-muted transition-[transform,color] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand"
+                className="shrink-0 text-muted transition-[transform,color] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
               />
             </div>
           </a>
@@ -115,12 +115,12 @@ export function DataAnalytics({ dict, locale }: { dict: Dictionary; locale: Loca
                 </div>
                 <div className="flex items-start justify-between gap-3 pt-3">
                   <div>
-                    <p className="tnum text-[11px] text-brand">{viz.tool}</p>
+                    <p className="tnum text-[11px] text-accent">{viz.tool}</p>
                     <p className="mt-0.5 text-sm leading-snug text-foreground">{viz.caption[locale]}</p>
                   </div>
                   <ArrowUpRight
                     size={14}
-                    className="mt-1 shrink-0 text-muted transition-[transform,color] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand"
+                    className="mt-1 shrink-0 text-muted transition-[transform,color] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
                   />
                 </div>
               </a>

@@ -49,7 +49,7 @@ export function Ecommerce({ dict, locale }: { dict: Dictionary; locale: Locale }
             <h3 className="mt-3 text-[2rem] font-medium leading-tight tracking-[-0.03em]">
               {featured.title[locale]}
             </h3>
-            <p className="tnum mt-1.5 text-xs text-brand">{featured.tagline[locale]}</p>
+            <p className="tnum mt-1.5 text-xs text-accent">{featured.tagline[locale]}</p>
             {featured.result?.[locale] && (
               <p className="mt-6 border-t border-border pt-6 text-xl leading-snug tracking-[-0.01em] text-foreground">
                 {featured.result[locale]}
@@ -70,7 +70,7 @@ export function Ecommerce({ dict, locale }: { dict: Dictionary; locale: Locale }
                 <span className="link-draw">{featured.linkLabel ?? labels.viewLive}</span>
                 <ArrowUpRight
                   size={13}
-                  className="text-brand transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                  className="text-accent transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
                 />
               </a>
             )}

@@ -18,7 +18,7 @@
     "marquee": ["IA appliquée", "Automatisation", "Agents autonomes", "Data & décision", "E-commerce"],
     "title": "Je transforme des besoins d'affaires en systèmes IA concrets, en production.",
     "titleAccent": "systèmes IA",
-    "subtitle": "Et je fais parler les données : de la donnée brute à la décision. Automatisation, intégrations et analytique prédictive.",
+    "subtitle": "Et je fais parler les données : de la donnée brute à la décision. Automatisation, intégrations et analytique prédictive.",
     "ctaProjects": "Voir mes projets",
     "ctaContact": "Me contacter",
     "ctaCv": "Télécharger le CV",
@@ -46,7 +46,7 @@
     "label": "À propos",
     "heading": "Un profil hybride, à la croisée de *trois disciplines*",
     "lead": "Affaires, technologie et data dans une même tête.",
-    "body": "Je conçois des systèmes IA en production depuis fin 2024 et je livre des sites et solutions web depuis 2019. Mon ancrage est double : le Québec et l'Afrique francophone. Je travaille là où se rencontrent l'affaire, la technologie et la donnée, de l'IA générative à l'analytique prédictive. C'est cette combinaison, plus que chaque compétence prise isolément, qui me permet de transformer un besoin en système qui tourne.",
+    "body": "Je conçois des systèmes IA en production depuis fin 2024 et je livre des sites et solutions web depuis 2019. Mon ancrage est double : le Québec et l'Afrique francophone. Je travaille là où se rencontrent l'affaire, la technologie et la donnée, de l'IA générative à l'analytique prédictive. C'est cette combinaison, plus que chaque compétence prise isolément, qui me permet de transformer un besoin en système qui tourne.",
     "degreeLabel": "M.Sc. TI"
   },
   "sections": {
@@ -57,7 +57,7 @@
       "scrollHint": "Continuez à défiler",
       "process": {
         "label": "Démarche de conception",
-        "heading": "Ma démarche : *concevoir* avant de construire",
+        "heading": "Ma démarche : *concevoir* avant de construire",
         "body": "Avant d'écrire la moindre ligne de code, j'ai modélisé le processus existant en BPMN 2.0 pour comprendre chaque étape et identifier les irritants. J'ai ensuite conçu le processus cible automatisé. Cette rigueur de conception est ce qui distingue un système fiable d'un bricolage.",
         "asIsTag": "AS-IS",
         "asIsDesc": "Processus manuel",
@@ -144,7 +144,7 @@
   },
   "footer": {
     "tagline": "Spécialiste IA & E-commerce. Automatisation, intégrations et analytique.",
-    "cta": "Un poste, un projet ? Écrivez-moi.",
+    "cta": "Un poste, un projet ? Écrivez-moi.",
     "rights": "Tous droits réservés.",
     "built": "Conçu et développé par Ngagne Demba Beye."
   },
@@ -154,7 +154,7 @@
     "print": "Imprimer / PDF",
     "role": "Spécialiste IA & E-commerce",
     "summaryLabel": "Profil",
-    "summary": "Spécialiste en IA appliquée, automatisation et analytique avancée. Je conçois des systèmes IA en production depuis fin 2024 et je livre des sites et solutions web depuis 2019. Double expertise : IA générative et analytique prédictive, de la donnée brute à la décision.",
+    "summary": "Spécialiste en IA appliquée, automatisation et analytique avancée. Je conçois des systèmes IA en production depuis fin 2024 et je livre des sites et solutions web depuis 2019. Double expertise : IA générative et analytique prédictive, de la donnée brute à la décision.",
     "skillsLabel": "Compétences clés",
     "workLabel": "Réalisations sélectionnées",
     "educationLabel": "Formation",
@@ -178,10 +178,10 @@
     "send": "Envoyer",
     "error": "Désolée, la connexion a échoué. Réessayez dans un instant.",
     "suggestions": [
-      "Quel est son profil en deux phrases ?",
-      "Quels systèmes IA a-t-il en production ?",
-      "Est-il disponible et autorisé à travailler au Canada ?",
-      "Pourquoi le recruter plutôt qu'un autre ?"
+      "Quel est son profil en deux phrases ?",
+      "Quels systèmes IA a-t-il en production ?",
+      "Est-il disponible et autorisé à travailler au Canada ?",
+      "Pourquoi le recruter plutôt qu'un autre ?"
     ],
     "poweredBy": "IA · DeepSeek"
   },

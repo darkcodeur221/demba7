@@ -38,7 +38,7 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           <div className="mt-auto pt-16">
             <Reveal delay={0.1}>
               <p className="tnum text-xs text-muted">
-                <span className="text-brand">{site.name}</span> — {h.eyebrow}
+                <span className="text-accent">{site.name}</span> — {h.eyebrow}
               </p>
             </Reveal>
 
@@ -74,7 +74,7 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
                   </Magnetic>
                   <Link
                     href={`${base}/cv`}
-                    className="tnum group ml-2 inline-flex items-center gap-1 text-xs text-muted transition-colors hover:text-brand"
+                    className="tnum group ml-2 inline-flex items-center gap-1 text-xs text-muted transition-colors hover:text-accent"
                   >
                     {h.ctaCv}
                     <ArrowUpRight

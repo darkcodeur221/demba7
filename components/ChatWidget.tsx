@@ -117,8 +117,9 @@ export function ChatWidget({ dict }: { dict: ChatDict }) {
         aria-expanded={open}
         className={cn(
           "no-print fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full",
-          "bg-ink text-on-ink shadow-[0_14px_36px_-12px_rgba(22,23,26,0.6)]",
-          "transition-[transform,background-color,color] duration-300 hover:scale-105 hover:bg-brand hover:text-on-brand active:scale-95",
+          // The white ring keeps the lime button visible over the lime footer.
+          "bg-brand text-on-brand ring-4 ring-white/90 shadow-[0_14px_36px_-12px_rgba(110,150,20,0.7)]",
+          "transition-[transform,background-color] duration-300 hover:scale-105 hover:bg-brand-strong active:scale-95",
           open && "scale-0 opacity-0"
         )}
       >
@@ -131,13 +132,13 @@ export function ChatWidget({ dict }: { dict: ChatDict }) {
           role="dialog"
           aria-label={dict.name}
           className={cn(
-            "no-print fixed z-[60] flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-[0_30px_80px_-24px_rgba(15,40,70,0.55)]",
+            "no-print fixed z-[60] flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-[0_30px_80px_-24px_rgba(12,13,16,0.28)]",
             "inset-x-3 bottom-3 max-h-[min(34rem,calc(100dvh-1.5rem))]",
             "sm:inset-x-auto sm:bottom-5 sm:right-5 sm:w-[24rem]"
           )}
         >
           <header className="flex items-center gap-3 border-b border-border bg-surface px-4 py-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-[9px] bg-ink font-serif text-xl italic leading-none text-on-ink">
+            <span className="display flex h-9 w-9 items-center justify-center rounded-[10px] bg-brand text-lg text-on-brand">
               N
             </span>
             <div className="min-w-0 flex-1">
@@ -169,7 +170,7 @@ export function ChatWidget({ dict }: { dict: ChatDict }) {
                 className={cn(
                   "max-w-[85%] whitespace-pre-wrap px-3.5 py-2.5 text-sm leading-relaxed",
                   m.role === "user"
-                    ? "ml-auto rounded-2xl rounded-br-md bg-ink text-on-ink"
+                    ? "ml-auto rounded-2xl rounded-br-md bg-brand text-on-brand"
                     : "rounded-2xl rounded-tl-md bg-surface text-foreground"
                 )}
               >
@@ -202,7 +203,7 @@ export function ChatWidget({ dict }: { dict: ChatDict }) {
                     key={s}
                     type="button"
                     onClick={() => send(s)}
-                    className="rounded-full border border-border bg-surface px-3 py-1.5 text-left text-xs font-medium text-brand transition-colors hover:border-brand/40 hover:bg-accent-soft"
+                    className="rounded-full border border-border bg-surface px-3 py-1.5 text-left text-xs font-medium text-accent transition-colors hover:border-brand/40 hover:bg-accent-soft"
                   >
                     {s}
                   </button>
@@ -231,7 +232,7 @@ export function ChatWidget({ dict }: { dict: ChatDict }) {
               type="submit"
               disabled={busy || !input.trim()}
               aria-label={dict.send}
-              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ink text-on-ink transition-[opacity,background-color] duration-300 hover:bg-brand hover:text-on-brand disabled:opacity-40"
+              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-on-brand transition-[opacity,background-color] duration-300 hover:bg-brand-strong disabled:opacity-40"
             >
               <PaperPlaneRight size={17} weight="fill" />
             </button>

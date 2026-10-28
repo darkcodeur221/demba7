@@ -5,8 +5,8 @@ import type { Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
 
 /**
- * The sign-off: the address as a big link, then the name in hollow poster
- * type running the full width and bleeding off the bottom edge.
+ * The sign-off, on a full lime band: the address as a big link, then the name
+ * in hollow poster type running the full width and bleeding off the bottom.
  */
 export function Footer({
   locale,
@@ -31,24 +31,24 @@ export function Footer({
   ];
 
   return (
-    <footer className="relative overflow-hidden border-t border-border">
+    <footer className="relative overflow-hidden bg-brand text-on-brand">
       <div className="container-x pb-10 pt-24 md:pt-32">
-        <Kicker label={cta} />
+        <Kicker label={cta} className="text-on-brand/70" />
         <a
           href={`mailto:${site.email}`}
-          className="group mt-6 flex w-fit max-w-full items-center gap-4 break-all text-[clamp(1.7rem,5vw,4.6rem)] font-bold leading-none tracking-[-0.04em] text-foreground sm:[font-stretch:115%]"
+          className="group mt-6 flex w-fit max-w-full items-center gap-4 break-all text-[clamp(1.7rem,5vw,4.6rem)] font-bold leading-none tracking-[-0.04em] sm:[font-stretch:115%]"
         >
           <span className="link-draw">{site.email}</span>
           <ArrowUpRight
             size="0.8em"
-            className="shrink-0 text-brand transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1"
+            className="shrink-0 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1"
           />
         </a>
 
-        <div className="mt-20 grid gap-8 border-t border-border pt-8 text-sm sm:grid-cols-3">
-          <p className="max-w-[34ch] leading-relaxed text-muted">{tagline}</p>
-          <div className="tnum flex flex-col gap-1.5 text-xs text-muted">
-            <a href={site.phoneHref} className="w-fit transition-colors hover:text-foreground">
+        <div className="mt-20 grid gap-8 border-t border-on-brand/15 pt-8 text-sm sm:grid-cols-3">
+          <p className="max-w-[34ch] leading-relaxed text-on-brand/75">{tagline}</p>
+          <div className="tnum flex flex-col gap-1.5 text-xs text-on-brand/75">
+            <a href={site.phoneHref} className="w-fit transition-colors hover:text-on-brand">
               {site.phone}
             </a>
             <span>{site.location[locale]}</span>
@@ -60,14 +60,14 @@ export function Footer({
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-fit text-foreground transition-colors hover:text-brand"
+                className="link-draw w-fit"
               >
                 {s.label} ↗
               </a>
             ))}
             <Link
               href={`${base}#top-sentinel`}
-              className="mt-2 inline-flex w-fit items-center gap-1 text-muted transition-colors hover:text-foreground"
+              className="mt-2 inline-flex w-fit items-center gap-1 text-on-brand/70 transition-colors hover:text-on-brand"
             >
               <ArrowUp size={12} />
               {backToTop}
@@ -79,14 +79,14 @@ export function Footer({
       {/* Signature, decorative: the name is already in the page and the nav. */}
       <p
         aria-hidden
-        className="display text-outline pointer-events-none select-none whitespace-nowrap text-center text-[11.5vw] uppercase leading-[0.78] [--outline:rgba(236,238,241,0.16)]"
+        className="display text-outline pointer-events-none select-none whitespace-nowrap text-center text-[11.5vw] uppercase leading-[0.78] [--outline:rgba(12,13,16,0.28)]"
       >
         Demba Beye
       </p>
 
-      <div className="border-t border-border">
+      <div className="border-t border-on-brand/15">
         {/* Extra bottom room on phones so the chat launcher never sits on the text. */}
-        <div className="tnum container-x flex flex-col gap-1 pb-24 pt-5 text-[11px] text-muted sm:flex-row sm:items-center sm:justify-between sm:pb-5">
+        <div className="tnum container-x flex flex-col gap-1 pb-24 pt-5 text-[11px] text-on-brand/70 sm:flex-row sm:items-center sm:justify-between sm:pb-5">
           <span>
             © {year} {site.name}. {rights}
           </span>

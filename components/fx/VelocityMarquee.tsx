@@ -58,7 +58,7 @@ export function VelocityMarquee({
       {items.map((item, i) => (
         <span key={i} className="flex items-center">
           <span className={cn("px-[0.35em]", i % 2 === 1 && "text-outline")}>{item}</span>
-          <span className="px-[0.2em] text-[0.45em] text-brand">✦</span>
+          <span className="px-[0.2em] text-[0.45em] text-brand-2">✦</span>
         </span>
       ))}
     </span>

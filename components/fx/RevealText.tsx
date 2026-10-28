@@ -101,12 +101,13 @@ export function RevealLines({
       {lines.map((line, i) => (
         <span key={i} className="block overflow-hidden pb-[0.06em]">
           <motion.span
-            className={cn("block", i === accent && "em-accent")}
+            className="block"
             initial={reduce ? false : { y: "105%", rotate: 2 }}
             animate={{ y: "0%", rotate: 0 }}
             transition={{ duration: 1.1, ease: EASE, delay: delay + i * 0.12 }}
           >
-            {line}
+            {/* Inline, so the highlighter hugs the words, not the whole line box. */}
+            <span className={cn(i === accent && "em-accent")}>{line}</span>
           </motion.span>
           {/* Keeps a word gap between lines in the text content (SEO, readers). */}{" "}
         </span>

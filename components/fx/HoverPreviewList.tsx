@@ -62,7 +62,7 @@ export function HoverPreviewList({ items, cursorLabel }: { items: PreviewItem[];
           <span
             className={cn(
               "min-w-0 flex-1 truncate text-[clamp(1.35rem,4.2vw,3.6rem)] font-bold leading-none tracking-[-0.035em] [font-stretch:112%]",
-              "transition-[transform,color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-3 group-hover:text-brand"
+              "transition-[transform,color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-3 group-hover:text-accent"
             )}
           >
             {it.name}
@@ -75,7 +75,7 @@ export function HoverPreviewList({ items, cursorLabel }: { items: PreviewItem[];
           )}
           <ArrowUpRight
             size={20}
-            className="hidden shrink-0 text-muted transition-[transform,color] duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-brand md:block"
+            className="hidden shrink-0 text-muted transition-[transform,color] duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-accent md:block"
           />
         </a>
       ))}
@@ -83,7 +83,7 @@ export function HoverPreviewList({ items, cursorLabel }: { items: PreviewItem[];
       {!reduce && (
         <motion.div
           aria-hidden
-          className="pointer-events-none fixed left-0 top-0 z-[55] hidden h-[15rem] w-[23rem] overflow-hidden rounded-[var(--radius-media)] border border-border-strong shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] md:block"
+          className="pointer-events-none fixed left-0 top-0 z-[55] hidden h-[15rem] w-[23rem] overflow-hidden rounded-[var(--radius-media)] border border-border-strong shadow-[0_30px_70px_-20px_rgba(12,13,16,0.35)] md:block"
           style={{ x: sx, y: sy, rotate, translateX: "-50%", translateY: "-50%" }}
           initial={false}
           animate={{ opacity: active === null ? 0 : 1, scale: active === null ? 0.8 : 1 }}

@@ -12,7 +12,7 @@ export function Kicker({
 }) {
   return (
     <span className={cn("tnum inline-flex items-center gap-2 text-xs text-muted", className)}>
-      {index && <span className="text-brand">{index}</span>}
+      {index && <span className="text-accent">{index}</span>}
       {index && <span aria-hidden>—</span>}
       {label}
     </span>

@@ -44,7 +44,7 @@ function Cover({
 
   return (
     <div className={cn(frame, "flex items-end", className)} aria-hidden>
-      <span className="pointer-events-none absolute -right-3 -top-10 select-none font-serif text-[10rem] italic leading-none text-brand/15">
+      <span className="pointer-events-none absolute -right-3 -top-10 select-none font-serif text-[10rem] italic leading-none text-accent/15">
         {project.tagline.fr.charAt(0).toUpperCase()}
       </span>
       <span className="tnum relative m-4 text-xs text-muted">{project.linkLabel ?? project.tagline.fr}</span>
@@ -64,7 +64,7 @@ function LinkOut({ project, fallback }: { project: Project; fallback: string }) 
       <span className="link-draw">{project.linkLabel ?? fallback}</span>
       <ArrowUpRight
         size={13}
-        className="text-brand transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+        className="text-accent transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
       />
     </a>
   );
@@ -103,7 +103,7 @@ export function ProjectCard({
           </div>
           <ArrowUpRight
             size={15}
-            className="mt-1 shrink-0 text-muted transition-[transform,color] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand"
+            className="mt-1 shrink-0 text-muted transition-[transform,color] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
           />
         </div>
       </a>
@@ -126,7 +126,7 @@ export function ProjectCard({
             <h3 className="text-2xl font-medium tracking-[-0.02em]">{title}</h3>
             {index && <span className="tnum shrink-0 text-xs text-muted">{index}</span>}
           </div>
-          <p className="tnum mt-1.5 text-xs text-brand">{tagline}</p>
+          <p className="tnum mt-1.5 text-xs text-accent">{tagline}</p>
 
           <dl className="mt-5 border-t border-border">
             {facts.map((f) => (

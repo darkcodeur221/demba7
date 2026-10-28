@@ -18,7 +18,7 @@ export function Education({ dict, locale }: { dict: Dictionary; locale: Locale }
           <ol className="border-t border-border-strong">
             {timeline.map((entry) => (
               <li key={entry.year} className="grid grid-cols-[4.5rem_1fr] gap-4 border-b border-border py-6">
-                <span className="tnum pt-1 text-xs text-brand">{entry.year}</span>
+                <span className="tnum pt-1 text-xs text-accent">{entry.year}</span>
                 <div>
                   <h3 className="text-lg font-medium leading-snug tracking-tight">{entry.title[locale]}</h3>
                   <p className="tnum mt-1.5 text-xs text-muted">{entry.org}</p>
@@ -33,7 +33,7 @@ export function Education({ dict, locale }: { dict: Dictionary; locale: Locale }
           <ul className="grid border-t border-border-strong sm:grid-cols-2 sm:gap-x-8">
             {certifications.map((cert) => (
               <li key={`${cert.title.fr}-${cert.year}`} className="flex gap-3 border-b border-border py-4">
-                <SealCheck size={18} weight="light" className="mt-0.5 shrink-0 text-brand" />
+                <SealCheck size={18} weight="light" className="mt-0.5 shrink-0 text-accent" />
                 <div>
                   <p className="text-[15px] font-medium leading-snug">{cert.title[locale]}</p>
                   <p className="tnum mt-1 text-xs text-muted">

@@ -29,7 +29,7 @@ export function Skills({ dict, locale }: { dict: Dictionary; locale: Locale }) {
             <Reveal key={group.id} delay={(i % 3) * 0.06} className="h-full">
               <Spotlight className="h-full p-7">
                 <div className="flex items-start justify-between gap-4">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-background text-brand">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-background text-accent">
                     <Icon size={22} weight="duotone" />
                   </span>
                   <span className="tnum text-xs text-muted">

@@ -13,10 +13,12 @@ import {
 import * as THREE from "three";
 
 const LIME = "#c6f24a";
+/** Must match --background: the glass refracts the scene, so it needs the page colour behind it. */
+const PAGE = "#f4f5f7";
 
 type Quality = { samples: number; resolution: number };
 
-/** Clear glass that bends what is behind it and splits light at the edges. */
+/** Lime-tinted glass that bends what is behind it and splits light at the edges. */
 function Glass({ quality }: { quality: Quality }) {
   return (
     <MeshTransmissionMaterial
@@ -24,23 +26,24 @@ function Glass({ quality }: { quality: Quality }) {
       samples={quality.samples}
       resolution={quality.resolution}
       transmission={1}
-      thickness={1.1}
-      roughness={0.04}
-      ior={1.35}
-      chromaticAberration={0.09}
-      anisotropicBlur={0.2}
+      thickness={1.4}
+      roughness={0.05}
+      ior={1.4}
+      chromaticAberration={0.12}
+      anisotropicBlur={0.25}
       distortion={0.3}
       distortionScale={0.45}
       temporalDistortion={0.1}
-      color="#ffffff"
-      attenuationColor="#eaffd0"
-      attenuationDistance={2.5}
+      color="#f6fdea"
+      attenuationColor="#c6f24a"
+      attenuationDistance={2.4}
     />
   );
 }
 
+/** Graphite chrome: the dark notes that give the scene contrast on white. */
 function Chrome() {
-  return <meshStandardMaterial color="#d3d7dc" metalness={1} roughness={0.14} />;
+  return <meshStandardMaterial color="#3a3f47" metalness={1} roughness={0.18} />;
 }
 
 /** Slow, independent spin on top of the Float bob. */
@@ -120,13 +123,15 @@ function Objects({ compact, reduced }: { compact: boolean; reduced: boolean }) {
         </mesh>
       </Float>
 
-      {/* Faceted chrome gem */}
-      <Float position={at.gem} speed={1.6} rotationIntensity={1.4} floatIntensity={1.2} {...float}>
-        <mesh scale={compact ? 0.38 : 0.55}>
-          <icosahedronGeometry args={[1, 0]} />
-          <meshStandardMaterial color="#d3d7dc" metalness={1} roughness={0.08} flatShading />
-        </mesh>
-      </Float>
+      {/* Faceted graphite gem. Left out on phones, where it lands behind the nav logo. */}
+      {!compact && (
+        <Float position={at.gem} speed={1.6} rotationIntensity={1.4} floatIntensity={1.2} {...float}>
+          <mesh scale={0.55}>
+            <icosahedronGeometry args={[1, 0]} />
+            <meshStandardMaterial color="#2c3036" metalness={1} roughness={0.1} flatShading />
+          </mesh>
+        </Float>
+      )}
 
       {/* Glass ring */}
       <Float position={at.ring} speed={1.1} rotationIntensity={1.1} floatIntensity={1} {...float}>
@@ -199,6 +204,7 @@ export default function HeroScene({
       }}
       fallback={null}
     >
+      <color attach="background" args={[PAGE]} />
       <PerformanceMonitor onDecline={() => setDpr(1)} />
       <directionalLight position={[5, 6, 4]} intensity={1.1} />
       <Objects compact={compact} reduced={reduced} />
@@ -208,8 +214,8 @@ export default function HeroScene({
           scale={[12, 7, 6]}
           size={2.2}
           speed={0.3}
-          opacity={0.55}
-          color={LIME}
+          opacity={0.8}
+          color="#8fbf1c"
         />
       )}
       <Environment resolution={256} frames={1}>

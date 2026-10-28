@@ -129,11 +129,11 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`${sans.variable} ${mono.variable} dark h-full antialiased`}
+      className={`${sans.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
-        {/* Dark-only: the 3D scene and the lime accent are built for it. */}
-        <ThemeProvider attribute="class" forcedTheme="dark" disableTransitionOnChange>
+        {/* Light-only: clean white with the lime accent. */}
+        <ThemeProvider attribute="class" forcedTheme="light" disableTransitionOnChange>
           <a
             href="#main"
             className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[90] focus:rounded-full focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:text-on-brand"

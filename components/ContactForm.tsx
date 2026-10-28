@@ -129,7 +129,7 @@ export function ContactForm({ dict, locale }: { dict: FormDict; locale: string }
         </button>
 
         {status === "success" && (
-          <p role="status" className="inline-flex items-center gap-1.5 text-sm text-brand">
+          <p role="status" className="inline-flex items-center gap-1.5 text-sm text-accent">
             <CheckCircle size={17} weight="fill" />
             {dict.success}
           </p>

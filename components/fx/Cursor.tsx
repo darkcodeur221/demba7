@@ -69,7 +69,7 @@ export function Cursor() {
           mode === "label"
             ? "border-brand bg-brand"
             : mode === "link"
-              ? "border-brand/70 bg-brand/10"
+              ? "border-accent/60 bg-brand/25"
               : "border-foreground/30 bg-transparent",
           visible ? "opacity-100" : "opacity-0"
         )}
@@ -81,7 +81,7 @@ export function Cursor() {
       </motion.div>
       <motion.div
         className={cn(
-          "absolute left-0 top-0 h-1.5 w-1.5 rounded-full bg-brand transition-opacity duration-200",
+          "absolute left-0 top-0 h-1.5 w-1.5 rounded-full bg-foreground transition-opacity duration-200",
           visible && mode !== "label" ? "opacity-100" : "opacity-0"
         )}
         style={{ x, y, translateX: "-50%", translateY: "-50%" }}

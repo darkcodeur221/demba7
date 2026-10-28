@@ -91,7 +91,7 @@ export function Contact({ dict, locale }: { dict: Dictionary; locale: Locale }) 
                   <span className="link-draw">{s.label}</span>
                   <ArrowUpRight
                     size={13}
-                    className="text-brand transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    className="text-accent transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                   />
                 </a>
               ))}

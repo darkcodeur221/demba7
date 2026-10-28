@@ -138,7 +138,7 @@ export function HeroVisual({
               {!reduce && (
                 <motion.span
                   aria-hidden
-                  className="absolute -inset-px flex items-center justify-center rounded-xl border border-brand bg-card text-brand shadow-[0_0_24px_1px_rgba(198,242,74,0.35)]"
+                  className="absolute -inset-px flex items-center justify-center rounded-xl border border-brand bg-card text-accent shadow-[0_0_24px_1px_rgba(198,242,74,0.35)]"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: [0, 1, 0] }}
                   transition={{

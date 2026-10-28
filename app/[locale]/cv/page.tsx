@@ -40,7 +40,7 @@ export async function generateMetadata({
 function CvTitle({ children }: { children: React.ReactNode }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="shrink-0 text-xs font-semibold uppercase tracking-[0.14em] text-brand">
+      <h2 className="shrink-0 text-xs font-semibold uppercase tracking-[0.14em] text-accent">
         {children}
       </h2>
       <GrowLine className="flex-1" />
@@ -68,22 +68,22 @@ export default async function CvPage({ params }: { params: Promise<{ locale: str
     <div className="cv-screen-bg min-h-[100dvh] bg-surface pb-16">
       <PrintButton backHref={`/${locale}`} backLabel={c.back} printLabel={c.print} />
 
-      <article className="cv-doc mx-auto mt-6 w-full max-w-[880px] overflow-hidden rounded-[var(--radius-card)] border border-border bg-card shadow-[0_30px_80px_-40px_rgba(31,78,121,0.4)] print:mt-0">
+      <article className="cv-doc mx-auto mt-6 w-full max-w-[880px] overflow-hidden rounded-[var(--radius-card)] border border-border bg-card shadow-[0_30px_80px_-40px_rgba(12,13,16,0.22)] print:mt-0">
         {/* Header */}
         <header className="border-b border-border px-8 py-9 sm:px-11">
           <div className="flex flex-col gap-7 sm:flex-row sm:items-start sm:justify-between">
             <Reveal className="min-w-0">
-              <p className="text-sm font-medium text-brand">{c.role}</p>
+              <p className="text-sm font-medium text-accent">{c.role}</p>
               <h1 className="mt-1.5 text-[2.1rem] font-semibold leading-tight tracking-tight sm:text-[2.5rem]">
                 Ngagne Demba Beye
               </h1>
               <GrowLine className="mt-3 w-24" />
               <div className="mt-3 flex flex-wrap items-center gap-2 text-xs font-medium text-muted">
-                <span className="rounded-md bg-accent-soft px-2 py-0.5 text-brand">{dict.hero.flow.raw}</span>
-                <ArrowUpRight size={13} weight="bold" className="rotate-45 text-brand" />
-                <span className="rounded-md bg-accent-soft px-2 py-0.5 text-brand">{dict.hero.flow.system}</span>
-                <ArrowUpRight size={13} weight="bold" className="rotate-45 text-brand" />
-                <span className="rounded-md bg-accent-soft px-2 py-0.5 text-brand">{dict.hero.flow.decision}</span>
+                <span className="rounded-md bg-accent-soft px-2 py-0.5 text-accent">{dict.hero.flow.raw}</span>
+                <ArrowUpRight size={13} weight="bold" className="rotate-45 text-accent" />
+                <span className="rounded-md bg-accent-soft px-2 py-0.5 text-accent">{dict.hero.flow.system}</span>
+                <ArrowUpRight size={13} weight="bold" className="rotate-45 text-accent" />
+                <span className="rounded-md bg-accent-soft px-2 py-0.5 text-accent">{dict.hero.flow.decision}</span>
               </div>
             </Reveal>
 
@@ -91,7 +91,7 @@ export default async function CvPage({ params }: { params: Promise<{ locale: str
               {contacts.map((item) => {
                 const Inner = (
                   <span className="inline-flex items-center gap-2 text-muted">
-                    <item.icon size={15} weight="bold" className="text-brand" />
+                    <item.icon size={15} weight="bold" className="text-accent" />
                     <span className="tnum">{item.value}</span>
                   </span>
                 );
@@ -140,13 +140,13 @@ export default async function CvPage({ params }: { params: Promise<{ locale: str
                           href={p.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex shrink-0 items-center gap-0.5 text-xs font-medium text-brand hover:text-brand-strong"
+                          className="inline-flex shrink-0 items-center gap-0.5 text-xs font-medium text-accent hover:text-accent"
                         >
                           {p.linkLabel ?? p.tagline[locale]}
                           <ArrowUpRight size={12} weight="bold" />
                         </a>
                       ) : (
-                        <span className="shrink-0 text-xs text-brand">{p.tagline[locale]}</span>
+                        <span className="shrink-0 text-xs text-accent">{p.tagline[locale]}</span>
                       )}
                     </div>
                     <p className="text-sm leading-relaxed text-muted">
@@ -163,13 +163,13 @@ export default async function CvPage({ params }: { params: Promise<{ locale: str
               <div className="flex flex-col gap-4">
                 {timeline.map((entry, i) => (
                   <Reveal key={entry.year} delay={i * 0.05} className="flex gap-3">
-                    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-brand">
+                    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent">
                       <GraduationCap size={15} weight="bold" />
                     </span>
                     <div>
                       <p className="text-[15px] font-semibold tracking-tight">{entry.title[locale]}</p>
                       <p className="text-sm text-muted">
-                        {entry.org} <span className="tnum text-brand">· {entry.year}</span>
+                        {entry.org} <span className="tnum text-accent">· {entry.year}</span>
                       </p>
                     </div>
                   </Reveal>
@@ -206,7 +206,7 @@ export default async function CvPage({ params }: { params: Promise<{ locale: str
               <ul className="flex flex-col gap-2.5">
                 {certifications.map((cert) => (
                   <Reveal key={`${cert.title.fr}-${cert.year}`} className="flex gap-2.5">
-                    <SealCheck size={16} weight="bold" className="mt-0.5 shrink-0 text-brand" />
+                    <SealCheck size={16} weight="bold" className="mt-0.5 shrink-0 text-accent" />
                     <div>
                       <p className="text-[13px] font-medium leading-snug">{cert.title[locale]}</p>
                       <p className="tnum text-xs text-muted">
@@ -223,7 +223,7 @@ export default async function CvPage({ params }: { params: Promise<{ locale: str
               <ul className="flex flex-col gap-2">
                 {c.languages.map((lang) => (
                   <li key={lang.name} className="flex items-center gap-2.5 text-sm">
-                    <Translate size={16} weight="bold" className="shrink-0 text-brand" />
+                    <Translate size={16} weight="bold" className="shrink-0 text-accent" />
                     <span className="font-medium">{lang.name}</span>
                     <span className="text-muted">· {lang.level}</span>
                   </li>

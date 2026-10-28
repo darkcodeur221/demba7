@@ -150,7 +150,7 @@ export function Nav({
                 onClick={() => setOpen(false)}
                 className="flex items-baseline gap-4 border-b border-border py-4 text-2xl font-bold tracking-[-0.03em] text-foreground last:border-b-0"
               >
-                <span className="tnum text-xs font-normal text-brand">{String(i + 1).padStart(2, "0")}</span>
+                <span className="tnum text-xs font-normal text-accent">{String(i + 1).padStart(2, "0")}</span>
                 {l.label}
               </Link>
             ))}

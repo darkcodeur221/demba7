@@ -40,7 +40,7 @@ export function Spotlight({
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{
           background:
-            "radial-gradient(380px circle at var(--x, 50%) var(--y, 50%), rgba(198,242,74,0.11), transparent 50%)",
+            "radial-gradient(380px circle at var(--x, 50%) var(--y, 50%), rgba(198,242,74,0.28), transparent 55%)",
         }}
       />
       {/* border glow: same gradient, masked down to the 1px edge */}
@@ -49,7 +49,7 @@ export function Spotlight({
         className="pointer-events-none absolute inset-0 rounded-[inherit] p-px opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{
           background:
-            "radial-gradient(260px circle at var(--x, 50%) var(--y, 50%), rgba(198,242,74,0.75), transparent 60%)",
+            "radial-gradient(260px circle at var(--x, 50%) var(--y, 50%), rgba(140,190,25,0.95), transparent 60%)",
           WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
           WebkitMaskComposite: "xor",
           maskComposite: "exclude",
