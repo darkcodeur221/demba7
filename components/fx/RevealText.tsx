@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -88,26 +89,34 @@ export function RevealLines({
   accent,
   className,
   delay = 0,
+  accentClass = "em-accent",
 }: {
   lines: string[];
-  /** Index of the line drawn in the accent colour. */
+  /** Index of the line drawn in the accent style. */
   accent?: number;
   className?: string;
   delay?: number;
+  /** Class applied to the accent line's text. */
+  accentClass?: string;
 }) {
   const reduce = useReducedMotion();
+  // Lines are clipped only while they rise; afterwards the clip comes off so
+  // effects that spill past the line box (the 3D title's depth) show whole.
+  const [revealed, setRevealed] = useState(!!reduce);
+
   return (
     <span className={className}>
       {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden pb-[0.06em]">
+        <span key={i} className={cn("block pb-[0.06em]", !revealed && "overflow-hidden")}>
           <motion.span
             className="block"
             initial={reduce ? false : { y: "105%", rotate: 2 }}
             animate={{ y: "0%", rotate: 0 }}
             transition={{ duration: 1.1, ease: EASE, delay: delay + i * 0.12 }}
+            onAnimationComplete={i === lines.length - 1 ? () => setRevealed(true) : undefined}
           >
-            {/* Inline, so the highlighter hugs the words, not the whole line box. */}
-            <span className={cn(i === accent && "em-accent")}>{line}</span>
+            {/* Inline, so the accent hugs the words, not the whole line box. */}
+            <span className={cn(i === accent && accentClass)}>{line}</span>
           </motion.span>
           {/* Keeps a word gap between lines in the text content (SEO, readers). */}{" "}
         </span>

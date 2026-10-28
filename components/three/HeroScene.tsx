@@ -2,44 +2,11 @@
 
 import { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import {
-  Environment,
-  Float,
-  Lightformer,
-  MeshTransmissionMaterial,
-  PerformanceMonitor,
-  Sparkles,
-} from "@react-three/drei";
+import { Environment, Float, Lightformer, PerformanceMonitor, Sparkles } from "@react-three/drei";
 import * as THREE from "three";
-
-const LIME = "#c6f24a";
-/** Must match --background: the glass refracts the scene, so it needs the page colour behind it. */
-const PAGE = "#f4f5f7";
-
-type Quality = { samples: number; resolution: number };
-
-/** Lime-tinted glass that bends what is behind it and splits light at the edges. */
-function Glass({ quality }: { quality: Quality }) {
-  return (
-    <MeshTransmissionMaterial
-      backside
-      samples={quality.samples}
-      resolution={quality.resolution}
-      transmission={1}
-      thickness={1.4}
-      roughness={0.05}
-      ior={1.4}
-      chromaticAberration={0.12}
-      anisotropicBlur={0.25}
-      distortion={0.3}
-      distortionScale={0.45}
-      temporalDistortion={0.1}
-      color="#f6fdea"
-      attenuationColor="#c6f24a"
-      attenuationDistance={2.4}
-    />
-  );
-}
+import { Glass, LIME, PAGE, type Quality } from "./materials";
+import { Python } from "./Python";
+import { Diamond } from "./Diamond";
 
 /** Graphite chrome: the dark notes that give the scene contrast on white. */
 function Chrome() {
@@ -81,19 +48,18 @@ function Objects({ compact, reduced }: { compact: boolean; reduced: boolean }) {
   // Phones are portrait and the copy sits low, so the cluster moves up and in.
   const at = compact
     ? {
-        knot: [0.75, 2.05, -0.6] as const,
-        knotScale: 0.68,
-        orbit: [0.75, 2.05, -2.6] as const,
-        gem: [-1.25, 2.95, -2.4] as const,
+        // Low enough that the raised head stays clear of the nav bar.
+        python: [0.5, 0.7, -0.6] as const,
+        pythonScale: 0.6,
+        diamond: [-1.25, 2.95, -2.4] as const,
         ring: [1.75, 0.75, -1.4] as const,
         capsule: [-1.4, 1.2, -3] as const,
         lime: [-0.35, 1.25, 0.6] as const,
       }
     : {
-        knot: [2.6, 0.15, 0] as const,
-        knotScale: 1.05,
-        orbit: [2.6, 0.15, -2.6] as const,
-        gem: [0.4, 2.2, -2.2] as const,
+        python: [2.35, -0.3, 0] as const,
+        pythonScale: 1,
+        diamond: [0.4, 2.1, -1.6] as const,
         ring: [4.4, -1.75, -0.6] as const,
         capsule: [4.5, 1.95, -2.4] as const,
         // Upper-left gap between the status line and the headline, clear of the CTAs.
@@ -105,31 +71,22 @@ function Objects({ compact, reduced }: { compact: boolean; reduced: boolean }) {
   // swinging it around the centre of the screen.
   return (
     <Rig reduced={reduced}>
-      {/* Hero piece: glass torus knot */}
-      <Float position={at.knot} speed={1.2} rotationIntensity={0.6} floatIntensity={0.8} {...float}>
-        <Spin>
-          <mesh scale={at.knotScale}>
-            <torusKnotGeometry args={[1, 0.32, 260, 36]} />
-            <Glass quality={quality} />
-          </mesh>
-        </Spin>
+      {/* Hero piece: a glass python, coiled, afloat, head following the pointer */}
+      <Float position={at.python} speed={1} rotationIntensity={0.25} floatIntensity={0.7} {...float}>
+        {/* Turned a quarter toward the headline, so the head reads in three-quarter view. */}
+        <group scale={at.pythonScale} rotation={[0.08, -0.85, 0]}>
+          <Python quality={quality} reduced={reduced} />
+        </group>
       </Float>
 
-      {/* A lime orbit behind the knot, refracted through the glass */}
-      <Float position={at.orbit} speed={0.8} rotationIntensity={0.3} floatIntensity={0.3} {...float}>
-        <mesh rotation={[1.15, 0.25, 0]} scale={compact ? 1.05 : 1.7}>
-          <torusGeometry args={[1.35, 0.022, 16, 160]} />
-          <meshBasicMaterial color={LIME} toneMapped={false} />
-        </mesh>
-      </Float>
-
-      {/* Faceted graphite gem. Left out on phones, where it lands behind the nav logo. */}
+      {/* Brilliant-cut diamond. Left out on phones, where it lands behind the nav logo. */}
       {!compact && (
-        <Float position={at.gem} speed={1.6} rotationIntensity={1.4} floatIntensity={1.2} {...float}>
-          <mesh scale={0.55}>
-            <icosahedronGeometry args={[1, 0]} />
-            <meshStandardMaterial color="#2c3036" metalness={1} roughness={0.1} flatShading />
-          </mesh>
+        <Float position={at.diamond} speed={1.4} rotationIntensity={0.5} floatIntensity={1} {...float}>
+          <group rotation={[0.55, 0, 0.12]} scale={0.62}>
+            <Spin speed={0.45}>
+              <Diamond quality={quality} />
+            </Spin>
+          </group>
         </Float>
       )}
 
@@ -149,13 +106,15 @@ function Objects({ compact, reduced }: { compact: boolean; reduced: boolean }) {
         </mesh>
       </Float>
 
-      {/* A lit lime bead: the single warm point in the scene */}
-      <Float position={at.lime} speed={2} rotationIntensity={0} floatIntensity={1.6} {...float}>
-        <mesh scale={compact ? 0.14 : 0.2}>
-          <sphereGeometry args={[1, 48, 48]} />
-          <meshBasicMaterial color={LIME} toneMapped={false} />
-        </mesh>
-      </Float>
+      {/* A lit lime bead. Not on phones, where it would sit on the python's head. */}
+      {!compact && (
+        <Float position={at.lime} speed={2} rotationIntensity={0} floatIntensity={1.6} {...float}>
+          <mesh scale={0.2}>
+            <sphereGeometry args={[1, 48, 48]} />
+            <meshBasicMaterial color={LIME} toneMapped={false} />
+          </mesh>
+        </Float>
+      )}
 
       {!compact && (
         <Float position={[-3.9, -2.25, -3.4]} speed={1.3} rotationIntensity={1.2} floatIntensity={1} {...float}>

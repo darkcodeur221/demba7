@@ -154,6 +154,34 @@ p {
     box-decoration-break: clone;
   }
 
+  /*
+    Extruded 3D type for the hero: a green-grey face over a lime body built
+    from stacked text-shadows. --ex/--ey set the extrusion direction (the
+    title component steers them from the pointer, or sways them on touch).
+    Steps are in em so the depth scales with the font size.
+  */
+  .title-3d {
+    --ex: 0.9;
+    --ey: 0.9;
+    --face: #33402e;
+    --depth: #c6f24a;
+    --depth-edge: #8fbf1c;
+    color: var(--face);
+    text-shadow:
+      calc(var(--ex) * 0.011em) calc(var(--ey) * 0.011em) 0 var(--depth),
+      calc(var(--ex) * 0.022em) calc(var(--ey) * 0.022em) 0 var(--depth),
+      calc(var(--ex) * 0.033em) calc(var(--ey) * 0.033em) 0 var(--depth),
+      calc(var(--ex) * 0.044em) calc(var(--ey) * 0.044em) 0 var(--depth),
+      calc(var(--ex) * 0.055em) calc(var(--ey) * 0.055em) 0 var(--depth),
+      calc(var(--ex) * 0.066em) calc(var(--ey) * 0.066em) 0 var(--depth-edge),
+      calc(var(--ex) * 0.077em) calc(var(--ey) * 0.077em) 0 var(--depth-edge),
+      calc(var(--ex) * 0.14em) calc(var(--ey) * 0.19em) 0.28em rgba(52, 72, 20, 0.2);
+  }
+  /* The emphasised line takes a deeper, greener face. */
+  .title-3d .title-accent {
+    color: #3a5214;
+  }
+
   /* Hollow letters, used for the big decorative words. */
   .text-outline {
     color: transparent;

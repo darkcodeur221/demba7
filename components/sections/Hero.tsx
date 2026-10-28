@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { HeroCanvas } from "@/components/three/HeroCanvas";
-import { RevealLines } from "@/components/fx/RevealText";
+import { Title3D } from "@/components/fx/Title3D";
 import { Magnetic } from "@/components/fx/Magnetic";
 import { VelocityMarquee } from "@/components/fx/VelocityMarquee";
 import { Reveal } from "@/components/motion/Reveal";
@@ -42,9 +42,11 @@ export function Hero({ dict, locale }: { dict: Dictionary; locale: Locale }) {
               </p>
             </Reveal>
 
-            <h1 className="display mt-6 text-[clamp(2.25rem,7.2vw,8.4rem)] uppercase">
-              <RevealLines lines={h.display} accent={1} delay={0.25} />
-            </h1>
+            <Title3D
+              lines={h.display}
+              accent={1}
+              className="display mt-6 origin-left text-[clamp(2rem,5vw,5.4rem)] uppercase"
+            />
 
             <div className="mt-10 grid gap-8 md:grid-cols-12 md:items-end">
               <Reveal delay={0.55} className="md:col-span-5">
