@@ -20,6 +20,8 @@ export interface Project {
   solution?: Localized;
   /** Measurable outcome. */
   result?: Localized;
+  /** Hard numbers, counted up on screen. Only real, verifiable figures. */
+  metrics?: { value: number; suffix?: Localized; label: Localized }[];
   /** Technologies, shown as badges. Not translated. */
   stack: string[];
   /** Optional live URL. */

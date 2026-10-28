@@ -63,8 +63,11 @@
   --radius-tag: 6px;
 }
 
-* {
-  border-color: var(--color-border);
+/* Layered, or it would outrank every border-* colour utility. */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
 }
 
 body {

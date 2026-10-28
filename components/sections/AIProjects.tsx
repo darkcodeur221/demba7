@@ -19,11 +19,8 @@ export function AIProjects({ dict, locale }: { dict: Dictionary; locale: Locale 
     index: `${n}.${i + 1}`,
     title: project.title[locale],
     tagline: project.tagline[locale],
-    facts: [
-      { label: dict.common.problem, value: project.problem?.[locale] },
-      { label: dict.common.solution, value: project.solution?.[locale] },
-      { label: dict.common.result, value: project.result?.[locale] },
-    ].filter((f): f is { label: string; value: string } => Boolean(f.value)),
+    problem: project.problem?.[locale],
+    result: project.result?.[locale],
     stack: project.stack,
     url: project.url,
     linkLabel: project.linkLabel ?? dict.common.viewLive,

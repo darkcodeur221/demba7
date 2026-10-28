@@ -2,16 +2,11 @@
 
 import { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Float, Lightformer, PerformanceMonitor, Sparkles } from "@react-three/drei";
+import { Float, PerformanceMonitor, Sparkles } from "@react-three/drei";
 import * as THREE from "three";
-import { Glass, LIME, PAGE, type Quality } from "./materials";
+import { Chrome, Glass, LIME, PAGE, Studio, type Quality } from "./materials";
 import { Python } from "./Python";
 import { Diamond } from "./Diamond";
-
-/** Graphite chrome: the dark notes that give the scene contrast on white. */
-function Chrome() {
-  return <meshStandardMaterial color="#3a3f47" metalness={1} roughness={0.18} />;
-}
 
 /** Slow, independent spin on top of the Float bob. */
 function Spin({ children, speed = 0.15 }: { children: React.ReactNode; speed?: number }) {
@@ -177,22 +172,7 @@ export default function HeroScene({
           color="#8fbf1c"
         />
       )}
-      <Environment resolution={256} frames={1}>
-        <group rotation={[-Math.PI / 3, 0, 1]}>
-          <Lightformer form="circle" intensity={4} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={2} />
-          <Lightformer form="circle" intensity={2} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={2} />
-          <Lightformer form="circle" intensity={2} rotation-y={Math.PI / 2} position={[-5, -1, -1]} scale={2} />
-          <Lightformer form="circle" intensity={2} rotation-y={-Math.PI / 2} position={[10, 1, 0]} scale={8} />
-          <Lightformer
-            form="ring"
-            color={LIME}
-            intensity={8}
-            onUpdate={(self) => self.lookAt(0, 0, 0)}
-            position={[10, 10, 0]}
-            scale={10}
-          />
-        </group>
-      </Environment>
+      <Studio />
     </Canvas>
   );
 }

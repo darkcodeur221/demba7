@@ -208,7 +208,24 @@ export const projects: Project[] = [
       fr: "2 500 produits, plus de 1 500 commandes traitées.",
       en: "2,500 products, more than 1,500 orders processed.",
     },
-    stack: ["WooCommerce", "WordPress"],
+    metrics: [
+      {
+        value: 2500,
+        suffix: { fr: "+", en: "+" },
+        label: { fr: "produits gérés au catalogue", en: "products managed in the catalog" },
+      },
+      {
+        value: 1500,
+        suffix: { fr: "+", en: "+" },
+        label: { fr: "commandes traitées", en: "orders processed" },
+      },
+      {
+        value: 55,
+        suffix: { fr: " %", en: "%" },
+        label: { fr: "du CA e-commerce via Google organique", en: "of e-commerce revenue from organic Google" },
+      },
+    ],
+    stack: ["WooCommerce", "WordPress", "GA4", "Search Console"],
     url: "https://feugjay.com",
     linkLabel: "feugjay.com",
     image: "/images/feugjay.jpg",

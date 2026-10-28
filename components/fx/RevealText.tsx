@@ -6,16 +6,26 @@ import { cn } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-type Token = { word: string; accent: boolean };
+/** `glue`: no space before this word in the source, as with "*retail*," */
+type Token = { word: string; accent: boolean; glue: boolean };
 
-/** Splits "plain *accent words* plain" into words, keeping the accent flag. */
+/**
+ * Splits "plain *accent words* plain" into words, keeping the accent flag.
+ * Breaks on ordinary whitespace only, so French non-breaking spaces (before
+ * : ? !) stay inside their word.
+ */
 function tokenize(text: string): Token[] {
   const tokens: Token[] = [];
+  let spaced = true;
   for (const part of text.split(/(\*[^*]+\*)/g)) {
     if (!part) continue;
     const accent = part.length > 2 && part.startsWith("*") && part.endsWith("*");
     const body = accent ? part.slice(1, -1) : part;
-    for (const word of body.split(/\s+/)) if (word) tokens.push({ word, accent });
+    const words = body.split(/[ \t\n]+/);
+    words.forEach((word, i) => {
+      if (word) tokens.push({ word, accent, glue: i === 0 && !spaced && tokens.length > 0 });
+    });
+    spaced = /[ \t\n]$/.test(part);
   }
   return tokens;
 }
@@ -49,7 +59,7 @@ export function RevealText({
         {tokens.map((t, i) => (
           <span key={i}>
             <span className={cn(t.accent && "em-accent")}>{t.word}</span>
-            {i < tokens.length - 1 && " "}
+            {i < tokens.length - 1 && !tokens[i + 1].glue && " "}
           </span>
         ))}
       </span>
@@ -61,6 +71,14 @@ export function RevealText({
     show: (i: number) => ({ y: "0%", transition: { duration: 0.95, ease: EASE, delay: delay + i * 0.045 } }),
   };
 
+  // A glued token rides in its word's group, kept on one line, so trailing
+  // punctuation can't wrap away from the word it belongs to.
+  const groups: { token: Token; i: number }[][] = [];
+  tokens.forEach((token, i) => {
+    if (token.glue && groups.length) groups[groups.length - 1].push({ token, i });
+    else groups.push([{ token, i }]);
+  });
+
   return (
     <motion.span
       className={className}
@@ -68,15 +86,19 @@ export function RevealText({
       {...(onMount ? { animate: "show" } : { whileInView: "show" })}
       viewport={{ once: true, amount: 0.25 }}
     >
-      {tokens.map((t, i) => (
-        <span key={i}>
-          <span className="inline-block overflow-hidden pb-[0.14em] -mb-[0.14em] align-bottom">
-            <motion.span custom={i} variants={word} className={cn("inline-block", t.accent && "em-accent")}>
-              {t.word}
-            </motion.span>
+      {groups.map((group, g) => (
+        <span key={g}>
+          <span className={cn(group.length > 1 && "whitespace-nowrap")}>
+            {group.map(({ token, i }) => (
+              <span key={i} className="inline-block overflow-hidden pb-[0.14em] -mb-[0.14em] align-bottom">
+                <motion.span custom={i} variants={word} className={cn("inline-block", token.accent && "em-accent")}>
+                  {token.word}
+                </motion.span>
+              </span>
+            ))}
           </span>
-          {/* A real space between boxes, so lines can still break normally. */}
-          {i < tokens.length - 1 && " "}
+          {/* A real space between groups, so lines can still break normally. */}
+          {g < groups.length - 1 && " "}
         </span>
       ))}
     </motion.span>
